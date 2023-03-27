@@ -6,7 +6,6 @@ const movieSchema = new Schema({
     type: String,
     required: true,
     trim: true,
-    lowercase: true,
   },
   image: {
     type: String,
@@ -15,31 +14,26 @@ const movieSchema = new Schema({
     type: [String],
     required: true,
     trim: true,
-    lowercase: true,
   },
   genre: {
     type: [String],
     required: true,
     trim: true,
-    lowercase: true,
   },
   director: {
     type: String,
     required: true,
     trim: true,
-    lowercase: true,
   },
   cast: {
     type: [String],
     required: true,
     trim: true,
-    lowercase: true,
   },
   description: {
     type: String,
     required: true,
     trim: true,
-    lowercase: true,
   },
   duration: {
     type: Number,
@@ -55,6 +49,7 @@ const movieSchema = new Schema({
   },
   rating: {
     type: Number,
+    required: true,
   }
 });
 

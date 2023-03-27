@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 require('./db/mongoose');
 
@@ -16,5 +15,8 @@ app.disable('x-powered-by');
 
 app.use("/v1/users", userRouter);
 app.use("/v1/movies", movieRouter);
+app.get("/", (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+  });
 
 app.listen(port, () => console.log(`app is running on port: ${port}`));

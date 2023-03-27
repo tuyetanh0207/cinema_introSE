@@ -35,6 +35,25 @@ const userController = {
         }
     },
 
+    uploadProfileImage: async (req, res, next) => {
+        const { file } = req;
+        const userId = req.params.id;
+        try {
+          if (!file) {
+            const error = new Error('Please upload a file');
+            error.httpStatusCode = 400;
+            return next(error);
+          }
+          const user = await User.findById(userId);
+          if (!user) return res.sendStatus(404);
+          await user.updateOne({ imageurl: req.imageurl });
+          res.send({ user, file });
+        } catch (e) {
+          console.log(e);
+          res.sendStatus(400).send(e);
+        }
+    },
+
     // login user
     loginUser: async (req, res) => {
         try {
