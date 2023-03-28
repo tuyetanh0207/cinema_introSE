@@ -31,7 +31,7 @@ const userController = {
             res.status(201).json({message: 'User created successfully'});
         } catch (e) {
             console.log(e);
-            res.status(400).json({eror: e});
+            res.status(400).json({error: e.message});
         }
     },
 
@@ -50,7 +50,7 @@ const userController = {
           res.send({ user, file });
         } catch (e) {
           console.log(e);
-          res.sendStatus(400).send(e);
+          res.status(400).json({error: e.message});
         }
     },
 
@@ -76,7 +76,7 @@ const userController = {
             await req.user.save();
             res.status(200).json({message: 'Logged out'});
         } catch(e) {
-            res.status(400).json({error: e});
+            res.status(400).json({error: e.message});
         }
     },
 
@@ -100,7 +100,7 @@ const userController = {
             const users = await User.find({});
             res.status(200).json(users);
         } catch(e) {
-            res.status(400).json({error: e});
+            res.status(400).json({error: e.message});
         }
     },
 
