@@ -1,4 +1,3 @@
-const { restart } = require('nodemon');
 const Movie = require('../models/movie');
 
 const movieController = {
