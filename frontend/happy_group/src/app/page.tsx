@@ -6,13 +6,13 @@ import Footer from '@/components/footer/footer'
 // import Popup_Oauth_Signup from '@/components/popup_oauth/signup/popup_oauth_signup'
 import NewMovies from '@/components/newmovies'
 
+import Banner from '@/components/Banner/Banner'
+
+
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   return (
-    <div>
-      <NewMovies/>
-    <h1>aksjfalfjl</h1>
-    </div>
+    <Banner />
   )
 }
