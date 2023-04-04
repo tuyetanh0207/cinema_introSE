@@ -20,10 +20,6 @@ const movieController = {
         const { file } = req;
         const movieId = req.params.id;
         try {
-          const movieExists = await Movie.exists({ _id: movieId });
-          if (!movieExists) {
-            return res.status(409).json({ error: 'Movie not found' });
-          }
           if (!file) {
             const error = new Error('Please upload a file');
             error.httpStatusCode = 400;
@@ -45,8 +41,26 @@ const movieController = {
             const movies = await Movie.find({});
             res.status(200).json(movies);
         } catch (e) {
-            res.status(200).json({error: e.message});
+            res.status(400).json({error: e.message});
         }
+    },
+    
+    getNowShowingMovies: async (req, res) => {
+      try {
+          const movies = await Movie.find({state: 'Now Showing'})
+          res.status(200).json(movies);
+      } catch (e) {
+        res.status(400).json({error: e.message});
+      }
+    },
+
+    getComingSoonMovies: async (req, res) => {
+      try {
+          const movies = await Movie.find({state: 'Coming Soon'})
+          res.status(200).json(movies);
+      } catch (e) {
+        res.status(400).json({error: e.message});
+      }
     },
 
     getMovieById: async (req, res) => {

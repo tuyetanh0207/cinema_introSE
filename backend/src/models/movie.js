@@ -50,6 +50,17 @@ const movieSchema = new Schema({
   rating: {
     type: Number,
     required: true,
+  },
+  state: {
+    type: String,
+    default: 'Comming Soon',
+    enum: ['Now Showing', 'Coming Soon'],
+    required: true,
+  },
+  isActive: {
+    type: Boolean,
+    default: true,
+    require: true,
   }
 });
 
