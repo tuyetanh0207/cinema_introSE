@@ -1,5 +1,6 @@
 import styles from './footer.module.css'
 import { fbIcon_foot,instaIcon_foot, twtIcon, androidIcon, iosIcon,bg_foot, un_foot, logo_white} from '@/assets/svgs'
+import { test } from '@/assets/imgs'
 import Image from 'next/image'
 import Link from 'next/link'
 export default function Footer () {

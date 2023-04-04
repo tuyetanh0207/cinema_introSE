@@ -2,6 +2,7 @@ import styles from './header.module.css'
 import { fbIcon,searchIcon, twitterIcon, instaIcon, logoIcon, logoutIcon } from '@/assets/svgs'
 import Image from 'next/image'
 import Link from 'next/link'
+// import Popup_Oauth from '../popup_oauth/login/popup_oauth_login'
 export default function Header () {
     return (
         <div className={styles.header}>
@@ -42,6 +43,8 @@ export default function Header () {
                 </li>
                 </ul>
             </div>
+            {/* <Popup_Oauth/> */}
         </div>
+        
     )
 }
