@@ -16,7 +16,7 @@ const userController = {
                 return res.status(409).json({error: 'User already exists'});
             if (emailExists) 
                 return res.status(409).json({error: 'This email has been used'});
-            if (phone)
+            if (phoneExists)
                 return res.status(409).json({error: 'This phone number has been used'});
 
             const newUser = new User({
@@ -31,7 +31,26 @@ const userController = {
             res.status(201).json({message: 'User created successfully'});
         } catch (e) {
             console.log(e);
-            res.status(400).json({eror: e});
+            res.status(400).json({error: e.message});
+        }
+    },
+
+    uploadProfileImage: async (req, res, next) => {
+        const { file } = req;
+        const userId = req.params.id;
+        try {
+          if (!file) {
+            const error = new Error('Please upload a file');
+            error.httpStatusCode = 400;
+            return next(error);
+          }
+          const user = await User.findById(userId);
+          if (!user) return res.sendStatus(404);
+          await user.updateOne({ imageurl: req.imageurl });
+          res.status(200).json({ user, file });
+        } catch (e) {
+          console.log(e);
+          res.status(400).json({error: e.message});
         }
     },
 
@@ -57,7 +76,7 @@ const userController = {
             await req.user.save();
             res.status(200).json({message: 'Logged out'});
         } catch(e) {
-            res.status(400).json({error: e});
+            res.status(400).json({error: e.message});
         }
     },
 
@@ -73,7 +92,7 @@ const userController = {
 
     // get all user
     getAllUser: async (req, res) => {
-        if (req.user.role !== 'superadmin') 
+        if (req.user.role !== 'admin') 
             return res.status(400).json({
                 error: 'Only the god can see all the users!'
             });
@@ -81,7 +100,7 @@ const userController = {
             const users = await User.find({});
             res.status(200).json(users);
         } catch(e) {
-            res.status(400).json({error: e});
+            res.status(400).json({error: e.message});
         }
     },
 
@@ -97,7 +116,7 @@ const userController = {
 
     // get user by id only for admin
     getUserInfoById: async(req, res) => {
-        if (req.user.role !== 'superadmin') 
+        if (req.user.role !== 'admin') 
             return res.status(400).json({
                 error: 'Only the god can see the user'
             });
@@ -130,7 +149,7 @@ const userController = {
 
     // admin can update user by id
     updateById: async (req, res) => {
-        if (req.user.role !== 'superadmin')
+        if (req.user.role !== 'admin')
             return res.status(400).json(
                 {error: 'Only the god can update user'}
             );
@@ -153,7 +172,7 @@ const userController = {
 
     // delete by id
     deleteById: async (req, res) => {
-        if (req.user.role !== 'superadmin')
+        if (req.user.role !== 'admin')
             return res.status(400).json({
                 error: 'Only the god can delete user'
             });
@@ -173,7 +192,7 @@ const userController = {
 
     // delete god
     deleteGod: async (req, res) => {
-        if (req.user.role !== 'superadmin')
+        if (req.user.role !== 'admin')
             return res.status(400).json({
                 error: 'You cannot delete yourself'
             });

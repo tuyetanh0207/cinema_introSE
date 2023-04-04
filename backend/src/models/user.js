@@ -42,8 +42,8 @@ const userSchema = Schema(
     },
     role: {
       type: String,
-      default: 'guest',
-      enum: ['guest', 'admin', 'superadmin'],
+      default: 'user',
+      enum: ['user', 'staff', 'accountant','admin'],
     },
 
     facebook: String,
@@ -79,7 +79,7 @@ const userSchema = Schema(
 userSchema.methods.toJSON = function() {
   const user = this;
   const userObject = user.toObject();
-  if (!userObject.role === 'superadmin') {
+  if (!userObject.role === 'admin') {
     delete userObject.updatedAt;
     delete userObject.__v;
   }
