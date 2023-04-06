@@ -66,9 +66,9 @@ const App: FC = () => {
     // }, [router.events]);
   
     return (
-      <Provider store={store}>
+    //   <Provider store={store}>
           <NewMovies/>
-      </Provider>
+    //   </Provider>
     );
   };
   export default App;
