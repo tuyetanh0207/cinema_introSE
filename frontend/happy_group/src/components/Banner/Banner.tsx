@@ -16,6 +16,13 @@ export default function Banner () {
         pic4,
     ];
 
+    const MovieName = [
+        'Name',
+        'Super Mario',
+        'Power Ranger',
+        'America Tho',
+    ]
+
     // let counter = 1;
     // setInterval(function() {
     //   const radio = document.getElementById('radio' + counter) as HTMLInputElement;
@@ -27,6 +34,8 @@ export default function Banner () {
     //     counter = 1;
     //   }      
     // }, 5000);
+
+    
     
   
 
@@ -70,7 +79,22 @@ export default function Banner () {
 
         {/* Form begin */}
             <div className={styles.opt}>
-                
+                <label>MUA VÉ NHANH</label>
+                <form action=''>
+                    <select>
+                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
+                    </select>
+                    <select>
+                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
+                    </select>
+                    <select>
+                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
+                    </select>
+                    <select>
+                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
+                    </select>
+                </form>
+                <a href="#" className={styles.buy_btn}>Mua vé</a>
 
             </div>
         {/* Form end */}
