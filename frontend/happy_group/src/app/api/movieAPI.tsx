@@ -1,9 +1,9 @@
 import { apiV1, apiV1_user, get, post, put, patch, delele} from "./generic";
 
-const UserAPI = {
+const movieAPI = {
   
-  getNewU: function () {
-    const url = `${apiV1}/`;
+  getNowShowingMovies: function () {
+    const url = `${apiV1}/movies/nowShowing`;
     return get(url, "");
   },
 
@@ -48,4 +48,4 @@ const UserAPI = {
   // },
 };
 
-export default UserAPI;
+export default movieAPI;

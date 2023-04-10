@@ -11,6 +11,8 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getUsersData } from './state/actions/userActions'
+import Login from '@/components/login/page'
+import MovieAPI from './api/movieAPI';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +20,7 @@ export default function Home() {
   const users=useSelector((state: any)=> state?.users).UsersData
   const dispatch=useDispatch();
   const fetchUsers=async() =>{
-      await axios.get("https://gokisoft.com/api/fake/1395/movies/nowShowing")
+      await MovieAPI.getNowShowingMovies()
       .then((res)=>{
           dispatch(getUsersData(res.data))
           console.log(res.data)
@@ -46,6 +48,7 @@ export default function Home() {
               )
           })
       }
+      <Login/>
       </>
   )
 }
