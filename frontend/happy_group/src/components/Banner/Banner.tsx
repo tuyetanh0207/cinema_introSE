@@ -1,5 +1,5 @@
 import styles from './Banner.module.css'
-import { pic1,pic2,pic3,pic4} from '@/assets/imgs'
+import {pic1,pic2,pic3,pic4} from '@/assets/imgs'
 import { right_arrow,left_arrow } from '@/assets/svgs'
 import Image from 'next/image'
 import { HtmlHTMLAttributes, useEffect, useState } from 'react';
@@ -18,6 +18,9 @@ export default function Banner () {
 
     const MovieName = [
         'Name',
+        'Super Mario',
+        'Power Ranger',
+        'America Tho',
         'Super Mario',
         'Power Ranger',
         'America Tho',
@@ -46,6 +49,9 @@ export default function Banner () {
             <div className={styles.slides}>
 
             {/* btn begin*/}
+                
+
+
                 {Bannerpic.map((_, index) => (<input id={styles[`radio${index+1}`]} type={"radio"} name="radio-btn" key={index}/>))}
             {/* btn end*/}
 
@@ -94,10 +100,17 @@ export default function Banner () {
                     {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
                     </select>
                 </form>
-                <a href="#" className={styles.buy_btn}>Mua vé</a>
-
+                <button className={styles.buy_btn}>Mua vé</button>
             </div>
         {/* Form end */}
+
+        {/*buy_btn_layer_nd begin*/}
+            {/* <div className={styles.back}>
+                <div className={styles.box}>
+                </div>
+            </div> */}
+        {/*buy_btn_layer_nd end*/}
+
 
         </div>
 
