@@ -1,3 +1,4 @@
+"use client"
 import styles from './signup.module.css'
 import Link from 'next/link'
 export default function Popup_Oauth_Signup() {
