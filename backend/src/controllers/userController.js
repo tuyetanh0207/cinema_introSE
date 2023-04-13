@@ -47,7 +47,7 @@ const userController = {
           const user = await User.findById(userId);
           if (!user) return res.sendStatus(404);
           await user.updateOne({ imageurl: req.imageurl });
-          res.status(200).json({ user, file });
+          res.status(200).json({ user, imageurl: req.imageurl });
         } catch (e) {
           console.log(e);
           res.status(400).json({error: e.message});
@@ -180,7 +180,7 @@ const userController = {
         const id = req.params.id;
 
         try {
-            const user = await User.findByIdAndDelete(_id);
+            const user = await User.findByIdAndDelete(id);
             if (!user)
                 return res.status(404).json({error: 'Cannot delete user'});
         
@@ -191,7 +191,7 @@ const userController = {
     },
 
     // delete god
-    deleteGod: async (req, res) => {
+    deleteMe: async (req, res) => {
         if (req.user.role !== 'admin')
             return res.status(400).json({
                 error: 'You cannot delete yourself'

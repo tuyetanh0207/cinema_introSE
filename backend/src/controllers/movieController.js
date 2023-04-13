@@ -29,7 +29,7 @@ const movieController = {
           if (!movie) return res.sendStatus(404);
       
           await movie.updateOne({ image: req.image });
-          res.status(201).json({ movie: { ...movie.toObject(), image: req.image } });
+          res.status(201).json({ movie, image: req.image });
         } catch (e) {
           console.log(e);
           res.sendStatus(400).send(e);
@@ -90,6 +90,8 @@ const movieController = {
           'releaseDate',
           'endDate',
           'rating',
+          'state',
+          'isActive'
         ];
         const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
       
@@ -109,7 +111,7 @@ const movieController = {
         const _id = req.params.id;
         try {
           const movie = await Movie.findByIdAndDelete(_id);
-          return !movie ? res.status(404).json({error: 'Movie does not exists'}) : res.status(200).json(movie);
+          return !movie ? res.status(404).json({error: 'Movie does not exists'}) : res.status(200).json({ message: 'Movie deleted!'});
         } catch (e) {
           return res.status(400).json({error: e.message});
         }
