@@ -1,4 +1,5 @@
 import s from './filmcomment.module.css'
+import { fbIcon, searchIcon} from '@/assets/svgs'
 import Image from 'next/image'
 import React from 'react'
 

@@ -1,88 +1,289 @@
+.idfilm{
+    background-color: #E9F8F9;
+}
+.title{
+    display:flex;
+    flex-direction: row;
+    background-color: #E9F8F9;
+    margin-left: 150px;
+    transform: scale(0.9);
+    font-size: larger;
+    font-weight: bolder;
+}
+
 .container {  
-    transform: scale(0.8);
     display: flex;
 	justify-content: space-between;
+    background-color: #E9F8F9;
+    transform: scale(0.9);
+    height: 750px;
+    width: 1200px;
+    margin-left: 150px;
 }
 
-.column {
+.leftcolumn {
+    display:flex;
+    flex-basis: 67%;
     flex-direction: column;
-	flex-basis: 55%;
-	display: grid;
+    background-color:#E9F8F9;
+    width: 780px;
+    height: auto;
+}
+.rightcolumn {
+    display:flex;
+    flex-basis: 30%;
+    flex-direction: column;
+    justify-content: center;
+    background-color:#C0EEF2;
+    width: auto;
+    height: auto;
 }
 
-.box {
-	background-color: #ffffff;
-	display: flex;
+  
+.imagewrapper img {
+    margin:20px;
+    width: 310px;
+    height: 190px;
+  }
+.img:hover{
+    opacity:0.8;
 }
 
-.image {
-	flex-basis: 40%;
-	height: 100px;
-	background-color: #ffffff;
+.frametop{
+    display:flex;
+    flex-direction: row;
+    flex-basis: 55%;
+    background-color:#E9F8F9;
+    margin-bottom: 5%;
+  }
+.framebot{
+    display:flex;
+    flex-basis: 40%;
+    background-color:#C0EEF2;
+  }
+.a1 img{
+    width: 300px;
+    height: 455px;
 }
-.image:hover{
-    filter: brightness(40%);
+.text{
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.a1{
+    display: flex;
+    flex-basis:37%;
 }
 
-.content {
-	flex-basis: 60%;
-	padding: 1em;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+.intro{
+    display:flex;
+    flex-direction: column;
+    flex-basis: 63%;
+    background-color:#C0EEF2;
 }
 
-
-.a {
+.i1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    margin:20px;
+}
+.i2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    margin: 13px;
+}
+.j1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 29px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 15px;
+    margin-left:10px
+}
+.j2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.db {
 	color: black;
     transition: color 0.1s ease;
     text-decoration: none;
 }
-.a:hover{
+.db:hover{
+    font-style: italic;
     color: rgb(255, 77, 0);
 }
-
-.p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    max-width: 350px; /* giới hạn độ rộng của phần tử */
-    overflow: hidden; /* ẩn nội dung vượt quá giới hạn */
-    text-overflow: ellipsis; /* thêm ba chấm nếu nội dung vượt quá giới hạn */
-}
-  
-.imagewrapper img {
-    width: 275px;
-    height: 180px;
-  }
-
-.h2{
-    transform: scale(1);
-    text-align: left;
-}
-.h3{
-    font-size: 22px;
-}
-.span{
+.more{
+    color: black;
+    transition: color 0.1s ease;
+    text-decoration: none;
     font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-    opacity:0.7;
-    display: block;
-    margin-top: 5px;
+    font-weight: 600;
+    margin-left: 100px;
+    text-decoration: solid black underline;
 }
-.a{
-    display: block;
-    margin-bottom: 15px;
+.more:hover{
+    color: rgb(255, 77, 0);
+    text-decoration: solid rgb(255, 77, 0) underline;
+    font-style: italic;
 }
-.imglike{
-    width: 460;
-    height: 50;
-    transform: scale(0.8);
+.starvote{
+    display:flex;
+    flex-direction: row;
+}
+.mschedule{
+    display:flex;
+    flex-direction: column;
+    background-color: #E9F8F9;
+    margin-left: 150px;
+    transform: scale(0.9);
+    font-size: larger;
+    font-weight: bolder;
 }
 .box{
-    margin-bottom: 25px;
+    display:flex;
+    flex-direction: column;
+    margin-top:30px;
 }
+.namett{
+    font-size: 20px;
+    background-color: orange;
+    width: 450px;
+    height: 30px;
+    text-align: center;
+}
+.schedule{
+    display:flex;
+    flex-direction: row;
+    width: 800px;
+    border: 1px solid black;
+    padding: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.alltime{
+    display:flex;
+    flex-direction: row;
+}
+.type{
+    margin-left: 10px;
+    margin-right: 150px;
+    border: 1px solid black;
+    padding: 5px;
+}
+.time{
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid black;
+    padding: 3px;
+}
+.time:hover{
+    color: rgb(255, 77, 0);
+    border: 3px solid rgb(255, 77, 0);
+}
+
+.select{
+    margin-top:20px;
+}
+.datetime{
+    width: 200px;
+    font-size: 20px;
+    margin-left: 150px;
+}
+.theater{
+    font-size: 20px;
+    width: 200px;
+    margin-left: 150px;
+}
+
+.rating {
+    display: inline-block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 50px;
+    transform: rotate(180deg);
+    margin-top: 15px;
+  }
+.rating input {
+    display:none;
+  }
+  
+.rating label::before {
+    content: "\2605";
+    font-family: FontAwesome;
+    font-size: 30px;
+    color: black;
+    display: inline-block;
+    margin-left: 5px;
+    transform: rotate(180deg);
+}
+  
+  .rating input:checked ~ label::before {
+    color: #FFC107;
+  }
+  
+  .rating label:hover ~ label::before {
+    color: #FFC107;
+  }
+  .rating label:hover:before {
+    color: #FFC107;
+  }
+
+.des{
+    display: flex;
+    flex-direction: row;
+    transform: scale(0.7);
+    text-align: center;
+}
+
+.noknow{
+    background-color: rgb(0, 132, 255);
+    height: 45px;
+    width: 75px;
+    font-size: 23px;
+    font-weight: 700;
+    margin-right: 10px;
+    border-radius: 15px;
+    text-align: center ;
+    padding-top: 10px;
+}
+
+.clock{
+    display:flex;
+    flex-direction: row;
+    width:150px;
+    align-items: center;
+    background-color: rgb(0, 132, 255);
+    border-radius: 15px;
+    font-size: 23px;
+    font-weight: 700;
+    margin-left: 50px;
+}
+
+.icon{
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+}
+
 
 
 

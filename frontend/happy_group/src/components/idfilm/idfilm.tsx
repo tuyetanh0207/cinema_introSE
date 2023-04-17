@@ -1,174 +1,214 @@
-import s from './filmcomment.module.css'
-import { fbIcon, searchIcon} from '@/assets/svgs'
+import s from './idfilm.module.css'
+import { fbIcon, searchIcon, clock} from '@/assets/svgs'
 import Image from 'next/image'
 import React from 'react'
+import useState from 'react'
 
-export default function filmcomment () {
+export default function idfilm () {
     return (
-    <div>
-        <div className={s.container}>
-            <div className={s.column}>
-                <h2 className={s.h2}> 
-                    <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim">BÌNH LUẬN PHIM</a>
-                </h2>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-shazam-fury-of-the-gods-lon-xon-nhung-rat-nhon">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/21/shazam-fury-of-the-gods-lon-xon-nhung-rat-nhon-7_1679369048192.jpg" alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-shazam-fury-of-the-gods-lon-xon-nhung-rat-nhon">[Review] Shazam! Fury Of The Gods: Lộn Xộn Nhưng Rất “Nhộn”!</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}> 
-                            <span className={s.span}>
-                            Nếu nghĩ Nhện nhí nhà Marvel hay gã phản anh hùng Deadpool 
-                            là những tên siêu năng lực nói nhiều nhất vũ trụ phim siêu anh hùng thì bạn nhầm to rồi. 
-                            Chàng Shazam có khi ồn ào bằng cả đôi Spiderpool cộng lại!
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-everything-everywhere-all-at-once-phim-oscar-khong-he-kho-hieu">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/21/everything-everywhere-all-at-once-phim-oscar-khong-he-kho-hieu-5_1679368313437.jpg" alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-everything-everywhere-all-at-once-phim-oscar-khong-he-kho-hieu">[Review] Everything Everywhere All At Once: Phim Oscar Không Hề Khó Hiểu!</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}>
-                            <span className={s.span}>
-                                Với kinh phí vỏn vẹn 25 triệu $, Everything Everywhere All At Once thu hơn 111 triệu $ 
-                                tại các rạp chiếu phim toàn cầu và 7 tượng vàng Oscar. Một thành công hết sức mỹ mãn cho hãng A24! 
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-sieu-lua-gap-sieu-lay-phi-vu-hoan-hao-cua-dien-anh-viet">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/5/450_1677988268924.jpg"  alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-sieu-lua-gap-sieu-lay-phi-vu-hoan-hao-cua-dien-anh-viet">[Review] Siêu Lừa Gặp Siêu Lầy: Phi Vụ Hoàn Hảo Của Điện Ảnh Việt</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}> 
-                            <span className={s.span}>
-                                Siêu Lừa Gặp Siêu Lầy là một cuốn phim tốt về mọi mặt. Từ kịch bản, tạo hình, diễn xuất, âm nhạc… 
-                                Nếu mong muốn có những giây phút giải trí thư giãn sau nhiều giờ làm việc căng thẳng thì đây sẽ là lựa chọn hoàn hảo. 
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-ant-man-and-the-wasp-quantumania-cu-lua-xuat-sac-cua-marvel">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/2/18/ant-man-and-the-wasp-quantumania-cu-lua-xuat-sac-cua-marvel-3_1676654214338.jpg" alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://www.galaxycine.vn/binh-luan-phim/review-ant-man-and-the-wasp-quantumania-cu-lua-xuat-sac-cua-marvel">[Review] Ant-Man And The Wasp Quantumania: Cú Lừa Xuất Sắc Của Marvel!!</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}> 
-                            <span className={s.span}>
-                                Ai nghĩ rằng trailer Ant-Man And The Wasp: Quantumania đã tóm tắt bộ phim thì lầm to rồi. 
-                                Một lần nữa, Marvel tặng tất cả chúng ta cú lừa ngoạn mục. 
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div className={s.column}>
-                <h2 className={s.h2}> 
-                    <a className={s.a} href="https://www.galaxycine.vn/movie-blog">BLOG ĐIỆN ẢNH</a>
-                </h2>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/movie-blog/oscar-2023-nhung-chuyen-hau-truong-day-bat-ngo">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/10/oscar-2023-nhung-chuyen-hau-truong-day-bat-ngo-5_1678431632839.jpg" alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://www.galaxycine.vn/movie-blog/oscar-2023-nhung-chuyen-hau-truong-day-bat-ngo">Oscar 2023: Những Chuyện Hậu Trường Đầy Bất Ngờ</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}> 
-                            <span className={s.span}>
-                                Những điều thú vị đằng sau sự kiện điện ảnh lớn nhất năm! Hãy cùng xem ai sẽ là người chiến thắng!
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/movie-blog/boc-trung-phuc-sinh-ant-man-and-the-wasp-quantumania">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/2/21/boc-trung-phuc-sinh-ant-man-and-the-wasp-quantumania-6_1676952634061.jpg" alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://www.galaxycine.vn/movie-blog/boc-trung-phuc-sinh-ant-man-and-the-wasp-quantumania">Bóc Trứng Phục Sinh Ant-Man And The Wasp: Quantumania</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}> 
-                            <span className={s.span}>
-                                Những bộ phim thuộc vũ trụ điện ảnh Marvel luôn “chôn” rất nhiều Trứng Phục Sinh để các fan trung thành khám phá. 
-                                Là tác phẩm phim chiếu rạp thứ 3 về Người Kiến, Ant-Man And The Wasp: Quantumania có cả tá Easter Egg. 
-                                Các Stars đã đào được bao nhiêu “quả trứng” rồi? Hãy cùng khám phá nhé.
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/movie-blog/fast-x-vin-diesel-ru-dan-sieu-anh-hung-dua-xe">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/2/14/fast-x--vin-diesel-ru-dan-sieu-anh-hung-dua-xe-6_1676348176123.jpg" alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://cdn.galaxycine.vn/media/2023/2/14/fast-x--vin-diesel-ru-dan-sieu-anh-hung-dua-xe-6_1676348176123.jpg">Fast X: Vin Diesel Rủ Dàn Siêu Anh Hùng Đua Xe?</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}> 
-                            <span className={s.span}>
-                                Fast X – phần mở đầu cho “cuộc đua cuối” của đại gia đình Toretto vừa tung ra trailer siêu hấp dẫn vào 10.02 vừa qua. 
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div className={s.box}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/movie-blog/luat-dien-anh-moi-co-gi-moi">                    
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/2/3/1800x1200-100_1675391884941.jpg" alt="Mô tả ảnh"/>
-                        </a>
-                    </div>
-                    <div className={s.content}>
-                        <h3 className={s.h3}>
-                            <a className={s.a} href="https://www.galaxycine.vn/movie-blog/luat-dien-anh-moi-co-gi-moi">Luật Điện Ảnh Mới Có Gì Mới?</a>
-                        </h3>
-                        <img className={s.imglike} src="https://i.imgur.com/yVc6IOg.png" alt="Mô tả ảnh"/>
-                        <p className={s.p}> 
-                            <span className={s.span}>
-                                So với Luật Điện ảnh 2006 trước đây, Luật Điện ảnh 2022 (có hiệu lực từ ngày 01.01.2023) thay đổi một số điểm nổi bật sau đây:
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </div>
+    <div className={s.idfilm}>
+        <div className={s.title}>
+            <a className={s.db} href="https://www.galaxycine.vn/">TRANG CHỦ</a>
+            <div> &emsp;>   &emsp;TRỊNH CÔNG SƠN </div>
         </div>
+       <div className={s.container}>
+            <div className={s.leftcolumn}>
+                <div className={s.frametop}>
+                    <div className={s.a1}>
+                        <img src="https://cdn.galaxycine.vn/media/2023/3/30/brand-tcs-quay-lai-rap-300x450_1680172209610.jpg" alt="Mô tả ảnh"/>
+                    </div>
+                    <div className={s.intro}>
+                        <div className={s.i1}> TRỊNH CÔNG SƠN </div>
+
+                        <div className={s.des}>
+                            <div className={s.noknow}>C16</div>
+                            <div className={s.clock}>
+                                <Image src={clock} alt={''} className={s.icon} />
+                                <div className={s.hour}>120 phút</div>
+                            </div>
+                        </div>
+
+
+                        <div className={s.i2}>Diễn viên:  Hoàng Hà, Lan Thy, Bùi Lan Hương, Avin Lu</div>
+                        <div className={s.i2}> Đạo diễn:  Phan Gia Nhật Linh</div>
+                        <div className={s.i2}> Thể loại:  Tình Cảm, Lãng Mạn</div>
+                        <div className={s.i2}> Quốc gia:  Việt Nam</div>
+                        <div className={s.i2}> Nhà sản xuất:  Galaxy Play</div>
+                        <div className={s.i2}>Ngày khởi chiếu:  31/3/2023</div>
+                        <div className={s.starvote}>
+                            <div className={s.i2}>Đánh giá: </div>
+                            <div className={s.rating}>
+                                <input type="radio" id="star5" name="rating" value="5" />
+                                <label for="star5" ></label>
+                                <input type="radio" id="star4" name="rating" value="4" />
+                                <label for="star4" ></label>
+                                <input type="radio" id="star3" name="rating" value="3" />
+                                <label for="star3" ></label>
+                                <input type="radio" id="star2" name="rating" value="2" />
+                                <label for="star2"></label>
+                                <input type="radio" id="star1" name="rating" value="1" />
+                                <label for="star1" ></label>
+                            </div>
+
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+                <div className={s.framebot}>
+                    <div>
+                        <div>
+                            <div className={s.j1}> NỘI DUNG PHIM</div>
+                            <div className={s.j2}>Bộ phim khắc họa chân dung Trịnh Công Sơn từ một chàng thư sinh đa tài lãng tử trở thành “người nhạc sĩ viết tình ca hay nhất thế kỷ” với hàng trăm ca khúc về tình yêu và thân phận con người. Bộ phim “Trịnh Công Sơn” tràn đầy cảm hứng và nhiệt huyết của tuổi trẻ về người nhạc sĩ vĩ đại, đã sống, yêu và sáng tác trong một giai đoạn lịch sử của đất nước với tình yêu cứu rỗi, vượt lên mọi tan vỡ, khổ đau.<br></br>
+                        Phim mới Trịnh Công Sơn chính thức ra mắt tại các rạp chiếu phim trên toàn quốc từ ngày 31.03.2023.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={s.rightcolumn}>
+                    <div className={s.imagewrapper}>
+                        <a className={s.a} href="https://www.galaxycine.vn/dat-ve/biet-doi-rat-on">
+                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/14/450x300_1678764834354.jpg" alt="Mô tả ảnh"/>
+                        </a>
+                    </div>
+                    <div className={s.imagewrapper}>
+                        <a className={s.a} href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
+                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="Mô tả ảnh"/>
+                        </a>
+                    </div>
+                    <div className={s.imagewrapper}>
+                        <a className={s.a} href="https://www.galaxycine.vn/dat-ve/trinh-cong-son">
+                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/30/brand-tcs-quay-lai-rap-450x300_1680172207835.jpg" alt="Mô tả ảnh"/>
+                        </a>
+                    </div>
+                    <div className={s.more}>
+                        <a className={s.more} href="https://www.galaxycine.vn/phim-dang-chieu">XEM THÊM</a>
+                    </div>
+            </div>
+       </div>
+       <div className={s.mschedule}>
+            <div> LỊCH CHIẾU</div>
+            <div className={s.select}>
+                <input type="date" className={s.datetime} value="2023-04-04"></input>
+                <select  className={s.theater}>
+                    <option>Tất cả các rạp</option>
+                    <option>Galaxy Nguyễn Du</option>
+                    <option>Galaxy Tân Bình</option>
+                    <option>Galaxy Kinh Dương Vương</option>
+                    <option>Galaxy Quang Trung</option>
+                    <option>Galaxy Bến Tre</option>
+                    <option>Galaxy Đà Nẵng</option>
+                </select>
+            </div>
+            <div className={s.box}>
+                <div className={s.namett}>
+                    Galaxy Nguyễn Du
+                </div>
+                <div className={s.schedule}>
+                        <div className={s.type}>
+                        2D - Phụ đề
+                        </div>
+                        <div className={s.alltime}>
+                            <div className={s.time}>14:45</div>
+                            <div className={s.time}>17:15</div>
+                            <div className={s.time}>19:45</div>
+                            <div className={s.time}>20:30</div>
+                            <div className={s.time}>22:00</div>
+                        </div>
+                </div>  
+            </div>
+
+            <div className={s.box}>
+                <div className={s.namett}>
+                    Galaxy Tân Bình
+                </div>
+                <div className={s.schedule}>
+                        <div className={s.type}>
+                        2D - Phụ đề
+                        </div>
+                        <div className={s.alltime}>
+                            <div className={s.time}>14:45</div>
+                            <div className={s.time}>17:15</div>
+                            <div className={s.time}>19:45</div>
+                            <div className={s.time}>20:30</div>
+                            <div className={s.time}>22:00</div>
+                        </div>
+                </div>  
+            </div>
+
+            <div className={s.box}>
+                <div className={s.namett}>
+                    Galaxy Kinh Dương Vương
+                </div>
+                <div className={s.schedule}>
+                        <div className={s.type}>
+                        2D - Phụ đề
+                        </div>
+                        <div className={s.alltime}>
+                            <div className={s.time}>14:45</div>
+                            <div className={s.time}>17:15</div>
+                            <div className={s.time}>19:45</div>
+                            <div className={s.time}>20:30</div>
+                            <div className={s.time}>22:00</div>
+                        </div>
+                </div>  
+            </div>
+
+            <div className={s.box}>
+                <div className={s.namett}>
+                    Galaxy Quang Trung
+                </div>
+                <div className={s.schedule}>
+                        <div className={s.type}>
+                        2D - Phụ đề
+                        </div>
+                        <div className={s.alltime}>
+                            <div className={s.time}>14:45</div>
+                            <div className={s.time}>17:15</div>
+                            <div className={s.time}>19:45</div>
+                            <div className={s.time}>20:30</div>
+                            <div className={s.time}>22:00</div>
+                        </div>
+                </div>  
+            </div>
+
+            <div className={s.box}>
+                <div className={s.namett}>
+                    Galaxy Bến Tre
+                </div>
+                <div className={s.schedule}>
+                        <div className={s.type}>
+                        2D - Phụ đề
+                        </div>
+                        <div className={s.alltime}>
+                            <div className={s.time}>14:45</div>
+                            <div className={s.time}>17:15</div>
+                            <div className={s.time}>19:45</div>
+                            <div className={s.time}>20:30</div>
+                            <div className={s.time}>22:00</div>
+                        </div>
+                </div>  
+            </div>
+
+            <div className={s.box}>
+                <div className={s.namett}>
+                    Galaxy Đà Nẵng
+                </div>
+                <div className={s.schedule}>
+                        <div className={s.type}>
+                        2D - Phụ đề
+                        </div>
+                        <div className={s.alltime}>
+                            <div className={s.time}>14:45</div>
+                            <div className={s.time}>17:15</div>
+                            <div className={s.time}>19:45</div>
+                            <div className={s.time}>20:30</div>
+                            <div className={s.time}>22:00</div>
+                        </div>
+                </div>  
+            </div>
+
+       </div>
     </div>
     );
 }
