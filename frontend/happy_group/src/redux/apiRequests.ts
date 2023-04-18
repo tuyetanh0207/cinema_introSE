@@ -37,7 +37,7 @@ export const loginUser = async (user: any, dispatch: (arg0: { payload: any; type
     const res=await UserAPI.login(user);
     dispatch(loginSuccess(res.data));
    
-    // router.push("/")
+    router.push("/")
     return 1
   } catch (err) {
     dispatch(loginFailed());

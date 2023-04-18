@@ -29,7 +29,6 @@ export default function Signup_Form() {
         console.log("newuser", newUser)
         console.log("login: ",{username:username_regis,password: password_regis})
         registerUser(newUser, dispatch,router)
-       
         loginUser({username:username_regis,password: password_regis}, dispatch,router)
     }
 

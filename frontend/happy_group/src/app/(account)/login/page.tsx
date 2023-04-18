@@ -31,7 +31,7 @@ export default function Login_Form () {
       username: username,
       password: password,
     };
-    console.log(newUser)
+    // console.log(newUser)
 loginUser(newUser, dispatch,router);
   }
 
