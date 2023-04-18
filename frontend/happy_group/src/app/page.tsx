@@ -11,40 +11,23 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getUsersData } from './state/actions/userActions'
-import MovieAPI from './api/movieAPI';
-import Search from '@/components/search/search'
+// import MovieAPI from './api/movieAPI';
+import BannerAPI from './api/BannerAPI'
+import Banner from '@/components/Banner/Banner'
+
+import { useState } from 'react'
+
+
+const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-
-  
-//   const fetchUsers=async() =>{
-//     // can chu y
-//       const movies= await MovieAPI.getNowShowingMovies();
-//       console.log("res: ",movies)
-//   }
-//   useEffect(()=>{
-//       fetchUsers();
-//   },[])
 
 
   return (
       <>
-      <h1>Phim moi</h1>
-      {/* {
-          (!movies && users == undefined)? 
-          <> 
-          <Loader/>
-          </>
-          :
-          movies.map((movie:any)=> {
-              return(
-                  <>
-                  <h3>Name: {movie.title}</h3>
-                  </>
-              )
-          })
-      } */}
-      {/* <Search/> */}
+
+      <Banner/>
+      
       </>
   )
 }

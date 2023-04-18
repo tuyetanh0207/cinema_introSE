@@ -25,7 +25,7 @@ export default function RootLayout({
   const pathname=usePathname();
   return (
     <html lang="en">
-      <body>
+      <body style={{ height: '1000px'}}>
       <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         {pathname==="/login"||pathname=="/signup"||pathname=="/admin/movies"?<></>:<Header/>}
