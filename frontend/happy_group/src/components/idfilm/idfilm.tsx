@@ -1,24 +1,55 @@
+"use client"
+import axios from "axios"
+import React,{useState, useEffect, FC} from "react";
+import { getUsersData } from "@/app/state/actions/userActions";
+import Loader from "../loader";
+import { store } from "@/app/state/store/store";
+import { useSelector, useDispatch, Provider } from "react-redux";
 import s from './idfilm.module.css'
-import { fbIcon, searchIcon, clock} from '@/assets/svgs'
 import Image from 'next/image'
-import React from 'react'
-import useState from 'react'
+import {clock} from '@/assets/svgs'
 
-export default function idfilm () {
+
+ function NewMovies  (){
+    const movie=useSelector((state: any)=> state?.movie).UsersData
+    const dispatch=useDispatch();
+    const fetchUsers=async() =>{
+        await axios.get("https://gokisoft.com/api/fake/1395/movies/nowShowing")
+        .then((res)=>{
+            dispatch(getUsersData(res.data))
+            console.log(res.data)
+        })
+    }
+    useEffect(()=>{
+        fetchUsers();
+    },[])
     return (
-    <div className={s.idfilm}>
+        <>
+        <div className={s.idfilm}>
         <div className={s.title}>
             <a className={s.db} href="https://www.galaxycine.vn/">TRANG CHỦ</a>
-            <div> &emsp;>   &emsp;TRỊNH CÔNG SƠN </div>
+            {
+                (!movie || movie.length === 0) ? 
+                    <Loader />:<div> &emsp;>&emsp;{movie[0].title}</div>
+            }   
         </div>
        <div className={s.container}>
             <div className={s.leftcolumn}>
                 <div className={s.frametop}>
+
                     <div className={s.a1}>
-                        <img src="https://cdn.galaxycine.vn/media/2023/3/30/brand-tcs-quay-lai-rap-300x450_1680172209610.jpg" alt="Mô tả ảnh"/>
+                        {
+                            (!movie || movie.length === 0) ? 
+                                <Loader />:
+                                <img src={movie[0].image} alt="Mô tả ảnh"/>
+                        }
                     </div>
+                    
                     <div className={s.intro}>
-                        <div className={s.i1}> TRỊNH CÔNG SƠN </div>
+                        {
+                            (!movie || movie.length === 0) ? 
+                                <Loader />:<div className={s.i1}>{movie[0].title}</div>
+                        }
 
                         <div className={s.des}>
                             <div className={s.noknow}>C16</div>
@@ -29,14 +60,33 @@ export default function idfilm () {
                         </div>
 
 
-                        <div className={s.i2}>Diễn viên:  Hoàng Hà, Lan Thy, Bùi Lan Hương, Avin Lu</div>
-                        <div className={s.i2}> Đạo diễn:  Phan Gia Nhật Linh</div>
-                        <div className={s.i2}> Thể loại:  Tình Cảm, Lãng Mạn</div>
-                        <div className={s.i2}> Quốc gia:  Việt Nam</div>
-                        <div className={s.i2}> Nhà sản xuất:  Galaxy Play</div>
-                        <div className={s.i2}>Ngày khởi chiếu:  31/3/2023</div>
+                        {
+                            (!movie || movie.length === 0) ? 
+                            <Loader />:<div className={s.i2}>Language: {movie[0].language[0]}, {movie[0].language[1]}</div>
+                        }
+                        {
+                            (!movie || movie.length === 0) ? 
+                            <Loader />:<div className={s.i2}>Genre: {movie[0].genre[0]}, {movie[0].genre[1]}, {movie[0].genre[2]} </div>
+                        }
+                        {
+                            (!movie || movie.length === 0) ? 
+                            <Loader />:<div className={s.i2}>Director: {movie[0].director}</div>
+                        }
+                        {
+                            (!movie || movie.length === 0) ? 
+                            <Loader />:<div className={s.i2}>Cast: {movie[0].cast[0]}, {movie[0].cast[1]}, {movie[0].cast[2]}</div>
+                        }
+                        {
+                            (!movie || movie.length === 0) ? 
+                            <Loader />:<div className={s.i2}>Release Date: {movie[0].releaseDate}</div>
+                        }
+                        
+                        {
+                            (!movie || movie.length === 0) ? 
+                            <Loader />:<div className={s.i2}>Rating: {movie[0].rating}</div>
+                        }
                         <div className={s.starvote}>
-                            <div className={s.i2}>Đánh giá: </div>
+                            <div className={s.i2}>Rate: </div>
                             <div className={s.rating}>
                                 <input type="radio" id="star5" name="rating" value="5" />
                                 <label for="star5" ></label>
@@ -58,9 +108,11 @@ export default function idfilm () {
                 <div className={s.framebot}>
                     <div>
                         <div>
-                            <div className={s.j1}> NỘI DUNG PHIM</div>
-                            <div className={s.j2}>Bộ phim khắc họa chân dung Trịnh Công Sơn từ một chàng thư sinh đa tài lãng tử trở thành “người nhạc sĩ viết tình ca hay nhất thế kỷ” với hàng trăm ca khúc về tình yêu và thân phận con người. Bộ phim “Trịnh Công Sơn” tràn đầy cảm hứng và nhiệt huyết của tuổi trẻ về người nhạc sĩ vĩ đại, đã sống, yêu và sáng tác trong một giai đoạn lịch sử của đất nước với tình yêu cứu rỗi, vượt lên mọi tan vỡ, khổ đau.<br></br>
-                        Phim mới Trịnh Công Sơn chính thức ra mắt tại các rạp chiếu phim trên toàn quốc từ ngày 31.03.2023.</div>
+                            <div className={s.j1}> DESCRIPTION</div>
+                            {
+                                (!movie || movie.length === 0) ? 
+                                    <Loader />:<div className={s.j2}>{movie[0].description}</div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -68,17 +120,29 @@ export default function idfilm () {
             <div className={s.rightcolumn}>
                     <div className={s.imagewrapper}>
                         <a className={s.a} href="https://www.galaxycine.vn/dat-ve/biet-doi-rat-on">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/14/450x300_1678764834354.jpg" alt="Mô tả ảnh"/>
+                        {
+                            (!movie || movie.length === 0) ? 
+                                <Loader />:
+                                <img className={s.img} src={movie[3].image} alt="Mô tả ảnh"/>
+                        }
                         </a>
                     </div>
                     <div className={s.imagewrapper}>
                         <a className={s.a} href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/3/450x300_1677813532298.jpg" alt="Mô tả ảnh"/>
+                        {
+                            (!movie || movie.length === 0) ? 
+                                <Loader />:
+                                <img className={s.img} src={movie[0].image} alt="Mô tả ảnh"/>
+                        }
                         </a>
                     </div>
                     <div className={s.imagewrapper}>
                         <a className={s.a} href="https://www.galaxycine.vn/dat-ve/trinh-cong-son">
-                        <img className={s.img} src="https://cdn.galaxycine.vn/media/2023/3/30/brand-tcs-quay-lai-rap-450x300_1680172207835.jpg" alt="Mô tả ảnh"/>
+                        {
+                            (!movie || movie.length === 0) ? 
+                                <Loader />:
+                                <img className={s.img} src={movie[2].image} alt="Mô tả ảnh"/>
+                        }
                         </a>
                     </div>
                     <div className={s.more}>
@@ -210,5 +274,28 @@ export default function idfilm () {
 
        </div>
     </div>
-    );
+        </>
+    )
+
 }
+
+
+const App: FC = () => {
+    // const router = useRouter();
+    // useEffect(() => {
+    //     const handleRouteChange = (url) => {
+    //         gtag.pageview(url);
+    //     };
+    //     router.events.on('routeChangeComplete', handleRouteChange);
+    //     return () => {
+    //         router.events.off('routeChangeComplete', handleRouteChange);
+    //     };
+    // }, [router.events]);
+  
+    return (
+      <Provider store={store}>
+          <NewMovies/>
+      </Provider>
+    );
+  };
+  export default App;
