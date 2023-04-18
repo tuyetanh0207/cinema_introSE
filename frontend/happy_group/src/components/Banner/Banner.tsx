@@ -2,12 +2,30 @@ import styles from './Banner.module.css'
 import {pic1,pic2,pic3,pic4} from '@/assets/imgs'
 import { right_arrow,left_arrow } from '@/assets/svgs'
 import Image from 'next/image'
-import { HtmlHTMLAttributes, useEffect, useState } from 'react';
-
-
+import { HtmlHTMLAttributes, useEffect, useState } from 'react';//
+import BannerAPI from '@/app/api/BannerAPI';
+import { getUsersData } from '@/app/state/actions/userActions';//
+import { useSelector, useDispatch } from 'react-redux'//
+import { useRouter } from 'next/router';
   
 
 export default function Banner () {
+
+    // const [movies, setMovies] = useState([]);
+
+    // const fetchUsers = async () => {
+    //   const moviesData = await MovieAPI.getNowShowingMovies();
+    //   console.log("res: ", moviesData);
+    //   setMovies(moviesData.data);
+    //   }
+    //   useEffect(()=>{
+    //       fetchUsers();
+    //   },[])
+
+    // const router = useRouter();
+    // const id = router.query.id;
+    // const name = router.query.name;
+    // const age = router.query.age;
 
     const Bannerpic = [
         pic1,
@@ -25,22 +43,6 @@ export default function Banner () {
         'Power Ranger',
         'America Tho',
     ]
-
-    // let counter = 1;
-    // setInterval(function() {
-    //   const radio = document.getElementById('radio' + counter) as HTMLInputElement;
-    //   if (radio !== null) {
-    //     radio.checked = true;
-    //   }
-    //   counter++;
-    //   if (counter > 4) {
-    //     counter = 1;
-    //   }      
-    // }, 5000);
-
-    
-    
-  
 
     return (
         <div className={styles.Banner}>
@@ -113,6 +115,5 @@ export default function Banner () {
 
 
         </div>
-
     )
 }

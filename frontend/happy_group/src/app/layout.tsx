@@ -15,11 +15,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ height: '1000px'}}>
       <Provider store={store}>
         <Header/>
         {children}
-        <Footer/>
+        {/* <Footer/> */}
       </Provider>
       </body>
     </html>

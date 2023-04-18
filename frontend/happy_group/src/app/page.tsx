@@ -12,24 +12,27 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getUsersData } from './state/actions/userActions'
 import Login from '@/components/login/page'
-import MovieAPI from './api/movieAPI';
+// import MovieAPI from './api/movieAPI';
 import BannerAPI from './api/BannerAPI'
 import Banner from '@/components/Banner/Banner'
+
 import { useState } from 'react'
 
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-    const [movies, setMovies] = useState([]);
 
-    const fetchUsers = async () => {
-      const moviesData = await MovieAPI.getNowShowingMovies();
+
+    const [slides2, setslides] = useState([]); ///
+    const slide1 = async () => {
+      const moviesData = await BannerAPI.getNowShowingMovies();
       console.log("res: ", moviesData);
-      setMovies(moviesData.data);
+      setslides(moviesData.data);
       }
+
       useEffect(()=>{
-          fetchUsers();
+          slide1();
       },[])
 
     //   const fetchUsers = async () => {
@@ -42,22 +45,24 @@ export default function Home() {
     //     },[])
   return (
       <>
-<h1>Phim moi</h1>
-      {
-          (!movies && movies == undefined)? 
+      {/* {
+          (!slides2 && slides2 == undefined)? // xử lí lỗi
           <> 
           <Loader/>
           </>
           :
-          movies.map((movie:any)=> {
+          slides2.map((slide3:any,index)=> {
               return(
                   <>
-                  <h3>Name: {movie.title}</h3>
+                    <div className={styles.slide} id={index === 0 ? styles.first : ''} key={index}>
+                        <img src={slide3.image} alt='Error pic' />
+                        </div>
                   </>
               )
           })
-      }
-      {/* <Banner/> */}
+      } */}
+      <Banner/>
+      
       </>
   )
 }
