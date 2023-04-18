@@ -38,26 +38,30 @@
 }
 .header{
     display: flex;
-    margin-top: 76px;
+    margin-top: 50px;
     position: relative;
     z-index: 20;
 }
 .h1{
-    margin-right: 40px;
+    width: 130px;
+
+    /* margin-right: 40px; */
     font-size: 20px;
     /* font-style: bold; */
     color: #537FE7;
     /* border-style: solid; */
-    padding: 0 15px 10px 0;
+    padding:12px 15px 10px 0;
+    font-weight: 700;
     border-bottom: solid #C0EEF2 1px;
     
 }
 .btn_switch{
     border-style: none;
+    width: 130px;
     color: gray;
     background: none;
     font-size: 20px;
-    padding: 13px 15px 10px 0px;
+    padding: 12px 15px 10px 0px;
     border-bottom: solid #F5F5F5 1px;
     font-family: 'Segoe UI';
     font-style: normal;

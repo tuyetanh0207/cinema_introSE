@@ -101,5 +101,13 @@
 .loginIcon{
     /* margin-top: 15px; */
     position: absolute;
-    margin-left: -20%;
+    right: 20%;
+}
+.login:hover{
+    filter: 
+    invert(0.5)
+    sepia(1)
+    hue-rotate(600deg)
+    saturate(10)
+    brightness(1);
 }
