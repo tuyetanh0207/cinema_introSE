@@ -33,7 +33,12 @@ export default function Signup_Form() {
     }
 
     return (
-    
+    <>
+    {/* <div className={styles.header}>
+                <span className={styles.btn_switch} onClick={()=>router.push("/login")}>Đăng nhập </span>
+                <span className={styles.h1}>Đăng ký</span>
+            </div> */}
+  
             <form className={styles.form} onSubmit={handleSubmit}>
                 <input type="text" id="fullname" onChange={(e) => setfullname(e.target.value)} placeholder='Tên' className={styles.username} />
                 <input type="text" id="username_regis" onChange={(e) => setusername_regis(e.target.value)} placeholder='Tên đăng nhập' className={styles.username} />
@@ -48,6 +53,7 @@ export default function Signup_Form() {
 
             </div>  
             </form>
+            </>
     
 
     )

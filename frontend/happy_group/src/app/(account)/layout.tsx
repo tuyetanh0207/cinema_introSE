@@ -11,10 +11,11 @@ import Login_Form from './login/page';
 import Signup_Form from './signup/page';
 
 
-export default function Auth_Layout() {
+export default function Auth_Layout({children}:any) {
  
     const pathname=usePathname();
     const router=useRouter();
+
 
     return (
         <div className={styles.parent}>
@@ -24,14 +25,17 @@ export default function Auth_Layout() {
             <div className={styles.header}>
                 <span className={styles.h1}>Đăng nhập </span>
                 <span className={styles.btn_switch} onClick={()=>router.push("/signup")}>Đăng ký</span>
+        
             </div>
         ):(
             <div className={styles.header}>
-                <span className={styles.btn_switch} onClick={()=>router.push("/login")}>Đăng nhập </span>
+                <span className={styles.btn_switch} onClick={()=> router.push("/login")}>Đăng nhập </span>
+         
                 <span className={styles.h1}>Đăng ký</span>
             </div>
         )}
-     {pathname==="/login"?(<Login_Form/>):( <Signup_Form/>)}
+     {/* {pathname==="/login"?(<Login_Form/>):( <Signup_Form/>)} */}
+     {children}
         
       
             <div className={styles.rectangles}>      
