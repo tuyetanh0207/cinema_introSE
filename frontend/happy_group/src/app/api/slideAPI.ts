@@ -1,23 +1,16 @@
 import { apiV1, apiV1_user, get, post, put, patch, delele} from "./generic";
 
-const UserAPI = {
+const movieAPI = {
   
-  getNewU: function () {
-    const url = `${apiV1}/`;
+  getNowShowingMovies: function () {
+    const url = `${apiV1}/movies/nowShowing`;
     return get(url, "");
   },
-  login: function(user: any){
-    const url= `${apiV1_user}/users/login`
-    return post(url, user,"");
+  getComingMovies: function () {
+    const url = `${apiV1}/slides`;
+    return get(url, "");
   },
-  logout: function(user:any, token:any){
-    const url= `${apiV1_user}/users/logout`;
-    return post(url, user, token);
-  },
-  register: function (user:any){
-    const url=  `${apiV1_user}/users/register`
-    return post(url, user,"")
-  }
+
   // patchResource: function (data: any, id: string, token: string) {
   //   const url = `${apiV1}/groups/resources?${id}`;
   //   return patch(url, data, token);
@@ -59,4 +52,4 @@ const UserAPI = {
   // },
 };
 
-export default UserAPI;
+export default movieAPI;

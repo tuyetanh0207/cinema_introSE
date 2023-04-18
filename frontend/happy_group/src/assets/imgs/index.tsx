@@ -1,7 +1,7 @@
 import test from './Rectangle 71.png'
-
+import movie_img from "./movie.jpg"
 
 
 export {
-    test
+    test,movie_img
 }

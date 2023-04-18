@@ -13,42 +13,39 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getUsersData } from './state/actions/userActions'
 import Login from '@/components/login/page'
 import MovieAPI from './api/movieAPI';
-
-const inter = Inter({ subsets: ['latin'] })
+import Search from '@/components/search/search'
 
 export default function Home() {
-  const users=useSelector((state: any)=> state?.users).UsersData
-  const dispatch=useDispatch();
-  const fetchUsers=async() =>{
-      await MovieAPI.getNowShowingMovies()
-      .then((res)=>{
-          dispatch(getUsersData(res.data))
-          console.log(res.data)
-      })
-  }
-  useEffect(()=>{
-      fetchUsers();
-  },[])
-  // console.log("res: ",users.UsersData)
+
+  
+//   const fetchUsers=async() =>{
+//     // can chu y
+//       const movies= await MovieAPI.getNowShowingMovies();
+//       console.log("res: ",movies)
+//   }
+//   useEffect(()=>{
+//       fetchUsers();
+//   },[])
+
 
   return (
       <>
       <h1>Phim moi</h1>
-      {
+      {/* {
           (!users && users == undefined)? 
           <> 
           <Loader/>
           </>
           :
-          users.map((user:any)=> {
+          movies.map((movie:any)=> {
               return(
                   <>
-                  <h3>Name: {user.title}</h3>
+                  <h3>Name: {movie.title}</h3>
                   </>
               )
           })
-      }
-      <Login/>
+      } */}
+      {/* <Search/> */}
       </>
   )
 }

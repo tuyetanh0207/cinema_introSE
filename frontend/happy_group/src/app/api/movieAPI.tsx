@@ -6,6 +6,14 @@ const movieAPI = {
     const url = `${apiV1}/movies/nowShowing`;
     return get(url, "");
   },
+  getComingMovies: function () {
+    const url = `${apiV1}/movies/nowShowing`;
+    return get(url, "");
+  },
+  searchMovie: function (query:string){
+    const url=`${apiV1}/search?=${query}`;
+    return get(url, "");
+  },
 
   // patchResource: function (data: any, id: string, token: string) {
   //   const url = `${apiV1}/groups/resources?${id}`;
