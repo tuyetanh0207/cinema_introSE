@@ -1,17 +1,19 @@
 
 .footer {
-    position: fixed;
+    /* position:fixed; */
     bottom: 0;
-    display: flex;
+    display: flexbox;
     width: 100%;
     color: #C0EEF2;
-    ;
     background-color: black;
     height: 300px;
     font-family: 'Segoe UI';
     font-style: normal;
     font-size: 16px;
+    position: absolute;
 }
+
+
 .content{
     left: 130px;
     position: absolute;
