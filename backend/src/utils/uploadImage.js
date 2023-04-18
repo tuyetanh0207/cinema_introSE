@@ -23,6 +23,7 @@ function uploadImage(req, res, next) {
   
       // set the URL of the uploaded image on the request object
       req.imageurl = result.secure_url;
+      fs.unlinkSync(file.path);
   
       // pass control to the next middleware function
       next();
