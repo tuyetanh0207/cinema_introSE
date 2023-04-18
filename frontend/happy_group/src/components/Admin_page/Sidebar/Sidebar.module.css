@@ -1,0 +1,25 @@
+.sidebar{
+    background-color:#C3ACD0;
+    width: 150px;
+    height: 1000px;
+    color:#FFFBF5;
+    
+}
+.header{
+    margin-bottom: 30px;
+    border-bottom: #FFFBF5 ;
+}
+.menu{
+    display: grid;
+    grid-row: auto;
+    grid-row-gap: 10px;
+}
+.icon{
+    padding-right: 5px;
+    padding-top: 5px;
+}
+.menu_item  {
+    padding-left: 10px;
+    align-items: center;
+    justify-content: center;
+}

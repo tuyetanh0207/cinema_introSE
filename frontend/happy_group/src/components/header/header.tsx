@@ -11,6 +11,7 @@ import { logOutSuccess } from '@/redux/authSlice';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchComp from '../search/search';
+import axios from 'axios';
 export default function Header () {
     //const [user, setUser]=useState({})
     const user=useSelector((state:any)=> state.auth.login.currentUser)
@@ -25,10 +26,10 @@ export default function Header () {
     const id = user?.user._id
     console.log("token", accessToken)
     console.log("id", id)
-    let axiosJWT=createAxios(user,dispatch,logOutSuccess);
-    console.log("axios",axiosJWT)
+    // let axiosJWT=createAxios(user,dispatch,logOutSuccess);
+    // console.log("axios",axiosJWT)
 
-    logOut(dispatch, id,accessToken, axiosJWT,router);
+    logOut(dispatch, id,accessToken, axios,router);
     console.log("dang xuat")
 
     
@@ -51,23 +52,25 @@ export default function Header () {
                     <Image src={logoIcon} alt=''></Image>     
                      Happy Group         
                 </div>
-                {/* <div className={styles.searchbar}>
-                    <Image src ={searchIcon} className={styles.searchIcon} alt=''></Image>
-                    Search here . . .
-                </div> */}
+            
                 <SearchComp/>
+          
                 {user? 
-                (<div className={styles.login}>Hi, {user.user.name}
+                (
+                <div className={styles.login_done}>Hi, {user.user.name}
                  <Link onClick={handleLogout} href={''}>
-                    <Image src={logoutIcon} className={styles.loginIcon} alt=''></Image>
-                    </Link> */
+                    <Image src={logoutIcon} className={styles.loginIcon_done} alt=''></Image>
+                    </Link>
                 </div>
+            
                 ):
-                (<div className={styles.login} onClick={()=>router.push("/login")}>
+                (
+                <div className={styles.login} onClick={()=>router.push("/login")}>
                     <Image src={logoutIcon} className={styles.loginIcon} alt=''></Image>
                     Đăng nhập
-                </div>)}
-                
+                </div>
+                )}
+            
             </div>
             <div className={styles.navbar}>
                 <ul className={styles.navbar_list}>

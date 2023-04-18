@@ -11,7 +11,6 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getUsersData } from './state/actions/userActions'
-import Login from '@/components/login/page'
 import MovieAPI from './api/movieAPI';
 import Search from '@/components/search/search'
 
@@ -32,7 +31,7 @@ export default function Home() {
       <>
       <h1>Phim moi</h1>
       {/* {
-          (!users && users == undefined)? 
+          (!movies && users == undefined)? 
           <> 
           <Loader/>
           </>

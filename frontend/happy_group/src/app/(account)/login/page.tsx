@@ -23,19 +23,19 @@ export default function Login_Form () {
   const dispatch = useDispatch();
   // const navigate = useNavigate();
   const router=useRouter();
+  const query=""
+  router.push(`/login${query}`)
   const handleSubmit =  (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const newUser = {
       username: username,
       password: password,
     };
+    console.log(newUser)
 loginUser(newUser, dispatch,router);
-   // eslint-disable-next-line react-hooks/rules-of-hooks
-   //const user=useSelector((state: any)=> state.auth.login.currentUser)
-  //  router.push("/")
   }
 
-   
+
 
   return (
    
