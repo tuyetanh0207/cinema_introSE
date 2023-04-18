@@ -38,8 +38,8 @@ const otherController = {
           }
           const slide = await Slide.findById(slideId);
           if (!slide) return res.sendStatus(404);
-          await slide.updateOne({ imageUrl: req.imageUrl });
-          res.status(200).json({ slide, imageUrl });
+          await slide.updateOne({ imageUrl: req.imageurl });
+          res.status(200).json({ slide, imageUrl: req.imageurl });
         } catch (e) {
           console.log(e);
           res.status(400).json({error: e.message});
