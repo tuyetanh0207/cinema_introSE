@@ -5,13 +5,13 @@ const { Schema } = mongoose;
 const theatreSchema = new Schema({
   name: {
     type: String,
+    required: true
+  },
+  screens: {
+    type: Number,
     required: true,
-    trim: true,
-  },
-  
-  image: {
-    type: String,
-  },
+    min: 1
+  }
 });
 
 const Theatre = mongoose.model('Theatre', theatreSchema);

@@ -13,6 +13,7 @@ const movieRouter = require('./routes/movies');
 const cinemaRouter = require('./routes/cinemas');
 const showtimeRouter = require('./routes/showtimes');
 const reservationRouter = require('./routes/reservations');
+const seatRouter = require('./routes/seats');
 const otherRouter = require('./routes/other');
 
 
@@ -30,6 +31,7 @@ app.use("/v1/movies", movieRouter);
 app.use("/v1/cinemas", cinemaRouter);
 app.use("/v1/showtimes", showtimeRouter);
 app.use("/v1/reservations", reservationRouter);
+app.use("/v1/seats", seatRouter);
 app.use("/v1/", otherRouter);
 
 app.get("/", (req, res) => {

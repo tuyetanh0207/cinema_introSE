@@ -18,7 +18,7 @@ const cinemaController = {
     getAllCinemas: async (req, res) => {
         try {
             const cinemas = await Cinema.find({});
-            res.status(200).json(e);
+            res.status(200).json(cinemas);
         } catch (e) {
             res.status(400).json({error: e.message})
         }

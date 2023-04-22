@@ -5,21 +5,33 @@ const { Schema } = mongoose;
 const seatSchema = new Schema({
  row: {
     type: Number,
-    require: true,
+    required: true,
+    min: 1,
+    max: 5
  },
  seatNumber: {
     type: Number,
-    require: true,
+    required: true,
  },
  theatreId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Theatre',
-    require: true,
+    required: true,
+ },
+ type: {
+   type: Number,
+   default: 1,
+   enum: [1, 2],
  },
  isAvailable: {
     type: Boolean,
-    default: true,
+    default: false,
  }
+});
+
+seatSchema.virtual('rowLetter').get(function() {
+  const rowLetters = ['A', 'B', 'C', 'D', 'E'];
+  return rowLetters[this.row - 1];
 });
 
 const Seat = mongoose.model('Seat', seatSchema);
