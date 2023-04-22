@@ -36,23 +36,25 @@ export const loginUser = async (user: any, dispatch: (arg0: { payload: any; type
 
     const res=await UserAPI.login(user);
     dispatch(loginSuccess(res.data));
-    console.log(res.data);
     router.push("/")
     return 1
   } catch (err) {
     dispatch(loginFailed());
+    console.log(err)
   }
 };
 
 export const registerUser = async (user: any, dispatch: (arg0: { payload: undefined; type: "auth/registerStart" | "auth/registerSuccess" | "auth/registerFailed"; }) => void, router: string[] |  AppRouterInstance) => {
   dispatch(registerStart());
   try {
-    await UserAPI.register(user)
+   const res= await UserAPI.register(user)
+    console.log (res)
     //await axios.post("/v1/auth/register", user);
     dispatch(registerSuccess());
-    router.push("/login")
+    // router.push("/")
   } catch (err) {
     dispatch(registerFailed());
+    console.log(err)
   }
 };
 
@@ -65,6 +67,7 @@ export const getAllUsers = async (token: any, dispatch: (arg0: { payload: any; t
     dispatch(getUsersSuccess(res.data));
   } catch (err) {
     dispatch(getUsersFailed());
+    console.log(err)
   }
 };
 
@@ -77,31 +80,21 @@ export const deleteUser = async (token: any, dispatch: (arg0: { payload: any; ty
     dispatch(deleteUsersSuccess(res.data));
   } catch (err) {
     dispatch(deleteUserFailed(err));
+    console.log(err)
   }
 };
 
-export const logOut = async (dispatch: (arg0: { payload: undefined; type: "auth/logOutStart" | "auth/logOutSuccess" | "auth/logOutFailed"; }) => void, id: any, token: any, axiosJWT: { post: (arg0: string, arg1: any, arg2: { headers: { token: string; }; }) => any; },router: string[]|AppRouterInstance) => {
+export const logOut = async (dispatch: (arg0: { payload: undefined; type: "auth/logOutStart" | "auth/logOutSuccess" | "auth/logOutFailed"; }) => void, id: any, token: any, axios: { post: (arg0: string, arg1: any, arg2: { headers: { token: string; }; }) => any; },router: string[]|AppRouterInstance) => {
   dispatch(logOutStart());
   try {
     
-    const res=await UserAPI.logout(id,token);
-    console.log(res)
+    await UserAPI.logout({id},token);
+
     dispatch(logOutSuccess());
     router.push("/")
   } catch (err) {
     dispatch(logOutFailed());
+    console.log(err)
   }
 };
-// export const logOut = async (dispatch: Dispatch<AnyAction>, id: any, accessToken: AxiosInstance, axiosJWT: { post: (arg0: string, arg1: any, arg2: { headers: { token: string; }; }) => any; }) => {
-//   dispatch(logOutStart());
-//   try {
-//     await axiosJWT.post("https://5dlr4.wiremockapi.cloud/users/logout", id, {
-//       headers: { token: `Bearer ${accessToken}` },
-//     });
-//     dispatch(logOutSuccess());
-//     // navigate("/login");
-//   } catch (err) {
-//     dispatch(logOutFailed());
-//   }
-// };
 

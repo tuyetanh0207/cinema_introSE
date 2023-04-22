@@ -1,0 +1,32 @@
+.header{
+    width: 100%;
+    display: block;
+    
+}
+.sub_header, .navbar{
+    display: flexbox;
+    padding-top:20px;
+
+} 
+.icon , .search_bar, .avatar{
+    position: absolute;
+}
+.icon{
+    left: 10%;
+    height: 20px;
+    width: 20px;
+}
+.search_bar{
+    left: 50%;
+    transform: translateX(-50%);
+}
+.avatar{
+    right: 5%;
+    height: 20px;
+    width: 20px;
+}
+
+.navbar{
+    display: flex;
+    padding-top: 50px;
+}

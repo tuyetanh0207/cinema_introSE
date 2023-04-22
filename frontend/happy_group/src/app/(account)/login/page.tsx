@@ -29,15 +29,18 @@ export default function Login_Form () {
       username: username,
       password: password,
     };
+    // console.log(newUser)
 loginUser(newUser, dispatch,router);
-   // eslint-disable-next-line react-hooks/rules-of-hooks
-   //const user=useSelector((state: any)=> state.auth.login.currentUser)
-  //  router.push("/")
   }
 
-   
+
 
   return (
+    <>
+    {/* <div className={styles.header}>
+                <span className={styles.h1}>Đăng nhập </span>
+                <span className={styles.btn_switch} onClick={()=>router.push("/signup")}>Đăng ký</span>
+            </div> */}
    
             <form className={styles.form} onSubmit={handleSubmit} >
               <div className={styles.input}> <input type="text" id='username' onChange={(e)=> setUsername(e.target.value)} placeholder='Tên đăng nhập' className={styles.username} />
@@ -50,7 +53,7 @@ loginUser(newUser, dispatch,router);
                     <button className={styles.btn}>Đăng nhập</button>
                 </div> 
             </form>
-     
+            </>
         
   )
 }

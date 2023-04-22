@@ -1,0 +1,13 @@
+.movies_part{
+    display: block;
+}
+
+.header{
+    display: grid;
+    grid-column: auto;
+}
+
+.movies_table{
+    display: inline-grid;
+    grid-template-columns: 20px 20px 20px 20px 20px 20px 20px 20px;
+}

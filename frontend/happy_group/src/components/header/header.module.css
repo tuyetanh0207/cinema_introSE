@@ -89,7 +89,7 @@
     margin-left: -25px;
 
 }
-.login{
+.login, .login_done{
     font-weight: 500;
     font-size: 13px;
     font-style: normal;
@@ -98,12 +98,20 @@
     padding-right: 60px;
   
 }
-.loginIcon{
+.loginIcon, .loginIcon_done{
     /* margin-top: 15px; */
     position: absolute;
     right: 20%;
 }
 .login:hover{
+    filter: 
+    invert(0.5)
+    sepia(1)
+    hue-rotate(600deg)
+    saturate(10)
+    brightness(1);
+}
+.loginIcon_done:hover{
     filter: 
     invert(0.5)
     sepia(1)

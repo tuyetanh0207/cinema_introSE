@@ -14,21 +14,21 @@ const refreshToken = async () => {
   }
 };
 
-export const createAxios = (user: { token: string; }, dispatch: Dispatch<AnyAction>, stateSuccess: ActionCreatorWithoutPayload<"auth/logOutSuccess">) => {
+export const createAxios = (user:any, dispatch: Dispatch<AnyAction>, stateSuccess: ActionCreatorWithoutPayload<"auth/logOutSuccess">) => {
   const newInstance = axios.create();
   newInstance.interceptors.request.use(
     async (config) => {
       let date = new Date();
       const decodedToken = jwt_decode(user?.token);
-      //if (decodedToken.exp < date.getTime() / 1000) {
-        const data = await refreshToken();
-        const refreshUser = {
-          ...user,
-          token: data.token,
-        };
-        //dispatch(stateSuccess(refreshUser));
-        config.headers["token"] = "Bearer " + data.token;
-      //}
+      // if (decodedToken.exp < date.getTime() / 1000) {
+        // const data = await refreshToken();
+        // const refreshUser = {
+        //   ...user,
+        //   token: data.token,
+        // };
+        // dispatch(stateSuccess(refreshUser));
+        config.headers["token"] = "Bearer " + user.token;
+      // }
       return config;
     },
     (err) => {
