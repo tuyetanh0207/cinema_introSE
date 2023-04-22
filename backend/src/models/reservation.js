@@ -1,50 +1,35 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
+
 const reservationSchema = new Schema({
-  date: {
-    type: Date,
-    required: true,
-  },
-  startAt: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  seats: {
-    type: [Schema.Types.Mixed],
-    required: true,
-  },
-  ticketPrice: {
-    type: Number,
-    required: true,
-  },
-  total: {
-    type: Number,
-    required: true,
-  },
-  movieId: {
+  userId: {
     type: Schema.Types.ObjectId,
-    ref: 'Movie',
-    required: true,
+    ref: 'User',
+    required: true
   },
-  cinemaId: {
+  phoneNumber: {
+    type: Number,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  showtimeId: {
     type: Schema.Types.ObjectId,
-    ref: 'Cinema',
-    required: true,
+    ref: 'Showtime',
+    required: true
   },
-  username: {
-    type: String,
-    required: true,
+  originalPrice: {
+    type: Number,
+    required: true
   },
-  phone: {
-    type: String,
-    required: true,
-  },
-  checkin: {
-    type: Boolean,
-    default: false,
-  },
+  totalPrice: {
+    type: Number,
+    required: true
+  }
+}, {
+  timestamps: true
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

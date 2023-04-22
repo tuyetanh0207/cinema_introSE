@@ -4,7 +4,7 @@ const reservationController = {
     createReservation: async (req, res) => {
         const reservation = new Reservation(req.body);
 
-        const QRCode = await generateQR( )//add url
+        const QRCode = await generateQR(reservation)
         try {
             await reservation.save();
             res.status(201).json(reservation, QRCode);
@@ -51,14 +51,10 @@ const reservationController = {
         const _id = req.params.id;
         const updates = Object.keys(req.body);
         const allowedUpdates = [
-        'date',
-        'startAt',
-        'seats',
-        'ticketPrice',
-        'total',
-        'username',
-        'phone',
-        'checkin',
+        'userId',
+        'showtimeId',
+        'originalPrice',
+        'totalPrice'
         ];
         const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
     

@@ -1,6 +1,6 @@
 const express = require('express');
 const auth = require('../middleware/auth');
-const reservationController = require('../controllers/reservationControoler');
+const reservationController = require('../controllers/reservationController');
 const generateQR = require('../utils/generateQRCode');
 const router = new express.Router();
 

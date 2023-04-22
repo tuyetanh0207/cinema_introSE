@@ -1,72 +1,71 @@
-const express = require('express');
 const Showtime = require('../models/showtime');
 
 const showtimeController = {
     createShowtime: async (req, res) => {
-        const showtime = new showtime(req.body);
-        const showtimeExists = showtime.exists({ name: req.body.name});
+        const showtime = new Showtime(req.body);
+    
+        const showtimeExists = await Showtime.exists({ movieId: req.body.movieId });
         if (showtimeExists) 
-            return res.status(409).json({error: 'showtime already exists'});
+            return res.status(409).json({ error: 'Showtime already exists' });
+
         try {
             await showtime.save();
             res.status(201).json(showtime);
         } catch (e) {
-            res.status(400).json({error: e.message});
+            res.status(400).json({ error: e.message });
         }
     },
 
-    getAllshowtimes: async (req, res) => {
+    getAllShowtimes: async (req, res) => {
         try {
-            const showtimes = await showtime.find({});
-            res.status(200).json(e);
+            const showtimes = await Showtime.find({});
+            res.status(200).json(showtimes);
         } catch (e) {
-            res.status(400).json({error: e.message})
+            res.status(400).json({ error: e.message })
         }
     },
 
-    getshowtimeById: async (req, res) => {
+    getShowtimeById: async (req, res) => {
         const _id = req.params.id;
 
         try {
-            const showtime = await showtime.findById(_id);
-            if (!showtime) return res.status(404).json({eror: 'Showtime does not exist'});
+            const showtime = await Showtime.findById(_id);
+            if (!showtime) return res.status(404).json({ error: 'Showtime does not exist' });
             return res.status(200).json(showtime);
-        } catch (e ) {
-            return res.status(400).json({error: e.message});
+        } catch (e) {
+            return res.status(400).json({ error: e.message });
         }
     },
 
-    updateshowtimeById: async (req, res) => {
+    updateShowtimeById: async (req, res) => {
         const _id = req.params.id;
         const updates = Object.keys(req.body);
-        const allowedUpdates = ['startAt', 'startDate', 'endDate', 'movieId', 'cinemaId'];
+        const allowedUpdates = ['movieId', 'theatreId', 'startDate', 'endDate'];
         const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
         
         if (!isValidOperation) return res.status(400).json({ error: 'Invalid updates' });
         
         try {
-            const showtime = await showtime.findById(_id);
+            const showtime = await Showtime.findById(_id);
+            if (!showtime) return res.sendStatus(404);
             updates.forEach((update) => (showtime[update] = req.body[update]));
             await showtime.save();
-            if (!showtime) return res.sendStatus(404);
             return res.status(200).json(showtime);
         } catch (e) {
-            return res.status(400).json({error: e.message});
+            return res.status(400).json({ error: e.message });
         }
     },
 
-    deleteshowtimeById: async (req, res) => {
+    deleteShowtimeById: async (req, res) => {
         const _id = req.params.id;
         try {
-            const showtime = await showtime.findByIdAndDelete(_id);
+            const showtime = await Showtime.findByIdAndDelete(_id);
             if (!showtime) return res.sendStatus(404);
             return res.status(200).json(showtime);
         } catch (e) {
-            return res.status(400).json({error: e.message});
+            return res.status(400).json({ error: e.message });
         }
     }
 }
-
-    
 
 module.exports = showtimeController;

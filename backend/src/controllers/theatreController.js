@@ -1,4 +1,3 @@
-const express = require('express');
 const fs = require('fs');
 
 const Theatre = require('../models/theatre');
@@ -27,7 +26,9 @@ const theatreController = {
             // Read the uploaded file
             const fileData = fs.readFileSync(file.path, 'utf-8');
             const theatres = JSON.parse(fileData);
-        
+            
+            await fs.unlinkSync(file.path);
+
             // Add theatres to the database
             const createdTheatres = await Theatre.insertMany(theatres);
         
@@ -58,7 +59,7 @@ const theatreController = {
           res.json({ message: 'Theatre deleted successfully' });
         } catch (err) {
           console.error(err);
-          res.status(500).json({ error: 'Server error' });
+          res.status(500).json({ error: e.message });
         }
       },
 
@@ -73,10 +74,9 @@ const theatreController = {
           res.send(theatre);
         } catch (err) {
           console.error(err.message);
-          res.status(500).send('Server error');
+          res.status(500).json({ error: e.message });
         }
       },
-
 }
 
 
