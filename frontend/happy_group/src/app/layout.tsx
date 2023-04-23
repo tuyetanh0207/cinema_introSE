@@ -30,7 +30,7 @@ export default function RootLayout({
       <PersistGate loading={null} persistor={persistor}>
         {pathname==="/login"||pathname=="/signup"||pathname=="/admin/movies"?<></>:<Header/>}
         {children}
-        {pathname==="/login"||pathname=="/signup"||pathname=="/admin/movies"?<></>: <Footer/>}
+        {/* {pathname==="/login"||pathname=="/signup"||pathname=="/admin/movies"?<></>: <Footer/>} */}
         </PersistGate>
       </Provider>
       </body>

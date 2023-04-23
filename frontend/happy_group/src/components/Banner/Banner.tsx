@@ -1,3 +1,4 @@
+"use client"
 import styles from './Banner.module.css'
 import {pic1,pic2,pic3,pic4} from '@/assets/imgs'
 import { right_arrow,left_arrow } from '@/assets/svgs'
@@ -6,7 +7,10 @@ import { HtmlHTMLAttributes, useEffect, useState } from 'react';//
 import BannerAPI from '@/app/api/BannerAPI';
 import { getUsersData } from '@/app/state/actions/userActions';//
 import { useSelector, useDispatch } from 'react-redux'//
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'
+import Link from 'next/link';
+
   
 
 export default function Banner () {
@@ -26,6 +30,7 @@ export default function Banner () {
     // const id = router.query.id;
     // const name = router.query.name;
     // const age = router.query.age;
+
 
     const Bannerpic = [
         pic1,
@@ -102,7 +107,14 @@ export default function Banner () {
                     {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
                     </select>
                 </form>
-                <button className={styles.buy_btn}>Mua vé</button>
+                {/* <button className={styles.buy_btn}>Mua vé</button> */}
+                {/* <Link href={`/buy_ticket?MvName=abcd`} passHref>
+                        <button className={styles.buy_btn}>Mua vé</button>
+                </Link> */}
+                <Link href={'./buy_ticket'}>
+                    <button className={styles.buy_btn}>Mua vé</button>
+                </Link>
+
             </div>
         {/* Form end */}
 
