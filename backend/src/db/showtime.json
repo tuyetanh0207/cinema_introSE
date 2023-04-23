@@ -1,0 +1,769 @@
+[
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfc",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "09/05/2023",
+    "times": [
+      "21:00",
+      "00:00",
+      "04:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfc",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "09/05/2023",
+    "times": [
+      "02:00",
+      "19:00",
+      "17:00",
+      "02:00",
+      "22:00",
+      "17:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfc",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "09/05/2023",
+    "times": [
+      "07:00",
+      "00:00",
+      "04:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfc",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "09/05/2023",
+    "times": [
+      "22:00",
+      "02:00",
+      "23:00",
+      "23:00",
+      "08:00",
+      "12:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfc",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "09/05/2023",
+    "times": [
+      "12:00",
+      "11:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfd",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "15/05/2023",
+    "times": [
+      "06:00",
+      "20:00",
+      "02:00",
+      "23:00",
+      "02:00",
+      "00:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfd",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "15/05/2023",
+    "times": [
+      "11:00",
+      "03:00",
+      "17:00",
+      "13:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfd",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "15/05/2023",
+    "times": [
+      "01:00",
+      "05:00",
+      "00:00",
+      "19:00",
+      "07:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfd",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "15/05/2023",
+    "times": [
+      "18:00",
+      "10:00",
+      "04:00",
+      "16:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfd",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "15/05/2023",
+    "times": [
+      "19:00",
+      "17:00",
+      "04:00",
+      "10:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfe",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "01:00",
+      "21:00",
+      "03:00",
+      "20:00",
+      "15:00",
+      "23:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfe",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "09:00",
+      "04:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfe",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "23:00",
+      "23:00",
+      "10:00",
+      "04:00",
+      "00:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfe",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "13:00",
+      "11:00",
+      "17:00",
+      "03:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dfe",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "20:00",
+      "00:00",
+      "04:00",
+      "21:00",
+      "19:00",
+      "16:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dff",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "08/05/2023",
+    "times": [
+      "18:00",
+      "18:00",
+      "01:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dff",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "08/05/2023",
+    "times": [
+      "18:00",
+      "17:00",
+      "10:00",
+      "16:00",
+      "14:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dff",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "08/05/2023",
+    "times": [
+      "10:00",
+      "18:00",
+      "05:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dff",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "08/05/2023",
+    "times": [
+      "14:00",
+      "18:00",
+      "00:00",
+      "03:00",
+      "19:00",
+      "01:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3dff",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "08/05/2023",
+    "times": [
+      "07:00",
+      "22:00",
+      "20:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e00",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "07:00",
+      "02:00",
+      "02:00",
+      "05:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e00",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "21:00",
+      "03:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e00",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "12:00",
+      "00:00",
+      "03:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e00",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "21:00",
+      "01:00",
+      "17:00",
+      "17:00",
+      "21:00",
+      "10:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e00",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "15:00",
+      "16:00",
+      "17:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e01",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "18:00",
+      "02:00",
+      "20:00",
+      "23:00",
+      "20:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e01",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "13:00",
+      "05:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e01",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "18:00",
+      "04:00",
+      "09:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e01",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "14:00",
+      "18:00",
+      "16:00",
+      "06:00",
+      "15:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e01",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "20/05/2023",
+    "times": [
+      "11:00",
+      "17:00",
+      "07:00",
+      "10:00",
+      "14:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e02",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "21/05/2023",
+    "times": [
+      "23:00",
+      "04:00",
+      "00:00",
+      "10:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e02",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "21/05/2023",
+    "times": [
+      "07:00",
+      "17:00",
+      "00:00",
+      "07:00",
+      "20:00",
+      "05:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e02",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "21/05/2023",
+    "times": [
+      "23:00",
+      "19:00",
+      "21:00",
+      "18:00",
+      "14:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e02",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "21/05/2023",
+    "times": [
+      "07:00",
+      "01:00",
+      "14:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e02",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "21/05/2023",
+    "times": [
+      "10:00",
+      "10:00",
+      "03:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e03",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "19:00",
+      "14:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e03",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "11:00",
+      "16:00",
+      "05:00",
+      "21:00",
+      "04:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e03",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "02:00",
+      "23:00",
+      "16:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e03",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "23:00",
+      "16:00",
+      "06:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e03",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "16/04/2023",
+    "endDate": "16/05/2023",
+    "times": [
+      "08:00",
+      "12:00",
+      "11:00",
+      "14:00"
+    ],
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e04",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e04",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e04",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e04",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e04",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e05",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "13/05/2023",
+    "endDate": "03/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e05",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "13/05/2023",
+    "endDate": "03/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e05",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "13/05/2023",
+    "endDate": "03/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e05",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "13/05/2023",
+    "endDate": "03/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e05",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "13/05/2023",
+    "endDate": "03/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e06",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "13/05/2023",
+    "endDate": "28/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e06",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "13/05/2023",
+    "endDate": "28/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e06",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "13/05/2023",
+    "endDate": "28/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e06",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "13/05/2023",
+    "endDate": "28/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e06",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "13/05/2023",
+    "endDate": "28/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e07",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e07",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e07",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e07",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e07",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e08",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e08",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e08",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e08",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e08",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e09",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e09",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e09",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e09",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e09",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "13/05/2023",
+    "endDate": "04/06/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e0a",
+    "theatreId": "6444144c5b1c5239b1d3825c",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e0a",
+    "theatreId": "6444144c5b1c5239b1d3825d",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e0a",
+    "theatreId": "6444144c5b1c5239b1d3825e",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e0a",
+    "theatreId": "6444144c5b1c5239b1d3825f",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  },
+  {
+    "movieId": "6444f11de50cc0bfe26b3e0a",
+    "theatreId": "6444144c5b1c5239b1d38260",
+    "startDate": "13/05/2023",
+    "endDate": "29/05/2023",
+    "isActive": true
+  }
+]
