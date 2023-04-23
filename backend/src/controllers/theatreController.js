@@ -29,6 +29,12 @@ const theatreController = {
             
             await fs.unlinkSync(file.path);
 
+            // Check if any of the theatres already exist in the database
+            const existingTheatre = await Theatre.find({ title: { $in: theatres.map(theatre => theatre.name) } });
+            if (existingTheatre.length > 0) {
+              const existingTitles = existingTheatre.map(theatre => theatre.name).join(', ');
+              return res.status(400).json({ error: `The following theatres already exist: ${existingTitles}` });
+            }
             // Add theatres to the database
             const createdTheatres = await Theatre.insertMany(theatres);
         

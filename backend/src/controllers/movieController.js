@@ -1,4 +1,5 @@
 const Movie = require('../models/movie');
+const fs = require('fs');
 
 const movieController = {
     // create a movie 
@@ -44,24 +45,6 @@ const movieController = {
             res.status(400).json({error: e.message});
         }
     },
-    
-    getNowShowingMovies: async (req, res) => {
-      try {
-          const movies = await Movie.find({state: 'Now Showing'})
-          res.status(200).json(movies);
-      } catch (e) {
-        res.status(400).json({error: e.message});
-      }
-    },
-
-    getComingSoonMovies: async (req, res) => {
-      try {
-          const movies = await Movie.find({state: 'Coming Soon'})
-          res.status(200).json(movies);
-      } catch (e) {
-        res.status(400).json({error: e.message});
-      }
-    },
 
     getMovieById: async (req, res) => {
         const _id = req.params.id;
@@ -87,11 +70,7 @@ const movieController = {
           'cast',
           'description',
           'duration',
-          'releaseDate',
-          'endDate',
-          'rating',
-          'state',
-          'isActive'
+          'rating'
         ];
         const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
       
@@ -116,6 +95,37 @@ const movieController = {
           return res.status(400).json({error: e.message});
         }
     },
+
+    uploadMovies: async (req, res) => {
+      try {
+        const file = req.file;
+        if (!file) {
+          return res.status(400).json({ error: 'No file uploaded' });
+        }
+        
+        // Read the uploaded file
+        const fileData = fs.readFileSync(file.path, 'utf-8');
+        const movies = JSON.parse(fileData);
+        
+        await fs.unlinkSync(file.path);
+          
+        // Check if any of the movies already exist in the database
+        const existingMovies = await Movie.find({ title: { $in: movies.map(movie => movie.title) } });
+        if (existingMovies.length > 0) {
+          const existingTitles = existingMovies.map(movie => movie.title).join(', ');
+          return res.status(400).json({ error: `The following movies already exist: ${existingTitles}` });
+        }
+
+        // Add movies to the database
+        const createdMovies = await Movie.insertMany(movies);
+    
+        // Send response
+        res.status(201).json({ message: 'Movies added successfully', createdMovies });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error adding movies' });
+      }
+    }
 }
 
 module.exports = movieController;

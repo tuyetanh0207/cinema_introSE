@@ -9,13 +9,16 @@ const seatSchema = new Schema({
       required: true,
    },
    row: {
-      type: Number,
+      type: String,
       required: true,
-      min: 1,
-      max: 6
+      enum: ['A', 'B', 'C', 'D', 'E', 'F']
    },
    seatNumber: {
       type: Number,
+      required: true,
+   },
+   coordinates: {
+      type: [Number],
       required: true,
    },
    type: {
@@ -27,11 +30,6 @@ const seatSchema = new Schema({
       type: Boolean,
       default: false,
    }
-});
-
-seatSchema.virtual('rowLetter').get(function() {
-  const rowLetters = ['A', 'B', 'C', 'D', 'E', 'F'];
-  return rowLetters[this.row - 1];
 });
 
 const Seat = mongoose.model('Seat', seatSchema);

@@ -1,13 +1,16 @@
 const express = require('express');
 const auth = require('../middleware/auth');
 const showtimeController = require('../controllers/showtimeController');
+const uploadMiddleware = require('../utils/uploadMiddleware');
 const router = new express.Router();
 
-router.post('/', auth.enhance, showtimeController.createShowtime);
-// router.get('/', showtimeController.getAllshowtimes);
-// router.get('/:id', showtimeController.getshowtimeById);
-// router.patch('/:id', auth.enhance, showtimeController.updateshowtimeById);
-// router.delete('/:id', auth.enhance, showtimeController.deleteshowtimeById);
-
+router.post('/', auth.manager, showtimeController.createShowtime);
+router.get('/', showtimeController.getAllShowtimes);
+router.get('/nowShowing', showtimeController.getNowShowing);
+router.get('/comingSoon', showtimeController.getComingSoon);
+router.get('/:id', showtimeController.getShowtimeById);
+router.patch('/:id', auth.manager, showtimeController.updateShowtimeById);
+router.delete('/:id', auth.manager, showtimeController.deleteShowtimeById);
+router.post('/upload', auth.manager, uploadMiddleware, showtimeController.uploadShowtimes);
 
 module.exports = router;

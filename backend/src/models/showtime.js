@@ -20,6 +20,9 @@ const showtimeSchema = new Schema({
     type: Date,
     required: true,
   },
+  times: [{
+    type: String,
+  }], // because the coming soon movie doesnt require show_time_times
   isActive: {
     type: Boolean,
     default: true,
