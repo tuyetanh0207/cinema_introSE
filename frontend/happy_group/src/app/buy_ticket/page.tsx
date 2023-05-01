@@ -4,19 +4,15 @@ import {food1,food2,food3,food4,picS1} from '@/assets/imgs'
 import Image from 'next/image'
 import { HtmlHTMLAttributes, useEffect, useState,useRef } from 'react';//
 import React from 'react';
-// import { getUsersData } from '@/app/s.tate/actions/userActions';//
 import { useSelector, useDispatch } from 'react-redux'//
 import Link from 'next/link';
-// import { useRouter } from 'next/router';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 
 export default function Buy_ticket (){
 
 
-  // const search = window.location.search;
-  // const params = new URLSearchParams(search);
-  // const mvName = params.get('MvName');
 
     const quantity2DRef = useRef(0);
     const price2DRef = useRef(null);
@@ -109,6 +105,12 @@ export default function Buy_ticket (){
     const billTotal = total2D + total3D + totalCP + totalCB1 + totalCB2 + totalCB3 + totalCB4;
     billRef.current.value = billTotal;
   }
+
+  // const router = useRouter();
+  // const {movie,cinema} = router.query;
+
+
+  
   
 
   useEffect(() => {
@@ -219,7 +221,7 @@ return(
             </div>
             <div className={styles.mvDetails}>
                 <Image src={picS1} alt=''></Image>
-                <h5>THE POPE'S EXORCIST</h5>
+                <h5>{movie}</h5>
                 <h5>Rạp : Linh Trung, Thủ đức</h5>
                 <h5>Suất chiếu : 12:00 | Thứ năm, 23/03/2023</h5>
                 <input ref={billRef} onChange={updateBill}  type="number" name="quantity" defaultValue={0} readOnly/>
