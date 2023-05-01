@@ -7,6 +7,10 @@ const reservationSchema = new Schema({
     ref: 'User',
     required: true
   },
+  name: {
+    type: String,
+    required: true,
+  },
   phoneNumber: {
     type: Number,
     required: true
@@ -20,13 +24,32 @@ const reservationSchema = new Schema({
     ref: 'Showtime',
     required: true
   },
-  originalPrice: {
-    type: Number,
-    required: true
+  showtime: {
+    time: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: Date,
+      required: true
+    }
   },
+  seats: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Seat',
+      required: true
+    }
+  ],
   totalPrice: {
     type: Number,
     required: true
+  },
+  status: {
+    type: String,
+    default: 'Pending',
+    enum: ['Pending', 'Canceled', 'Booked'],
+    required: true,
   }
 }, {
   timestamps: true

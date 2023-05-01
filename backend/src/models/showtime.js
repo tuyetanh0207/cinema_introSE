@@ -7,21 +7,26 @@ const showtimeSchema = new Schema({
     ref: 'Movie',
     required: true,
   },
-  theatreId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Theatre',
-    required: true,
-  },
   startDate: {
     type: Date,
-    required: true,
   },
   endDate: {
     type: Date,
-    required: true,
   },
   times: [{
-    type: String,
+    type: Schema.Types.Array,
+    items: {
+      type: Schema.Types.Object,
+      properties: {
+        time: [{
+          type: String,
+        }],
+        theatreId: {
+          type: Schema.Types.ObjectId,
+          ref: 'Theatre',
+        },
+      },
+    },
   }], // because the coming soon movie doesnt require show_time_times
   isActive: {
     type: Boolean,

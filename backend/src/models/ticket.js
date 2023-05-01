@@ -26,6 +26,11 @@ const ticketSchema = new Schema({
     type: Number,
     required: true,
   },
+  status: {
+    type: String,
+    default: 'Pending',
+    enum: ['Pending', 'Booked', 'Canceled']
+  }
 });
 
 const Ticket = mongoose.model('Ticket', ticketSchema);

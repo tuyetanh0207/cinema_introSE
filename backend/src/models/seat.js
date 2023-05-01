@@ -28,7 +28,7 @@ const seatSchema = new Schema({
    },
    isAvailable: {
       type: Boolean,
-      default: false,
+      default: true,
    }
 });
 

@@ -7,9 +7,9 @@ const commentSchema = new Schema ({
         ref: 'User',
         require: true,
     },
-    movieId: {
+    showtimeId: {
         type: Schema.Types.ObjectId,
-        ref: 'Movie',
+        ref: 'Showtime',
         require: true,
     },
     content: {
