@@ -2,9 +2,11 @@
     width: 100vw;
     height: 100vh;
     background-color: #E9F8F9;
-    position: absolute;
+    /* position: absolute; */
     left:0;
     border-radius: 50px ;
+    display: block;
+    margin-bottom: 100px;
 }
 
 .lay2{

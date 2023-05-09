@@ -10,9 +10,11 @@ import BannerAPI from './api/BannerAPI'
 import Banner from '@/components/Banner/Banner'
 
 import { useState } from 'react'
+import Filmcomment from '@/components/filmcomment/filmcomment'
+import Idfilm from '@/app/idfilm/page'
+import { ClassificationTypeNames } from 'typescript'
 
 
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
 
@@ -21,7 +23,11 @@ export default function Home() {
       <>
     
       <Banner/>
-      
+      <Filmcomment/>
+      {/* <Idfilm/> */}
       </>
+
+  
+
   )
 }

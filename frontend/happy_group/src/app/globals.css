@@ -105,14 +105,15 @@
       rgb(var(--background-start-rgb));
   } */
   body {
-    position: relative;
+    /* position: relative; */
+    /* height: fit-content; */
   }
   
-  body::after {
+  /* body::after {
     content: '';
     display: block;
-    height: 300px; /* Set same as footer's height */
-  }
+    height: 300px; Set same as footer's height
+  } */
   a {
     color: inherit;
     text-decoration: none;

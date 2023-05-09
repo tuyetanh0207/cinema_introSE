@@ -117,6 +117,7 @@ export default function Buy_ticket (){
 }, []);
 
 return(
+  <>
         <div className={styles.lay1}>
             <div className={styles.lay2}>
                 <div className={styles.content}>
@@ -210,6 +211,7 @@ return(
                 </Link>
             </div>
         </div>
+        </>
 )
 }
 

@@ -27,6 +27,7 @@ import open_ad from "./open_ad.svg"
 import search_ad from "./search_ad.svg"
 import add_ad from "./add_ad.svg"
 import edit from "./edit.svg"
+import clock from './clock-solid.svg'
 export {
     searchIcon,
     fbIcon,
@@ -57,5 +58,7 @@ export {
     ,open_ad
     ,search_ad
     ,add_ad
-    ,edit
+    ,edit,
+    clock,
+
 }

@@ -1,8 +1,12 @@
-.title p{
+/* .title p{
   text-size-adjust: 50px;
 } 
 
 .box {
   width: 200px;
-  height: 100vh;
+  height: 5000%;
+} */
+.page{
+  display: block;
+  /* height: 100%; */
 }
