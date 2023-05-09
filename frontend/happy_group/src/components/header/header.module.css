@@ -119,3 +119,18 @@
     saturate(10)
     brightness(1);
 }
+
+/*sticky8/*/
+.is_sticky {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 100%;
+    transform: translateX( -50%);
+
+    z-index: 999;
+    background-color: transparent;
+    /* animation: 500ms ease-in-out 0s normal none 1 running fadeInDown; */
+    padding-top: 0px;
+    padding-bottom: 0px;
+}

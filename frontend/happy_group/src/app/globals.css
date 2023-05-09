@@ -17,6 +17,11 @@
       #0071ff33 160deg,
       transparent 360deg
     );
+    --primary-color-1: #674188;
+    --primary-color-2: #C3ACD0;
+    --primary-color-3: #F7EFE5;
+    --primary-color-4: #FFFBF5;
+
     --secondary-glow: radial-gradient(
       rgba(255, 255, 255, 1),
       rgba(255, 255, 255, 0)
@@ -80,12 +85,14 @@
   }
   
   html,
-  body {
+  .body {
     max-width: 100vw;
     overflow-x: hidden;
     background-color: #E9F8F9;
     font-family: 'Segoe UI';
     font-style: normal;
+    font-weight: 500;
+
   }
   /* 
   body {

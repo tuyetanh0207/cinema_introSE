@@ -3,7 +3,7 @@ import styles from "./layout.module.css"
 import Sidebar from "@/components/Admin_page/Sidebar/Sidebar";
 import Movies_Admin from "./movies/page";
 import Header_admin from "@/components/Admin_page/Header_admin/Header_admin";
-export default function Layout (){
+export default function Layout ({children}:any){
 
 
     return(
@@ -12,7 +12,8 @@ export default function Layout (){
             <div className={styles.content}>
 
             <Header_admin/>
-            <Movies_Admin/>
+        {/* <Movies_Admin/> */}
+      {children}
             </div>
           
             </div>

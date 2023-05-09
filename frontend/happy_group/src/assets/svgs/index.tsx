@@ -26,6 +26,7 @@ import pwd_ad from "./pwd_ad.svg"
 import open_ad from "./open_ad.svg"
 import search_ad from "./search_ad.svg"
 import add_ad from "./add_ad.svg"
+import edit from "./edit.svg"
 export {
     searchIcon,
     fbIcon,
@@ -56,4 +57,5 @@ export {
     ,open_ad
     ,search_ad
     ,add_ad
+    ,edit
 }

@@ -10,13 +10,15 @@ export default function Movies_Admin (){
             {/* filter to date */}
             <div className={styles.header}>
                 <div className={styles.addmovie}>
-                    <Image src={add_ad} alt=""/> Add movie
+                    <Image src={add_ad} alt=""/>  movie
                 </div>
-                <label htmlFor="" className={styles.label}>Start:</label>
+                <div className={styles.timing}> <label htmlFor="" className={styles.label}>Start:</label>
                 <p className={styles.header__date}>31/07/2022</p>
-                <label htmlFor="" className={styles.label}>End:</label>
+               </div>
+                <div className={styles.timing}><label htmlFor="" className={styles.label}>End:</label>
                 <p className={styles.header__date}>31/07/2022</p>
             </div>
+                </div>
             {/* table */}
             <div className={styles.movies_table}>
                 <div className={styles.movies_table_col}>No.</div>

@@ -3,11 +3,16 @@
 }
 
 .header{
-    display: grid;
+    display:grid;
     grid-column: auto;
+    grid-column-gap: 5%;
+    grid-template-columns: 10% 10% 10% 10% 20%;
 }
 
 .movies_table{
-    display: inline-grid;
-    grid-template-columns: 20px 20px 20px 20px 20px 20px 20px 20px;
+    display: grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+}
+.timing{
+    display: inline-flex;
 }

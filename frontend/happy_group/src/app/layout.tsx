@@ -28,9 +28,9 @@ export default function RootLayout({
       <body style={{ height: '1000px'}}>
       <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {pathname==="/login"||pathname=="/signup"||pathname=="/admin/movies"?<></>:<Header/>}
+        {pathname==="/login"||pathname=="/signup"||pathname.includes("/admin")?<></>:<Header/>}
         {children}
-        {pathname==="/login"||pathname=="/signup"||pathname=="/admin/movies"?<></>: <Footer/>}
+        {pathname==="/login"||pathname=="/signup"||pathname.includes("/admin")?<></>: <Footer/>}
         </PersistGate>
       </Provider>
       </body>

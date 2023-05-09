@@ -8,7 +8,7 @@ import UserAPI from '@/app/api/userAPI';
 import { logOut } from '@/redux/apiRequests';
 import { createAxios } from '@/createInstance';
 import { logOutSuccess } from '@/redux/authSlice';
-import usewindowe
+// import usewindowe
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import SearchComp from '../search/search';
@@ -45,10 +45,26 @@ export default function Header () {
   
   
   }
+  const [sticky, setSticky] = useState(false);
+
+  // on render, set listener
+  useEffect(() => {
+
+    window.addEventListener("scroll", isSticky);
+    return () => {
+      window.removeEventListener("scroll", isSticky);
+    };
+  }, []);
+  const isSticky = () => {
+    /* Method that will fix header after a specific scrollable */
+    const scrollTop = window.scrollY;
+    scrollTop >= 100 ? setSticky(true) : setSticky(false);
+    // setSticky(true)
+  };
 
     return (
-        <div className={styles.header}>
-            <div className={styles.subheader}>
+        <div className={`${styles.header}`}>
+            <div className={`${styles.subheader}`}>
                 <div className={styles.logo}>
                     <Image src={logoIcon} alt=''></Image>     
                      Happy Group         
@@ -73,7 +89,32 @@ export default function Header () {
                 )}
             
             </div>
-            <div className={styles.navbar}>
+            {sticky? (
+                 <div className={`${styles.navbar} ${styles.is_sticky}`}>
+                 <ul className={styles.navbar_list}>
+                     <li className={styles.navbar_item}><Link href={''}>Trang chủ</Link></li>
+                     <li className={styles.navbar_item}><Link href={''}>Mua vé</Link></li>
+                     <li className={styles.navbar_item}><Link href={''}>Phim</Link></li>
+                     <li className={styles.navbar_item}><Link href={''}>Phim hot</Link></li>
+                     <li className={styles.navbar_item}><Link href={''}>Góc điện ảnh</Link></li>
+                     <li className={styles.navbar_item}><Link href={''}>Rạp/Giá vé</Link></li>
+                     <li className={styles.navbar_item}><Link href={''}>Hỗ trợ</Link></li>
+ 
+                 </ul>
+                 <ul className={styles.navbar_list_icon}>
+                 <li className={styles.navbar_item_icon}>
+                     <Image src={fbIcon} alt={''}></Image>
+                 </li>
+                 <li className={styles.navbar_item_icon}>
+                     <Image src={twitterIcon} alt={''}></Image>
+                 </li>
+                 <li className={styles.navbar_item_icon}>
+                     <Image src={instaIcon} alt={''}></Image>
+                 </li>
+                 </ul>
+             </div>
+            ):(
+                <div className={styles.navbar}>
                 <ul className={styles.navbar_list}>
                     <li className={styles.navbar_item}><Link href={''}>Trang chủ</Link></li>
                     <li className={styles.navbar_item}><Link href={''}>Mua vé</Link></li>
@@ -96,6 +137,8 @@ export default function Header () {
                 </li>
                 </ul>
             </div>
+            )}
+           
             {/* <Popup_Oauth/> */}
         </div>
         

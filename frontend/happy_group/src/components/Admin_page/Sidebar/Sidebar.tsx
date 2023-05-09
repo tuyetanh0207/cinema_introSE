@@ -8,33 +8,33 @@ export default function Sidebar (){
     return(
         <div className={styles.sidebar}>
             <div className={styles.header}>
-                <Image src={logo_ad} alt=""/>
+                <Image width={40}height={40}src={logo_ad} alt="" className={styles.header_icon}/>
                 US Happy 
             </div>
             <div className={styles.menu}>
                 <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={home_ad} alt=""/>
+                    <Image  className={styles.icon} width={30}height={30}src={home_ad} alt=""/>
                     Dashboard</div>
-                <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={movie_ad} alt=""/>
+                <div className={`${styles.menu_item} ${styles.menu_item_focus_custom}`}>
+                    <Image  className={styles.icon} width={30}height={30}src={movie_ad} alt=""/>
                     Movies</div>
                 <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={person_ad} alt=""/>
+                    <Image  className={styles.icon} width={30}height={30}src={person_ad} alt=""/>
                     Schedules</div>
                 <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={msg_ad} alt=""/>
+                    <Image  className={styles.icon} width={30}height={30}src={msg_ad} alt=""/>
                     Messages</div>
                 <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={setting_ad} alt=""/>
+                    <Image  className={styles.icon} width={30}height={30}src={setting_ad} alt=""/>
                     Settings</div>
                 <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={pwd_ad} alt=""/>
+                    <Image  className={styles.icon} width={30}height={30}src={pwd_ad} alt=""/>
                     Password</div>
                 <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={help_ad} alt=""/>
+                    <Image  className={styles.icon} width={30}height={30}src={help_ad} alt=""/>
                     Help</div>
                 <div className={styles.menu_item}>
-                    <Image  className={styles.icon} src={signout_ad} alt=""/>
+                    <Image  className={styles.icon} width={30}height={30}src={signout_ad} alt=""/>
                     Sign <output></output></div>
             </div>
         </div>
