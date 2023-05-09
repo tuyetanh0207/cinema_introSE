@@ -39,28 +39,8 @@ const movieSchema = new Schema({
     type: Number,
     required: true,
   },
-  releaseDate: {
-    type: Date,
-    required: true,
-  },
-  endDate: {
-    type: Date,
-    required: true,
-  },
   rating: {
     type: Number,
-    required: true,
-  },
-  state: {
-    type: String,
-    default: 'Comming Soon',
-    enum: ['Now Showing', 'Coming Soon'],
-    required: true,
-  },
-  isActive: {
-    type: Boolean,
-    default: true,
-    require: true,
   }
 });
 

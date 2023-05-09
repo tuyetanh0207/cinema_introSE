@@ -11,6 +11,6 @@ const router = express.Router();
 
 router.get('/search', otherController.search);
 router.post('/slides/', otherController.createSlide);
-router.post('/slides/:id', auth.enhance, upload.single('image'), uploadImage,otherController.uploadSlideImage);
+router.post('/slides/:id', auth.manager, upload.single('image'), uploadImage,otherController.uploadSlideImage);
 router.get('/slides/', otherController.getAllSlides);
 module.exports = router;

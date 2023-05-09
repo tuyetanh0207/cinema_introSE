@@ -1,0 +1,7 @@
+[  
+  {    "name": "Cineplex",    "screens": 2  },  
+  {    "name": "AMC Theatres",    "screens": 3  },  
+  {    "name": "Regal Cinemas",    "screens": 4  },  
+  {    "name": "Vue Cinemas",    "screens": 2  },  
+  {    "name": "Odeon Cinemas",    "screens": 3  }
+]

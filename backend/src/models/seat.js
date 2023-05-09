@@ -3,23 +3,33 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const seatSchema = new Schema({
- row: {
-    type: Number,
-    require: true,
- },
- seatNumber: {
-    type: Number,
-    require: true,
- },
- theatreId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Theatre',
-    require: true,
- },
- isAvailable: {
-    type: Boolean,
-    default: true,
- }
+   theatreId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Theatre',
+      required: true,
+   },
+   row: {
+      type: String,
+      required: true,
+      enum: ['A', 'B', 'C', 'D', 'E', 'F']
+   },
+   seatNumber: {
+      type: Number,
+      required: true,
+   },
+   coordinates: {
+      type: [Number],
+      required: true,
+   },
+   type: {
+      type: Number,
+      default: 1,
+      enum: [1, 2],
+   },
+   isAvailable: {
+      type: Boolean,
+      default: true,
+   }
 });
 
 const Seat = mongoose.model('Seat', seatSchema);

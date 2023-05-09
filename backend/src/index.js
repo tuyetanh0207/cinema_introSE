@@ -10,9 +10,11 @@ const port = process.env.PORT || 8000;
 //Routes
 const userRouter = require('./routes/users');
 const movieRouter = require('./routes/movies');
-const cinemaRouter = require('./routes/cinemas');
 const showtimeRouter = require('./routes/showtimes');
 const reservationRouter = require('./routes/reservations');
+const seatRouter = require('./routes/seats');
+const theatreRouter = require('./routes/theatres');
+const ticketRouter = require('./routes/tickets');
 const otherRouter = require('./routes/other');
 
 
@@ -27,9 +29,11 @@ app.disable('x-powered-by');
 
 app.use("/v1/users", userRouter);
 app.use("/v1/movies", movieRouter);
-app.use("/v1/cinemas", cinemaRouter);
 app.use("/v1/showtimes", showtimeRouter);
 app.use("/v1/reservations", reservationRouter);
+app.use("/v1/seats", seatRouter);
+app.use("/v1/theatres", theatreRouter);
+app.use("/v1/tickets", ticketRouter);
 app.use("/v1/", otherRouter);
 
 app.get("/", (req, res) => {

@@ -1,50 +1,58 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
+
 const reservationSchema = new Schema({
-  date: {
-    type: Date,
-    required: true,
-  },
-  startAt: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  seats: {
-    type: [Schema.Types.Mixed],
-    required: true,
-  },
-  ticketPrice: {
-    type: Number,
-    required: true,
-  },
-  total: {
-    type: Number,
-    required: true,
-  },
-  movieId: {
+  userId: {
     type: Schema.Types.ObjectId,
-    ref: 'Movie',
+    ref: 'User',
+    required: true
+  },
+  name: {
+    type: String,
     required: true,
   },
-  cinemaId: {
+  phoneNumber: {
+    type: Number,
+    required: true
+  },
+  email: {
+    type: String,
+    required: true
+  },
+  showtimeId: {
     type: Schema.Types.ObjectId,
-    ref: 'Cinema',
-    required: true,
+    ref: 'Showtime',
+    required: true
   },
-  username: {
+  showtime: {
+    time: {
+      type: String,
+      required: true
+    },
+    date: {
+      type: Date,
+      required: true
+    }
+  },
+  seats: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Seat',
+      required: true
+    }
+  ],
+  totalPrice: {
+    type: Number,
+    required: true
+  },
+  status: {
     type: String,
+    default: 'Pending',
+    enum: ['Pending', 'Canceled', 'Booked'],
     required: true,
-  },
-  phone: {
-    type: String,
-    required: true,
-  },
-  checkin: {
-    type: Boolean,
-    default: false,
-  },
+  }
+}, {
+  timestamps: true
 });
 
 const Reservation = mongoose.model('Reservation', reservationSchema);

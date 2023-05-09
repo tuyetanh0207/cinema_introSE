@@ -43,12 +43,8 @@ const userSchema = Schema(
     role: {
       type: String,
       default: 'user',
-      enum: ['user', 'staff', 'accountant','admin'],
+      enum: ['user', 'staff', 'accountant','admin', 'manager'],
     },
-
-    facebook: String,
-    google: String,
-
     phone: {
       type: String,
       unique: true,
