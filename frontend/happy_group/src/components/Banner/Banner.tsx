@@ -20,9 +20,9 @@ export default function Banner () {
 
     showImg(indexValue); 
 
-    setInterval(() => {
-        side_slide(+1);
-      }, 5000);
+    // setInterval(() => {
+    //     side_slide(+1);
+    //   }, 5000);
 
     function btn_dot(e: number){
       showImg(indexValue = e);
@@ -56,6 +56,32 @@ export default function Banner () {
                 sliders[indexValue - 1].style.background = "#537fe7";
               }
       }
+
+      function valid1() {
+        var Select1 = document.getElementsByName("movie")[0] as HTMLInputElement;
+        var Opt2 = document.getElementById("Opt2") as HTMLInputElement;
+            if (Select1.value != "") {
+            Opt2.disabled = false;
+        }
+    }
+
+    function valid2() {
+        var Select2 = document.getElementsByName("cinema")[0] as HTMLInputElement;
+        var Opt3 = document.getElementById("Opt3") as HTMLInputElement;
+            if (Select2.value != "") {
+            Opt3.disabled = false;
+        }
+    }
+
+    function valid3() {
+        var Select3 = document.getElementsByName("date")[0] as HTMLInputElement;
+        var Opt4 = document.getElementById("Opt4") as HTMLInputElement;
+            if (Select3.value != "") {
+            Opt4.disabled = false;
+        }
+    }
+
+
     
 
 
@@ -109,30 +135,26 @@ export default function Banner () {
         {/* Form begin */}
             <div className={styles.opt}>
                 <label>MUA VÉ NHANH</label>
-                {/* <form method="POST" action="./buy_ticket"> */}
-                <form>
-                    <select name="movie">
+                <form action="./buy_ticket">
+                    <select name="movie" onChange={valid1}>
                         <option value="" hidden>Chọn phim</option> 
                         {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
                     </select>
 
-                     <select name="cinema">
+                     <select name="cinema" id="Opt2" onChange={valid2} disabled>
                         <option value="" hidden>Chọn rạp</option> 
                         {movies.map((movie, index) => (<option key={index} value={movie.language}>{movie.language}</option>))}
                     </select>
-                    {/* <select>
+                     <select name="date" id="Opt3" onChange={valid3} disabled>
                         <option value="" hidden>Chọn ngày</option> 
                         {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
                     </select>
-                    <select>
+                    <select name="time" id="Opt4" disabled>
                         <option value="" hidden>Chọn suất</option> 
                         {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
-                    </select> */}
+                    </select> 
                     <button type="submit" className={styles.buy_btn}>Mua vé</button>
                 </form>
-                {/* <Link href={'./buy_ticket'}>
-                    <button className={styles.buy_btn}>Mua vé</button>
-                </Link> */}
 
             </div>
         {/* Form end */}
