@@ -1,0 +1,14 @@
+[
+    {
+        "userId": "64440e7d366e7ab1cd929ed3",
+        "name": "viet",
+        "phoneNumber": "0123456789",
+        "email": "user@gmail.com",
+        "showtimeId": "644e1fcf4fed9fdaf2ff74a3",
+        "time": "12:00",
+        "date": "2023-05-22T17:00:00.000Z",
+        "seat": ["A2", "A3"],
+        "totalPrice": 200000,
+        "status": "Pending"
+    }
+]
