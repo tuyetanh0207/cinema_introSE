@@ -68,6 +68,7 @@
 
  .content1{
     width: 40%;
+    /* background-color: red; */
 }
 
 
@@ -99,8 +100,8 @@
     height: 25%;
     /* background-color: aqua; */
     align-items: center;
-    justify-content: space-between;
-    padding: 0% 3% 0% 3%;
+    /* justify-content: space-between; */
+    padding: 0% 3% 0% 4%;
     box-sizing: border-box ;
 }
 
@@ -112,27 +113,51 @@
 
 .optFood .content3{
     display: flex;
-    width: 41%;
+    width: 45%;
     height: 100%;
     /* background-color: red; */
     align-items:center;
-
 }
 
+.optFood .content4{
+    /* background-color: red;       */
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0% 3% 0% 5%;
+}
+
+.optFood .price{
+    width:20%;
+}
+
+.optFood .outputNum{
+    width:25%;
+}
 
 .mvDetails img{
     height: 40%;
     width: 90%;
 }
 
+.lay2 h3{
+    color: black;
+}
+
 .mvDetails h5{
     width: 90%;
     border-bottom: 2px solid #000000;
+    color: black;
 }
 
 .mvDetails button{
-    /* background-color: red; */
+    background-color: #C0EEF2;
+    color:black;
+}
 
+.mvDetails button:hover{
+    background-color: #537FE7;
+    color: white;
 }
 
 .mvDetails input{

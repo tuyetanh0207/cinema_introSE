@@ -1,3 +1,4 @@
+"use client"
 import styles from './Banner.module.css'
 import {pic1,pic2,pic3,pic4} from '@/assets/imgs'
 import { right_arrow,left_arrow } from '@/assets/svgs'
@@ -6,113 +7,157 @@ import { HtmlHTMLAttributes, useEffect, useState } from 'react';//
 import BannerAPI from '@/app/api/BannerAPI';
 import { getUsersData } from '@/app/state/actions/userActions';//
 import { useSelector, useDispatch } from 'react-redux'//
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation'
+import Link from 'next/link';
+import movieAPI from '@/app/api/movieAPI'
+
   
 
 export default function Banner () {
 
-    // const [movies, setMovies] = useState([]);
 
-    // const fetchUsers = async () => {
-    //   const moviesData = await MovieAPI.getNowShowingMovies();
-    //   console.log("res: ", moviesData);
-    //   setMovies(moviesData.data);
-    //   }
-    //   useEffect(()=>{
-    //       fetchUsers();
-    //   },[])
+    let indexValue = 1;  
 
-    // const router = useRouter();
-    // const id = router.query.id;
-    // const name = router.query.name;
-    // const age = router.query.age;
+    showImg(indexValue); 
 
-    const Bannerpic = [
-        pic1,
-        pic2,
-        pic3,
-        pic4,
-    ];
+    // setInterval(() => {
+    //     side_slide(+1);
+    //   }, 5000);
 
-    const MovieName = [
-        'Name',
-        'Super Mario',
-        'Power Ranger',
-        'America Tho',
-        'Super Mario',
-        'Power Ranger',
-        'America Tho',
-    ]
+    function btn_dot(e: number){
+      showImg(indexValue = e);
+    }
+  
+    function side_slide(e: number){
+      showImg(indexValue += e);
+    }
+  
+    function showImg(e: number){
+        let i;      
+         const img = document.querySelectorAll<HTMLImageElement>('#pic img');
+        const sliders = document.querySelectorAll<HTMLSpanElement>('#dot span');
+        if (e > img.length){indexValue=1}
+        if (e < 1 ){indexValue=img.length}
+
+      
+        for(i=0;i<img.length;i++){
+                img[i].style.display="none";
+        }
+        for(i=0;i<sliders.length;i++){
+            sliders[i].style.background="#C0EEF2";
+
+          }
+
+            if (img[indexValue - 1]) {
+                img[indexValue - 1].style.display = "block";
+              }
+
+              if (sliders[indexValue - 1]) {
+                sliders[indexValue - 1].style.background = "#537fe7";
+              }
+      }
+
+      function valid1() {
+        var Select1 = document.getElementsByName("movie")[0] as HTMLInputElement;
+        var Opt2 = document.getElementById("Opt2") as HTMLInputElement;
+            if (Select1.value != "") {
+            Opt2.disabled = false;
+        }
+    }
+
+    function valid2() {
+        var Select2 = document.getElementsByName("cinema")[0] as HTMLInputElement;
+        var Opt3 = document.getElementById("Opt3") as HTMLInputElement;
+            if (Select2.value != "") {
+            Opt3.disabled = false;
+        }
+    }
+
+    function valid3() {
+        var Select3 = document.getElementsByName("date")[0] as HTMLInputElement;
+        var Opt4 = document.getElementById("Opt4") as HTMLInputElement;
+            if (Select3.value != "") {
+            Opt4.disabled = false;
+        }
+    }
+
+
+    
+
+
+    const [slides, setslides] = useState<any[]>([]); ///
+    const slide = async () => {
+      const SlideData = await BannerAPI.getAllSlides();
+      console.log("res: ", SlideData);
+      setslides(SlideData.data);
+      }
+
+      const [movies, pickMovies] = useState<any[]>([]); ///
+      const movie = async () => {
+        const MovieData = await movieAPI.getNowShowingMovies();
+        console.log("res: ", MovieData);
+        pickMovies(MovieData.data);
+        }
+
+      useEffect(()=>{
+        slide();
+        movie();
+    },[])
+
+
 
     return (
         <div className={styles.Banner}>
-
         {/* slides begin */}
-            <div className={styles.slides}>
-
-            {/* btn begin*/}
-                
-
-
-                {Bannerpic.map((_, index) => (<input id={styles[`radio${index+1}`]} type={"radio"} name="radio-btn" key={index}/>))}
-            {/* btn end*/}
-
+            <div className={styles.slides} id={'pic'}>
             {/* <!--image begin */}
-                {Bannerpic.map((image, index) => (<div className={styles.slide} id={index === 0 ? styles.first : ''} key={index}><Image src={image} alt={''}  /></div>))}
-            {/* <!--image end */}
-
-            {/* auto begin*/}
-                <div className={styles.au_nav}>
-                    {Bannerpic.map((_, index) => (<div className={styles[`auto_btn${index+1}`]} key={index}/>))}                  
-                </div> 
-            {/* auto end*/}
-
-            {/* change btn begin */}
-                <div className={styles.change_btn}id={styles.left}>
-                    <Image className={styles.left_btn} src={left_arrow} alt=''></Image>
-                </div>
-                <div className={styles.change_btn} id={styles.right}>
-                    <Image className={styles.right_btn} src={right_arrow} alt=''></Image>
-                </div>
-            {/* change btn end */}
-
+                {slides.map((slide, index) => (<div className={styles.slide} key={index}><img src={slide.imageUrl} alt={''} /></div>))}
             </div>
         {/* slides end*/}
-
-        {/* manual begin*/}
-            <div className={styles.manual_nav}>
-                {Bannerpic.map((_, index) => (<label htmlFor={styles[`radio${index+1}`]} className={styles.manual_btn} key={index}></label>))}
+        <div onClick={() => side_slide(1)} className={styles.change_btn} id={styles.left}>
+            <Image className={styles.left_btn} src={left_arrow} alt='' />
             </div>
-        {/* manual end*/}
+
+            <div onClick={() => side_slide(-1)} className={styles.change_btn} id={styles.right}>
+                <Image className={styles.right_btn} src={right_arrow} alt='' />
+            </div>
+
+
+        <div className={styles.btn_dots} id={'dot'}>
+            {slides.map((slide, index) => (<span key={index} onClick={() => btn_dot(index + 1)}></span>))}
+        </div>
+
+
+
+
+
 
         {/* Form begin */}
             <div className={styles.opt}>
                 <label>MUA VÉ NHANH</label>
-                <form action=''>
-                    <select>
-                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
+                <form action="./buy_ticket">
+                    <select name="movie" onChange={valid1}>
+                        <option value="" hidden>Chọn phim</option> 
+                        {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
                     </select>
-                    <select>
-                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
+
+                     <select name="cinema" id="Opt2" onChange={valid2} disabled>
+                        <option value="" hidden>Chọn rạp</option> 
+                        {movies.map((movie, index) => (<option key={index} value={movie.language}>{movie.language}</option>))}
                     </select>
-                    <select>
-                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
+                     <select name="date" id="Opt3" onChange={valid3} disabled>
+                        <option value="" hidden>Chọn ngày</option> 
+                        {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
                     </select>
-                    <select>
-                    {MovieName.map((name, index) => (<option key={index} value={name}>{name}</option>))}
-                    </select>
+                    <select name="time" id="Opt4" disabled>
+                        <option value="" hidden>Chọn suất</option> 
+                        {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
+                    </select> 
+                    <button type="submit" className={styles.buy_btn}>Mua vé</button>
                 </form>
-                <button className={styles.buy_btn}>Mua vé</button>
+
             </div>
         {/* Form end */}
-
-        {/*buy_btn_layer_nd begin*/}
-            {/* <div className={styles.back}>
-                <div className={styles.box}>
-                </div>
-            </div> */}
-        {/*buy_btn_layer_nd end*/}
-
 
         </div>
     )
