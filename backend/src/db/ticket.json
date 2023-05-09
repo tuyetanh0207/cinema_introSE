@@ -1,0 +1,10 @@
+[
+    {
+        "seatId": "A2",
+        "showtimeId": "644e1fcf4fed9fdaf2ff74a3",
+        "reservationId": "64440e7d32s7ab1cd929ed3",
+        "room": 3,
+        "price": 100000,
+        "status": "Booked"
+    }
+]

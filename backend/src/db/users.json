@@ -1,0 +1,62 @@
+[
+    {
+        "_id": "64440e32366e7ab1cd929eb7",
+        "name": "Admin account",
+        "username": "admin",
+        "password": "admin00",
+        "email": "admin@gmail.com",
+        "role": "admin",
+        "phone": "0123456789",
+        "createdAt": "2023-04-22T16:41:22.582Z",
+        "updatedAt": "2023-05-09T11:12:17.027Z",
+        "__v": 2
+    },
+    {
+        "_id": "64440e46366e7ab1cd929ebe",
+        "name": "Manager account",
+        "username": "manager",
+        "password": "manager00",
+        "email": "manager@gmail.com",
+        "role": "manager",
+        "phone": "0123456788",
+        "createdAt": "2023-04-22T16:41:42.220Z",
+        "updatedAt": "2023-04-28T15:30:09.285Z",
+        "__v": 4
+    },
+    {
+        "_id": "64440e55366e7ab1cd929ec5",
+        "name": "Staff account",
+        "username": "staff",
+        "password": "staff00",
+        "email": "staff@gmail.com",
+        "role": "staff",
+        "phone": "0123456787",
+        "createdAt": "2023-04-22T16:41:57.275Z",
+        "updatedAt": "2023-04-22T16:41:57.342Z",
+        "__v": 1
+    },
+    {
+        "_id": "64440e6b366e7ab1cd929ecc",
+        "name": "Accountant account",
+        "username": "accountant",
+        "password": "accountant00",
+        "email": "accountant@gmail.com",
+        "role": "accountant",
+        "phone": "0123456786",
+        "createdAt": "2023-04-22T16:42:19.481Z",
+        "updatedAt": "2023-04-22T16:42:19.548Z",
+        "__v": 1
+    },
+    {
+        "_id": "64440e7d366e7ab1cd929ed3",
+        "name": "User account",
+        "username": "user",
+        "password": "user00",
+        "email": "user@gmail.com",
+        "role": "user",
+        "phone": "0123456785",
+        "createdAt": "2023-04-22T16:42:37.999Z",
+        "updatedAt": "2023-04-22T16:42:38.066Z",
+        "__v": 1
+    }
+]
