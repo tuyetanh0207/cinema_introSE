@@ -221,7 +221,7 @@ return(
             </div>
             <div className={styles.mvDetails}>
                 <Image src={picS1} alt=''></Image>
-                <h5>{movie}</h5>
+                <h5>tên: phim</h5>
                 <h5>Rạp : Linh Trung, Thủ đức</h5>
                 <h5>Suất chiếu : 12:00 | Thứ năm, 23/03/2023</h5>
                 <input ref={billRef} onChange={updateBill}  type="number" name="quantity" defaultValue={0} readOnly/>

@@ -15,18 +15,47 @@ import movieAPI from '@/app/api/movieAPI'
 
 export default function Banner () {
 
-    let counter = 1;
-    setInterval(function()
-    {
-         const temp = document.getElementsByClassName('radio' + counter) as any;
-         console.log(temp)
-         temp[0].checked = true;
-        counter++;
-        if(counter > 7)
-        {
-            counter = 1;
-        }      
-    },5000);
+
+    let indexValue = 1;  
+
+    showImg(indexValue); 
+
+    setInterval(() => {
+        side_slide(+1);
+      }, 5000);
+
+    function btn_dot(e: number){
+      showImg(indexValue = e);
+    }
+  
+    function side_slide(e: number){
+      showImg(indexValue += e);
+    }
+  
+    function showImg(e: number){
+        let i;      
+         const img = document.querySelectorAll<HTMLImageElement>('#pic img');
+        const sliders = document.querySelectorAll<HTMLSpanElement>('#dot span');
+        if (e > img.length){indexValue=1}
+        if (e < 1 ){indexValue=img.length}
+
+      
+        for(i=0;i<img.length;i++){
+                img[i].style.display="none";
+        }
+        for(i=0;i<sliders.length;i++){
+            sliders[i].style.background="#C0EEF2";
+
+          }
+
+            if (img[indexValue - 1]) {
+                img[indexValue - 1].style.display = "block";
+              }
+
+              if (sliders[indexValue - 1]) {
+                sliders[indexValue - 1].style.background = "#537fe7";
+              }
+      }
     
 
 
@@ -44,20 +73,6 @@ export default function Banner () {
         pickMovies(MovieData.data);
         }
 
-
-        const router = useRouter()
-
-        function handleSubmit(event) {
-          event.preventDefault()
-          const form = event.target
-          const movie = form.elements.movie.value
-          const cinema = form.elements.cinema.value
-        //   const date = form.elements.date.value
-        //   const session = form.elements.session.value
-          router.push(`/buy_ticket?movie=${movie}&cinema=${cinema}`)
-        }
-
-
       useEffect(()=>{
         slide();
         movie();
@@ -67,49 +82,35 @@ export default function Banner () {
 
     return (
         <div className={styles.Banner}>
-
         {/* slides begin */}
-            <div className={styles.slides}>
-
-            {/* btn begin*/}
-                {slides.map((_, index) => (<input id={styles[`radio${index+1}`]} type={"radio"} name="radio-btn" className={`radio${index+1}`} key={index}/>))}
-            {/* btn end*/}
-
+            <div className={styles.slides} id={'pic'}>
             {/* <!--image begin */}
-
-                {slides.map((slide, index) => (<div className={styles.slide} id={index === 0 ? styles.first : ''} key={index}><img src={slide.imageUrl} alt={''} /></div>))}
-
-            {/* <!--image end */}
-
-            {/* auto begin*/}
-                <div className={styles.au_nav}>
-                    {slides.map((_, index) => (<div className={styles[`auto_btn${index+1}`]} key={index}/>))}                  
-                </div> 
-            {/* auto end*/}
-
-            {/* change btn begin */}
-                <div className={styles.change_btn}id={styles.left}>
-                    <Image className={styles.left_btn} src={left_arrow} alt=''></Image>
-                </div>
-                <div className={styles.change_btn} id={styles.right}>
-                    <Image className={styles.right_btn} src={right_arrow} alt=''></Image>
-                </div>
-            {/* change btn end */}
-
+                {slides.map((slide, index) => (<div className={styles.slide} key={index}><img src={slide.imageUrl} alt={''} /></div>))}
             </div>
         {/* slides end*/}
-
-        {/* manual begin*/}
-            <div className={styles.manual_nav}>
-                {slides.map((_, index) => (<label htmlFor={styles[`radio${index+1}`]} className={styles.manual_btn} key={index}></label>))}
+        <div onClick={() => side_slide(1)} className={styles.change_btn} id={styles.left}>
+            <Image className={styles.left_btn} src={left_arrow} alt='' />
             </div>
-        {/* manual end*/}
+
+            <div onClick={() => side_slide(-1)} className={styles.change_btn} id={styles.right}>
+                <Image className={styles.right_btn} src={right_arrow} alt='' />
+            </div>
+
+
+        <div className={styles.btn_dots} id={'dot'}>
+            {slides.map((slide, index) => (<span key={index} onClick={() => btn_dot(index + 1)}></span>))}
+        </div>
+
+
+
+
+
 
         {/* Form begin */}
             <div className={styles.opt}>
                 <label>MUA VÉ NHANH</label>
                 {/* <form method="POST" action="./buy_ticket"> */}
-                <form onSubmit={handleSubmit}>
+                <form>
                     <select name="movie">
                         <option value="" hidden>Chọn phim</option> 
                         {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
@@ -135,14 +136,6 @@ export default function Banner () {
 
             </div>
         {/* Form end */}
-
-        {/*buy_btn_layer_nd begin*/}
-            {/* <div className={styles.back}>
-                <div className={styles.box}>
-                </div>
-            </div> */}
-        {/*buy_btn_layer_nd end*/}
-
 
         </div>
     )
