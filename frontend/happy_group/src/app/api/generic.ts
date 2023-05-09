@@ -1,5 +1,5 @@
 import axios from "axios";
-export const baseURL ="https://620690d1-c2e8-4fb9-bba2-d4dd76f26656.mock.pstmn.io/v1"|| "https://gokisoft.com/api/fake/1395"|| "https://localhost:8000";
+export const baseURL ="https://620690d1-c2e8-4fb9-bba2-d4dd76f26656.mock.pstmn.io/v1"|| "https://gokisoft.com/api/fake/1395"|| "http://localhost:8000/v1/";
 export const baseURL_user ="https://620690d1-c2e8-4fb9-bba2-d4dd76f26656.mock.pstmn.io";
 //"https://5dlr4.wiremockapi.cloud" ||  "https://localhost:8000/v1"||
 

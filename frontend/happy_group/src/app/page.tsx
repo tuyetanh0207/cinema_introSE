@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import BannerAPI from './api/BannerAPI'
 import Banner from '@/components/Banner/Banner'
+import Seat from '@/components/Seat/Seat'
 
 import { useState } from 'react'
 
@@ -20,8 +21,8 @@ export default function Home() {
   return (
       <>
     
-      <Banner/>
-      
+      {/* <Banner/> */}
+      <Seat/>
       </>
   )
 }
