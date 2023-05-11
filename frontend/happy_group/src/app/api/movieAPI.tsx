@@ -11,9 +11,17 @@ const movieAPI = {
     return get(url, "");
   },
   searchMovie: function (query:string){
-    const url=`${apiV1}/search?=${query}`;
+    const url=`${apiV1}/search?q=${query}`;
     return get(url, "");
   },
+  getAllMovies: function () {
+    const url =`${apiV1}/movies/`;
+    return get(url,"");
+  },
+  getMovie: function (id: string){
+    const url =`${apiV1}/movies/${id}`;
+    return get (url,"");
+  }
 
   // patchResource: function (data: any, id: string, token: string) {
   //   const url = `${apiV1}/groups/resources?${id}`;

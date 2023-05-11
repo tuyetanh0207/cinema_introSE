@@ -83,15 +83,17 @@ export const deleteUser = async (token: any, dispatch: (arg0: { payload: any; ty
     console.log(err)
   }
 };
+// export const registerUser = async (user: any, dispatch: (arg0: { payload: undefined; type: "auth/registerStart" | "auth/registerSuccess" | "auth/registerFailed"; }) => void, router: string[] |  AppRouterInstance) => {
+// export const loginUser = async (user: any, dispatch: (arg0: { payload: any; type: "auth/loginStart" | "auth/loginSuccess" | "auth/loginFailed"; }) => void,router: string[] | AppRouterInstance) => {
 
-export const logOut = async (dispatch: (arg0: { payload: undefined; type: "auth/logOutStart" | "auth/logOutSuccess" | "auth/logOutFailed"; }) => void, id: any, token: any, axios: { post: (arg0: string, arg1: any, arg2: { headers: { token: string; }; }) => any; },router: string[]|AppRouterInstance) => {
+export const logOut = async (dispatch: (arg0: { payload: any; type: "auth/logOutStart" | "auth/logOutSuccess" | "auth/logOutFailed"; }) => void, id: any, token: any, axios: { post: (arg0: string, arg1: any, arg2: { headers: { token: string; }; }) => any; },router: string[]|AppRouterInstance) => {
   dispatch(logOutStart());
   try {
     
     await UserAPI.logout({id},token);
 
     dispatch(logOutSuccess());
-    router.push("/")
+    // router.push("/")
   } catch (err) {
     dispatch(logOutFailed());
     console.log(err)

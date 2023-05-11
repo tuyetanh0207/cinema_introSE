@@ -1,88 +1,110 @@
 "use client"
-import axios from "axios"
-import React,{useState, useEffect, FC} from "react";
-import { getUsersData } from "@/app/state/actions/userActions";
-import Loader from "../../components/loader";
-import { store } from "@/app/state/store/store";
-import { useSelector, useDispatch, Provider } from "react-redux";
+import movieAPI from "../../api/movieAPI";
+import axios from "axios";
 import s from './idfilm.module.css'
-import Image from 'next/image'
-import {clock} from '@/assets/svgs'
-import movieAPI from "@/app/api/movieAPI";
+import Loader from "@/components/loader";
+import {clock} from '@/assets/svgs';
+import { Metadata, ResolvingMetadata } from 'next';
+import Image from "next/image";
+import { useEffect, useState } from "react";
+type movieInterface = {
+    _id: string,
+    duration: number,
+    title: string,
+    image: string,
+    language: [],
+    genre : [],
+    director: string,
+    cast : [],
+    // releaseDate: string,
+    rating: number,
+    description: string,
+    releaseDate: string
+}
+type Props = {
+    params: { movie: string };
+    searchParams: { [key: string]: string | string[] | undefined };
+  };
 
 
- function NewMovies  (){
-    const [movie, setMovie] =useState([])
-    const fetchUsers = async () => {
-        const moviesData = await movieAPI.getNowShowingMovies();
-        console.log("res: ", moviesData);
-        setMovie(moviesData.data);
-        }
-        useEffect(()=>{
-            fetchUsers();
-        },[])
+
+export default function MoviesPage( {params, searchParams}: Props) {
+    console.log("hihi");
+    console.log("prarams only",params);
+    console.log("pros",params.movie);
+    const id=params.movie
+    const [movie, setMovie]= useState<movieInterface>()
+    const fetchMovie = async () => {
+      const res= await movieAPI.getMovie(id);
+      setMovie(res.data)
+    }
+    useEffect(()=> {
+      fetchMovie();
+  },[])
+// console.log("ket qua", specificMovie)
+    
     return (
-        <>
-        <div className={s.idfilm}>
-        <div className={s.title}>
-            <a className={s.db} href="https://www.galaxycine.vn/">TRANG CHỦ</a>
-            {
-                (!movie || movie.length === 0) ? 
-                    <Loader />:<div> &emsp;>&emsp;{movie[0].title}</div>
-            }   
-        </div>
+      <>
+      <div className={s.idfilm}>
+      <div className={s.title}>
+          <a className={s.db} href="https://www.galaxycine.vn/">TRANG CHỦ</a>
+          {
+              (!movie ) ? 
+                  <Loader />:<div> {movie.title}</div>
+          }   
+      </div>
        <div className={s.container}>
             <div className={s.leftcolumn}>
                 <div className={s.frametop}>
 
                     <div className={s.a1}>
                         {
-                            (!movie || movie.length === 0) ? 
+                            (!movie ) ? 
                                 <Loader />:
-                                <img src={movie[0].image} alt="Mô tả ảnh"/>
+                                <img src={movie.image} alt="Mô tả ảnh"/>
                         }
                     </div>
                     
                     <div className={s.intro}>
                         {
-                            (!movie || movie.length === 0) ? 
-                                <Loader />:<div className={s.i1}>{movie[0].title}</div>
+                            (!movie ) ? 
+                                <Loader />:<div className={s.i1}>{movie.title}</div>
                         }
 
                         <div className={s.des}>
                             <div className={s.noknow}>C16</div>
                             <div className={s.clock}>
-                                <Image src={clock} alt={''} className={s.icon} />
+                                <Image src={clock} alt="" className={s.icon} />
                                 <div className={s.hour}>120 phút</div>
                             </div>
                         </div>
 
 
-                        {
-                            (!movie || movie.length === 0) ? 
-                            <Loader />:<div className={s.i2}>Language: {movie[0].language[0]}, {movie[0].language[1]}</div>
+                         {
+                            (!movie ) ? 
+                            <Loader />:<div className={s.i2}>Language: {movie.language[0]}, {movie.language[1]}</div>
                         }
                         {
-                            (!movie || movie.length === 0) ? 
-                            <Loader />:<div className={s.i2}>Genre: {movie[0].genre[0]}, {movie[0].genre[1]}, {movie[0].genre[2]} </div>
+                            (!movie ) ? 
+                            <Loader />:<div className={s.i2}>Genre: {movie.genre[0]}, {movie.genre[1]}, {movie.genre[2]} </div>
                         }
                         {
-                            (!movie || movie.length === 0) ? 
-                            <Loader />:<div className={s.i2}>Director: {movie[0].director}</div>
+                            (!movie ) ? 
+                            <Loader />:<div className={s.i2}>Director: {movie.director}</div>
                         }
                         {
-                            (!movie || movie.length === 0) ? 
-                            <Loader />:<div className={s.i2}>Cast: {movie[0].cast[0]}, {movie[0].cast[1]}, {movie[0].cast[2]}</div>
+                            (!movie ) ? 
+                            <Loader />:<div className={s.i2}>Cast: {movie.cast[0]}, {movie.cast[1]}, {movie.cast[2]}</div>
                         }
                         {
-                            (!movie || movie.length === 0) ? 
-                            <Loader />:<div className={s.i2}>Release Date: {movie[0].releaseDate}</div>
+                            (!movie ) ? 
+                            <Loader />:<div className={s.i2}>Release Date: {movie.releaseDate}</div>
                         }
                         
                         {
-                            (!movie || movie.length === 0) ? 
-                            <Loader />:<div className={s.i2}>Rating: {movie[0].rating}</div>
-                        }
+                            (!movie ) ? 
+                            <Loader />:<div className={s.i2}>Rating: {movie.rating}</div>
+                        } 
                         <div className={s.starvote}>
                             <div className={s.i2}>Rate: </div>
                             <div className={s.rating}>
@@ -108,8 +130,8 @@ import movieAPI from "@/app/api/movieAPI";
                         <div>
                             <div className={s.j1}> DESCRIPTION</div>
                             {
-                                (!movie || movie.length === 0) ? 
-                                    <Loader />:<div className={s.j2}>{movie[0].description}</div>
+                                (!movie ) ? 
+                                    <Loader />:<div className={s.j2}>{movie.description}</div>
                             }
                         </div>
                     </div>
@@ -119,27 +141,27 @@ import movieAPI from "@/app/api/movieAPI";
                     <div className={s.imagewrapper}>
                         <a className={s.a} href="https://www.galaxycine.vn/dat-ve/biet-doi-rat-on">
                         {
-                            (!movie || movie.length === 0) ? 
+                            (!movie ) ? 
                                 <Loader />:
-                                <img className={s.img} src={movie[3].image} alt="Mô tả ảnh"/>
+                                <img className={s.img} src={movie.image} alt="Mô tả ảnh"/>
                         }
                         </a>
                     </div>
                     <div className={s.imagewrapper}>
                         <a className={s.a} href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
                         {
-                            (!movie || movie.length === 0) ? 
+                            (!movie ) ? 
                                 <Loader />:
-                                <img className={s.img} src={movie[0].image} alt="Mô tả ảnh"/>
+                                <img className={s.img} src={movie.image} alt="Mô tả ảnh"/>
                         }
                         </a>
                     </div>
                     <div className={s.imagewrapper}>
                         <a className={s.a} href="https://www.galaxycine.vn/dat-ve/trinh-cong-son">
                         {
-                            (!movie || movie.length === 0) ? 
+                            (!movie ) ? 
                                 <Loader />:
-                                <img className={s.img} src={movie[2].image} alt="Mô tả ảnh"/>
+                                <img className={s.img} src={movie.image} alt="Mô tả ảnh"/>
                         }
                         </a>
                     </div>
@@ -270,30 +292,37 @@ import movieAPI from "@/app/api/movieAPI";
                 </div>  
             </div>
 
-       </div>
-    </div>
-        </>
+       </div> 
+    
+  </div>
+      </>
     )
-
 }
 
 
-const App: FC = () => {
-    // const router = useRouter();
-    // useEffect(() => {
-    //     const handleRouteChange = (url) => {
-    //         gtag.pageview(url);
-    //     };
-    //     router.events.on('routeChangeComplete', handleRouteChange);
-    //     return () => {
-    //         router.events.off('routeChangeComplete', handleRouteChange);
-    //     };
-    // }, [router.events]);
-  
-    return (
-      <Provider store={store}>
-          <NewMovies/>
-      </Provider>
-    );
-  };
-  export default App;
+
+export async function generateMetadata(
+    { params, searchParams }: Props,
+    parent?: ResolvingMetadata,
+  ): Promise<Metadata> {
+    // read route params
+    const id = params.movie;
+   
+    const res= await movieAPI.getMovie(id) ;
+    const movie=res.data  
+console.log("Movie: ", movie)
+
+    return {
+    title: movie.title
+
+    };
+  }
+
+export async function generateStaticParams() {
+  const res= await movieAPI.getAllMovies();
+  const movies=res.data
+  // console.log("Movies path: ", movies)
+  return movies.map((movie:any) => ({
+    slug: movie._id,
+  }));
+}

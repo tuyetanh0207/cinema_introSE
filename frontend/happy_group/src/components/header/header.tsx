@@ -27,8 +27,8 @@ export default function Header () {
     const id = user?.user._id
     console.log("token", accessToken)
     console.log("id", id)
-    // let axiosJWT=createAxios(user,dispatch,logOutSuccess);
-    // console.log("axios",axiosJWT)
+    let axiosJWT=createAxios(user,dispatch,logOutSuccess);
+    console.log("axios",axiosJWT)
 
     logOut(dispatch, id,accessToken, axios,router);
     console.log("dang xuat")
@@ -69,7 +69,7 @@ export default function Header () {
                     <Image src={logoIcon} alt=''></Image>     
                      Happy Group         
                 </div>
-            
+                <div className={styles.img}></div>
                 <SearchComp/>
           
                 {user? 

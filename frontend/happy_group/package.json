@@ -22,7 +22,7 @@
     "json-server": "^0.17.3",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
-    "next": "^13.3.1",
+    "next": "^13.4.1",
     "next-auth": "^4.21.1",
     "next-router-mock": "^0.9.3",
     "node-sass": "^7.0.3",

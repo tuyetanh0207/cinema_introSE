@@ -1,6 +1,6 @@
 import axios from "axios";
-export const baseURL ="https://localhost:8000";
-export const baseURL_user = "https://localhost:8000";
+export const baseURL ="http://localhost:8000";
+export const baseURL_user = "http://localhost:8000";
 //"https://5dlr4.wiremockapi.cloud" ||  "https://localhost:8000/v1"||
 
 export const apiV1 = `${baseURL}/v1`;
@@ -10,7 +10,7 @@ export const config = function (token: string) {
   return {
     headers: {
       "content-type": "application/json",
-      token: `Bearer ${token}`,
+      'Tokens': `Bearer ${token}`,
     },
   };
 };

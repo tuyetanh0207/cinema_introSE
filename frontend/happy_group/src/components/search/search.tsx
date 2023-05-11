@@ -10,18 +10,16 @@ export default function SearchComp() {
       const [movies, setMovies]=useState([])
       const [isHoverBar, setIsHoverBar]=useState(false)
       const [isHoverList, setIsHoverList]=useState(false)
-      const HandleSearch = function (e: { target: { value: React.SetStateAction<string>; }; }) {
+      const HandleSearch = function (e: { target: { value: string }; }) {
         const fetchSearchMovie= async(query: string) => {
           const res = await movieAPI.searchMovie(query);
           setMovies(res.data.movies);
-          console.log(movies)
         }
         setSearchInput(e.target.value);
-        console.log("input: ", searchInput)
+  
         fetchSearchMovie(searchInput);
       }
       useEffect(()=>{
-        console.log("mouse: ", isHoverBar)
       })
      
     return (
