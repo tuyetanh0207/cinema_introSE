@@ -13,4 +13,5 @@ router.get('/search', otherController.search);
 router.post('/slides/', otherController.createSlide);
 router.post('/slides/:id', auth.manager, upload.single('image'), uploadImage,otherController.uploadSlideImage);
 router.get('/slides/', otherController.getAllSlides);
+router.get('/quick-buy/:id', otherController.quickBuyTicket);
 module.exports = router;
