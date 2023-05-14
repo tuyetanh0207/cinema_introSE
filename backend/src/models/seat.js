@@ -3,11 +3,6 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const seatSchema = new Schema({
-   theatreId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Theatre',
-      required: true,
-   },
    row: {
       type: String,
       required: true,

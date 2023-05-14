@@ -4,7 +4,7 @@ const uploadMiddleware = require('../utils/uploadMiddleware');
 const seatController = require('../controllers/seatController');
 const router = new express.Router();
 
-router.post("/upload/:id", auth.manager, uploadMiddleware,seatController.uploadSeats);
-router.get("/:id", seatController.getAllSeats);
+router.post("/upload", auth.manager, uploadMiddleware,seatController.uploadSeats);
+router.get("/", seatController.getAllSeats);
 
 module.exports = router;

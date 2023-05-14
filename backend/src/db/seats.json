@@ -1,265 +1,421 @@
 [
   {
-    "row": 1,
+    "row": "A",
     "seatNumber": 1,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 1,
-    "seatNumber": 2,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 1,
-    "seatNumber": 3,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 1,
-    "seatNumber": 4,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 1,
-    "seatNumber": 5,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 1,
-    "seatNumber": 6,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 1,
-    "seatNumber": 7,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 1,
-    "seatNumber": 8,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 1,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 2,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 3,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 4,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 5,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 6,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 7,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 2,
-    "seatNumber": 8,
+    "coordinates": [
+      0,
+      1
+    ],
     "type": 1,
     "isAvailable": true
   },
   {
-    "row": 3,
-    "seatNumber": 1,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 3,
+    "row": "A",
     "seatNumber": 2,
+    "coordinates": [
+      0,
+      2
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 3,
+  {
+    "row": "A",
     "seatNumber": 3,
+    "coordinates": [
+      0,
+      3
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 3,
+  {
+    "row": "A",
     "seatNumber": 4,
+    "coordinates": [
+      0,
+      4
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 3,
+  {
+    "row": "A",
     "seatNumber": 5,
+    "coordinates": [
+      0,
+      5
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 3,
+  {
+    "row": "A",
     "seatNumber": 6,
+    "coordinates": [
+      0,
+      6
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 3,
+  {
+    "row": "A",
     "seatNumber": 7,
+    "coordinates": [
+      0,
+      7
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 3,
-    "seatNumber": 8,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 4,
+  {
+    "row": "B",
     "seatNumber": 1,
+    "coordinates": [
+      1,
+      1
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 4,
+  {
+    "row": "B",
     "seatNumber": 2,
+    "coordinates": [
+      1,
+      2
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 4,
+  {
+    "row": "B",
     "seatNumber": 3,
+    "coordinates": [
+      1,
+      3
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 4,
+  {
+    "row": "B",
     "seatNumber": 4,
+    "coordinates": [
+      1,
+      4
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 4,
+  {
+    "row": "B",
     "seatNumber": 5,
+    "coordinates": [
+      1,
+      5
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 4,
+  {
+    "row": "B",
     "seatNumber": 6,
+    "coordinates": [
+      1,
+      6
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 4,
+  {
+    "row": "B",
     "seatNumber": 7,
+    "coordinates": [
+      1,
+      7
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 4,
-    "seatNumber": 8,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 5,
+  {
+    "row": "C",
     "seatNumber": 1,
+    "coordinates": [
+      2,
+      1
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 5,
+  {
+    "row": "C",
     "seatNumber": 2,
+    "coordinates": [
+      2,
+      2
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 5,
+  {
+    "row": "C",
     "seatNumber": 3,
+    "coordinates": [
+      2,
+      3
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 5,
+  {
+    "row": "C",
     "seatNumber": 4,
+    "coordinates": [
+      2,
+      4
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 5,
+  {
+    "row": "C",
     "seatNumber": 5,
+    "coordinates": [
+      2,
+      5
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 5,
+  {
+    "row": "C",
     "seatNumber": 6,
+    "coordinates": [
+      2,
+      6
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 5,
+  {
+    "row": "C",
     "seatNumber": 7,
+    "coordinates": [
+      2,
+      7
+    ],
     "type": 1,
     "isAvailable": true
   },
-    {
-    "row": 5,
-    "seatNumber": 8,
-    "type": 1,
-    "isAvailable": true
-  },
-    {
-    "row": 6,
+  {
+    "row": "D",
     "seatNumber": 1,
+    "coordinates": [
+      3,
+      1
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "D",
+    "seatNumber": 2,
+    "coordinates": [
+      3,
+      2
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "D",
+    "seatNumber": 3,
+    "coordinates": [
+      3,
+      3
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "D",
+    "seatNumber": 4,
+    "coordinates": [
+      3,
+      4
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "D",
+    "seatNumber": 5,
+    "coordinates": [
+      3,
+      5
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "D",
+    "seatNumber": 6,
+    "coordinates": [
+      3,
+      6
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "D",
+    "seatNumber": 7,
+    "coordinates": [
+      3,
+      7
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "E",
+    "seatNumber": 1,
+    "coordinates": [
+      4,
+      1
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "E",
+    "seatNumber": 2,
+    "coordinates": [
+      4,
+      2
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "E",
+    "seatNumber": 3,
+    "coordinates": [
+      4,
+      3
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "E",
+    "seatNumber": 4,
+    "coordinates": [
+      4,
+      4
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "E",
+    "seatNumber": 5,
+    "coordinates": [
+      4,
+      5
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "E",
+    "seatNumber": 6,
+    "coordinates": [
+      4,
+      6
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "E",
+    "seatNumber": 7,
+    "coordinates": [
+      4,
+      7
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
+    "row": "F",
+    "seatNumber": 1,
+    "coordinates": [
+      5,
+      1
+    ],
     "type": 2,
     "isAvailable": true
   },
-    {
-    "row": 6,
+  {
+    "row": "F",
     "seatNumber": 2,
+    "coordinates": [
+      5,
+      2
+    ],
     "type": 2,
     "isAvailable": true
   },
-    {
-    "row": 6,
+  {
+    "row": "F",
     "seatNumber": 3,
+    "coordinates": [
+      5,
+      3
+    ],
     "type": 2,
     "isAvailable": true
   },
-    {
-    "row": 6,
+  {
+    "row": "F",
     "seatNumber": 4,
+    "coordinates": [
+      5,
+      4
+    ],
+    "type": 2,
+    "isAvailable": true
+  },
+  {
+    "row": "F",
+    "seatNumber": 5,
+    "coordinates": [
+      5,
+      5
+    ],
+    "type": 2,
+    "isAvailable": true
+  },
+  {
+    "row": "F",
+    "seatNumber": 6,
+    "coordinates": [
+      5,
+      6
+    ],
+    "type": 2,
+    "isAvailable": true
+  },
+  {
+    "row": "F",
+    "seatNumber": 7,
+    "coordinates": [
+      5,
+      7
+    ],
     "type": 2,
     "isAvailable": true
   }

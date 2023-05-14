@@ -1,6 +1,7 @@
 const fs = require('fs');
 
 const Seat = require('../models/seat');
+const BookedSeat = require('../models/booked_seat')
 
 const seatController = {
     uploadSeats: async (req, res) => {
@@ -10,7 +11,6 @@ const seatController = {
             return res.status(400).json({ error: 'No file uploaded' });
           }
       
-          const { id } = req.params;
           // Read the uploaded file
           const fileData = fs.readFileSync(file.path, 'utf-8');
           const seats = JSON.parse(fileData);
@@ -18,12 +18,7 @@ const seatController = {
           
       
           // Add seats to the database
-          const createdSeats = await Seat.insertMany(
-            seats.map(seat => ({
-              ...seat,
-              theatreId: id
-            }))
-          );
+          const createdSeats = await Seat.insertMany(seats);
 
           await fs.unlinkSync(file.path);
 
@@ -36,13 +31,18 @@ const seatController = {
     },
 
     getAllSeats: async (req, res) => {
-        try {
-            const seats = await Seat.find({});
-            res.status(200).json(seats);
-        } catch (e) {
-            res.status(400).json({error: e.message})
-        }
+      try {
+        const { showtimeId, theatreId, time } = req.body;
+        const booked_seats = await BookedSeat.find({ showtimeId, theatreId, time });
+        const seats = await Seat.find({});
+        // exclude booked seats from the available seats array
+        const available_seats = seats.filter(seat => !booked_seats.some(bookedSeat => bookedSeat.seatId === seat._id));
+        res.status(200).json({seats, available_seats});
+      } catch (e) {
+        res.status(400).json({ error: e.message });
+      }
     }
+    
 }
 
 module.exports = seatController;

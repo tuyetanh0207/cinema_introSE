@@ -37,7 +37,7 @@ const reservationSchema = new Schema({
   seats: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Seat',
+      ref: 'BookedSeat',
       required: true
     }
   ],
