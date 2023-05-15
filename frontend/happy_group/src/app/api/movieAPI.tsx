@@ -3,17 +3,27 @@ import { apiV1, apiV1_user, get, post, put, patch, delele} from "./generic";
 const movieAPI = {
   
   getNowShowingMovies: function () {
-    const url = `${apiV1}/movies/nowShowing`;
+    const url = `${apiV1}/showtimes/nowShowing`;
     return get(url, "");
   },
-  getComingMovies: function () {
-    const url = `${apiV1}/movies/nowShowing`;
+  geComingSoonMovies: function () {
+    const url = `${apiV1}/showtimes/comingSoon`;
     return get(url, "");
   },
   searchMovie: function (query:string){
     const url=`${apiV1}/search?=${query}`;
     return get(url, "");
   },
+
+  getUpComingMovies: function () {
+    const url = `${apiV1}/showtimes/upcoming`;
+    return get(url, "");
+  },
+
+  getIDSeat: function(){
+    const url = `${apiV1}/seats/upload`;
+    return get(url, "");
+  }
 
   // patchResource: function (data: any, id: string, token: string) {
   //   const url = `${apiV1}/groups/resources?${id}`;
