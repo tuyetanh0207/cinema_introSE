@@ -21,7 +21,8 @@ const BookedSeatController = {
 
     changeStatus: async (req, res) => {
         try {
-            const { id, status } = req.body;
+            const id = req.param.id;
+            const { status } = req.body;
             const updatedSeat = await BookedSeat.findByIdAndUpdate(id, { status }, { new: true });
             res.status(200).json(updatedSeat);
         } catch (error) {
@@ -31,3 +32,5 @@ const BookedSeatController = {
     }
     
 }
+
+module.exports = BookedSeatController;

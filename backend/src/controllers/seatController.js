@@ -41,8 +41,16 @@ const seatController = {
       } catch (e) {
         res.status(400).json({ error: e.message });
       }
+    },
+
+    clearAllSeats: async (req, res) => {
+      try {
+        await Seat.deleteMany({});
+        res.status(200).json({message: 'Seats deleted successfully'});
+      } catch (e) {
+        res.status(400).json({error: e.message})
+      }
     }
-    
 }
 
 module.exports = seatController;

@@ -70,6 +70,16 @@
     "isAvailable": true
   },
   {
+    "row": "A",
+    "seatNumber": 8,
+    "coordinates": [
+      0,
+      8
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
     "row": "B",
     "seatNumber": 1,
     "coordinates": [
@@ -140,6 +150,16 @@
     "isAvailable": true
   },
   {
+    "row": "B",
+    "seatNumber": 8,
+    "coordinates": [
+      1,
+      8
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
     "row": "C",
     "seatNumber": 1,
     "coordinates": [
@@ -210,6 +230,16 @@
     "isAvailable": true
   },
   {
+    "row": "C",
+    "seatNumber": 8,
+    "coordinates": [
+      2,
+      8
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
     "row": "D",
     "seatNumber": 1,
     "coordinates": [
@@ -280,6 +310,16 @@
     "isAvailable": true
   },
   {
+    "row": "D",
+    "seatNumber": 8,
+    "coordinates": [
+      3,
+      8
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
     "row": "E",
     "seatNumber": 1,
     "coordinates": [
@@ -350,6 +390,16 @@
     "isAvailable": true
   },
   {
+    "row": "E",
+    "seatNumber": 8,
+    "coordinates": [
+      4,
+      8
+    ],
+    "type": 1,
+    "isAvailable": true
+  },
+  {
     "row": "F",
     "seatNumber": 1,
     "coordinates": [
@@ -385,36 +435,6 @@
     "coordinates": [
       5,
       4
-    ],
-    "type": 2,
-    "isAvailable": true
-  },
-  {
-    "row": "F",
-    "seatNumber": 5,
-    "coordinates": [
-      5,
-      5
-    ],
-    "type": 2,
-    "isAvailable": true
-  },
-  {
-    "row": "F",
-    "seatNumber": 6,
-    "coordinates": [
-      5,
-      6
-    ],
-    "type": 2,
-    "isAvailable": true
-  },
-  {
-    "row": "F",
-    "seatNumber": 7,
-    "coordinates": [
-      5,
-      7
     ],
     "type": 2,
     "isAvailable": true
