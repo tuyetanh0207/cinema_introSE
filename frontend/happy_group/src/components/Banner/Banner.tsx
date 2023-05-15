@@ -15,7 +15,6 @@ import movieAPI from '@/app/api/movieAPI'
 
 export default function Banner () {
 
-
     let indexValue = 1;  
 
     showImg(indexValue); 
@@ -42,6 +41,8 @@ export default function Banner () {
       
         for(i=0;i<img.length;i++){
                 img[i].style.display="none";
+                // img[i].style.opacity = "0";
+
         }
         for(i=0;i<sliders.length;i++){
             sliders[i].style.background="#C0EEF2";
@@ -50,6 +51,7 @@ export default function Banner () {
 
             if (img[indexValue - 1]) {
                 img[indexValue - 1].style.display = "block";
+                // img[indexValue - 1].style.opacity = '1';
               }
 
               if (sliders[indexValue - 1]) {
@@ -94,7 +96,7 @@ export default function Banner () {
 
       const [movies, pickMovies] = useState<any[]>([]); ///
       const movie = async () => {
-        const MovieData = await movieAPI.getNowShowingMovies();
+        const MovieData = await movieAPI.getNowShowing();
         console.log("res: ", MovieData);
         pickMovies(MovieData.data);
         }
@@ -112,10 +114,11 @@ export default function Banner () {
             <div className={styles.slides} id={'pic'}>
             {/* <!--image begin */}
                 {slides.map((slide, index) => (<div className={styles.slide} key={index}><img src={slide.imageUrl} alt={''} /></div>))}
+
             </div>
         {/* slides end*/}
-        <div onClick={() => side_slide(1)} className={styles.change_btn} id={styles.left}>
-            <Image className={styles.left_btn} src={left_arrow} alt='' />
+            <div onClick={() => side_slide(1)} className={styles.change_btn} id={styles.left}>
+                <Image className={styles.left_btn} src={left_arrow} alt='' />
             </div>
 
             <div onClick={() => side_slide(-1)} className={styles.change_btn} id={styles.right}>
@@ -123,11 +126,9 @@ export default function Banner () {
             </div>
 
 
-        <div className={styles.btn_dots} id={'dot'}>
-            {slides.map((slide, index) => (<span key={index} onClick={() => btn_dot(index + 1)}></span>))}
-        </div>
-
-
+            <div className={styles.btn_dots} id={'dot'}>
+                {slides.map((slide, index) => (<span key={index} onClick={() => btn_dot(index + 1)}></span>))}
+            </div>
 
 
 
@@ -138,7 +139,7 @@ export default function Banner () {
                 <form action="./buy_ticket">
                     <select name="movie" onChange={valid1}>
                         <option value="" hidden>Chọn phim</option> 
-                        {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
+                        {movies.map((movie, index) => (<option key={index} value={movie.movieTitle}>{movie.movieTitle}</option>))}  
                     </select>
 
                      <select name="cinema" id="Opt2" onChange={valid2} disabled>
@@ -158,7 +159,6 @@ export default function Banner () {
 
             </div>
         {/* Form end */}
-
         </div>
     )
 }

@@ -1,34 +1,37 @@
-.Banner{
+.Banner {
     height: 500px;
-    overflow: hidden; 
-    /* position: absolute; */
-    right: 0px;
-}
-
-.slides{
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .slides {
+    flex: 1;
+    height: 100%;
+  }
+  
+  .slide img {
     width: 100%;
-    height: 500px;
-}
-.slide img{
-    width: 100%;
-    height: 500px;
-}
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+  }
 
-.change_btn{
-    position: absolute;
-    top: 50%;
+  .change_btn {
     width: 40px;
     display: flex;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
-    height: 500px;
-    transform: translateY(-50%);
+    height: 100%;
     cursor: pointer;
-}
+    position: absolute;
+    top: 0;
+  }
+  
+  #left {
+   right: 0;
+  }
+  
 
-#left{
-    right:0;
-}
 .btn_dots{
     position: absolute;
     bottom: 20px;
@@ -43,6 +46,7 @@
     border-radius: 50%;
     cursor: pointer;
     border: 2px solid white;
+    opacity: .8;
 }
 
 

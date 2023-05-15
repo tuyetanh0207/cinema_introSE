@@ -2,12 +2,12 @@ import { apiV1, apiV1_user, get, post, put, patch, delele} from "./generic";
 
 const movieAPI = {
   
-  getNowShowingMovies: function () {
-    const url = `${apiV1}/movies/nowShowing`;
+  getNowShowing: function () {
+    const url = `${apiV1}/showtimes/nowShowing`;
     return get(url, "");
   },
   getComingMovies: function () {
-    const url = `${apiV1}/movies/nowShowing`;
+    const url = `${apiV1}/showtimes/comingSoon`;
     return get(url, "");
   },
   searchMovie: function (query:string){

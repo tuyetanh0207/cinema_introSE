@@ -4,9 +4,7 @@ import {food1,food2,food3,food4,picS1} from '@/assets/imgs'
 import Image from 'next/image'
 import { HtmlHTMLAttributes, useEffect, useState,useRef } from 'react';//
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'//
 import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
 import { useRouter } from 'next/router';
 
 
@@ -224,10 +222,14 @@ return(
                 <Image src={picS1} alt=''></Image>
                 <h5>tên: phim</h5>
                 <h5>Rạp : Linh Trung, Thủ đức</h5>
-                <h5>Suất chiếu : 12:00 | Thứ năm, 23/03/2023</h5>
-                <input ref={billRef} onChange={updateBill}  type="number" name="quantity" defaultValue={0} readOnly/>
+                <h5>Suất chiếu : 12:00 | Thứ năm, 23/03/2023</h5>    
+                <div className={styles.cost}>
+                  <h5>Tổng: </h5>
+                  <input ref={billRef} onChange={updateBill}  type="number" name="quantity" defaultValue={0} readOnly/>
+                </div>
+                
                 <Link href=''>
-                  <button>TIẾP THEO</button>
+                  <button>Tiếp theo</button>
                 </Link>
             </div>
         </div>
