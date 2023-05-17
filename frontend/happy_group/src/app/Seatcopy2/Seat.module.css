@@ -149,12 +149,8 @@
 	justify-content: center;
 }
 
-.margintop{
-  margin-top: 20px;
-}
-
 p.text {
-  margin-top: 20px;
+  margin: 40px 0;
 }
 
 p.text span {
@@ -163,6 +159,3 @@ p.text span {
   box-sizing: content-box;
 }
 
-.bt {
-    background-color: #0081cb;
-}

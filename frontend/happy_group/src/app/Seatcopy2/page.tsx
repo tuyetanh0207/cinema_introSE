@@ -58,26 +58,7 @@ export default function Seat() {
     <>
       <div className={styles.body}>
         <div className={styles.movie_container}>
-
-		<ul className = {styles.showcase}>
-		  <li>
-			<div className = {styles.seat}  ></div>
-			<small>Trống</small>
-		  </li>
-        
-		  <li>
-			<div className={`${ styles.seat} ${styles.selected}`}></div>
-			<small>Đang chọn</small>
-		  </li>
-		  <li>
-          <div className={`${ styles.seat} ${styles.occupied}`}></div>
-			<small>Đã chọn</small>
-		  </li>    
-		</ul>
-
           <div className={styles.container}>
-		  	<div className = {styles.screen}>SCREEN</div>
-
             {Object.keys(seatsByRow).map((row) => (
               <div key={row}>
                 <div className={styles.row}>
@@ -113,8 +94,7 @@ export default function Seat() {
                 </div>
               </div>
             ))}
-
-				<p className={styles.text}>
+            <p className={styles.text}>
               Số lượng ghế đơn là{' '}
               <span id="count">
                 {seats.filter((seat) => seat.type === 1 && selectedSeats.includes(seat._id)).length}
@@ -142,7 +122,9 @@ export default function Seat() {
             </p>
           </div>
 
-		  <button className = {styles.bt}> tiếp theo </button>
+          <button className={styles.bt} onClick={handleNextClick}>
+            Tiếp theo
+          </button>
         </div>
       </div>
     </>
