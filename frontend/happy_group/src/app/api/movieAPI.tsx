@@ -15,6 +15,13 @@ const movieAPI = {
     return get(url, "");
   },
 
+  quickBuyTicket: function (query:string) {
+    const url = `${apiV1}/quick-buy/${query}`;
+    return get(url, "");
+  }
+
+
+
   // patchResource: function (data: any, id: string, token: string) {
   //   const url = `${apiV1}/groups/resources?${id}`;
   //   return patch(url, data, token);

@@ -28,29 +28,42 @@ export default function Schedule_Admin (){
       <th>No.</th>
       <th>ID</th>
       <th>Name</th>
-      <th>Cinesta</th>
-      <th>Room</th> 
-      <th>Date</th>
       <th>Start</th>
       <th>End</th>
+      <th>Theatre</th>
+      <th>Time</th>
       <th>opt</th>
     </tr>
   </thead>
   <tbody>
-    {Schedules.map((schedule, index) => (
-      <tr key={index}>
-        <td>{index + 1}</td>
-        <td>{schedule.movieId._id}</td>
-        <td>{schedule.movieId.title}</td>
-        <td>{schedule.cinesta}</td>
-        <td>{schedule.room}</td>
-        <td>{schedule.date}</td>
-        <td>{schedule.startDate}</td>
-        <td>{schedule.endDate}</td>
-        <td></td>
+  {Schedules.map((schedule, index) => (
+    schedule.times.map((timeSlot, timeIndex) => (
+      <tr key={`${index}-${timeIndex}`}>
+        {timeIndex === 0 ? (
+          <>
+            <td rowSpan={schedule.times.length}>{index + 1}</td>
+            <td rowSpan={schedule.times.length}>{schedule.movieId._id}</td>
+            <td rowSpan={schedule.times.length}>{schedule.movieId.title}</td>
+            <td rowSpan={schedule.times.length}>{schedule.startDate}</td>
+            <td rowSpan={schedule.times.length}>{schedule.endDate}</td>
+          </>
+        ) : null}
+     
+        <td>{timeSlot[0].theatreId}</td>
+        <td>
+          <ul>
+            {timeSlot[0].time.map((time, index) => (
+              <li key={index}>
+                <span key={index}>{time} </span>
+              </li>
+            ))}
+          </ul>
+        </td>
+        <td>opt</td>
       </tr>
-    ))}
-  </tbody>
+    ))
+  ))}
+</tbody>
 </table>
 
 

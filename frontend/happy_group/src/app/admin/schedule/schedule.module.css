@@ -17,3 +17,6 @@
     outline: none;
     width: 100%;
 }
+.table li{
+    list-style-type: none;
+}

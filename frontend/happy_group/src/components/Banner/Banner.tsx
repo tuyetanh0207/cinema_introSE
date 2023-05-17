@@ -64,6 +64,7 @@ export default function Banner () {
         var Opt2 = document.getElementById("Opt2") as HTMLInputElement;
             if (Select1.value != "") {
             Opt2.disabled = false;
+            console.log(Select1)
         }
     }
 
@@ -94,16 +95,25 @@ export default function Banner () {
       setslides(SlideData.data);
       }
 
-      const [movies, pickMovies] = useState<any[]>([]); ///
-      const movie = async () => {
-        const MovieData = await movieAPI.getNowShowing();
+    const [movies, pickMovies] = useState<any[]>([]); ///
+    const movie = async () => {
+    const MovieData = await movieAPI.getNowShowing();
         console.log("res: ", MovieData);
         pickMovies(MovieData.data);
         }
 
+        const [qtickets, quickTickets] = useState<any[]>([]); ///
+    const qTikcet = async (query: string) => {
+    const TicketData = await movieAPI.quickBuyTicket(query);
+        console.log("res: ", TicketData);
+        pickMovies(TicketData.data);
+        }
+
+
       useEffect(()=>{
         slide();
         movie();
+        // qtickets();
     },[])
 
 
@@ -140,7 +150,8 @@ export default function Banner () {
                     <select name="movie" onChange={valid1}>
                         <option value="" hidden>Chọn phim</option> 
                         {movies.map((movie, index) => (<option key={index} value={movie.movieTitle}>{movie.movieTitle}</option>))}  
-                    </select>
+
+                    </select>   
 
                      <select name="cinema" id="Opt2" onChange={valid2} disabled>
                         <option value="" hidden>Chọn rạp</option> 
