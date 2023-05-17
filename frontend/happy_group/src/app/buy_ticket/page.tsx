@@ -4,14 +4,22 @@ import {food1,food2,food3,food4,picS1} from '@/assets/imgs'
 import Image from 'next/image'
 import { HtmlHTMLAttributes, useEffect, useState,useRef } from 'react';//
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux'//
 import Link from 'next/link';
-// import { useRouter } from 'next/navigation';
+// import { Link,useLocation } from 'react-router-dom';
 import { useRouter } from 'next/router';
 
 
 export default function Buy_ticket (){
 
+  var currentURL = window.location.href;
+  var url = new URL(currentURL);
+  var searchParams = new URLSearchParams(url.search);
+  var moviename = searchParams.get('movie');
+  var cine = searchParams.get('cinema');
+  var date = searchParams.get('date');
+  var time = searchParams.get('time');
+
+  // const location = useLocation();
 
 
     const quantity2DRef = useRef(0);
@@ -222,12 +230,16 @@ return(
             </div>
             <div className={styles.mvDetails}>
                 <Image src={picS1} alt=''></Image>
-                <h5>tên: phim</h5>
-                <h5>Rạp : Linh Trung, Thủ đức</h5>
-                <h5>Suất chiếu : 12:00 | Thứ năm, 23/03/2023</h5>
-                <input ref={billRef} onChange={updateBill}  type="number" name="quantity" defaultValue={0} readOnly/>
+                <h5>Tên: {moviename}</h5>
+                <h5>Rạp : {cine}</h5>
+                <h5>Suất chiếu : {time} | {date}</h5>    
+                <div className={styles.cost}>
+                  <h5>Tổng: </h5>
+                  <input ref={billRef} onChange={updateBill}  type="number" name="quantity" defaultValue={0} readOnly/>
+                </div>
+                
                 <Link href=''>
-                  <button>TIẾP THEO</button>
+                  Tiếp Theo
                 </Link>
             </div>
         </div>

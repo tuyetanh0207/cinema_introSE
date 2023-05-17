@@ -2,11 +2,11 @@
     width: 100vw;
     height: 100vh;
     background-color: #E9F8F9;
-    /* position: absolute; */
-    left:0;
+    /* left:0; */
     border-radius: 50px ;
     display: block;
     margin-bottom: 100px;
+    position: relative;
 }
 
 .lay2{
@@ -15,24 +15,21 @@
     height: 90%;
     background-color: #537FE7;
     left:8%;
-    top: 5%;
+    top: 13%;
     border-radius: 50px ;
 }
 
 .mvDetails
 {
     position: relative;
-    /* display: flex; */
-    /* justify-content: center; */
     width: 20%;
     height: 60%;
     background: #C0EEF2;
     left:75%;
-    top: 5%;
+    top: 13%;
     border-radius: 30px ;
     border: 10px solid #537FE7;
     padding:1% 0% 0% 2% ;
-    /* box-sizing: border-box; */
 }
 
 .ticketBox{
@@ -148,20 +145,59 @@
     width: 90%;
     border-bottom: 2px solid #000000;
     color: black;
+    margin-top:10px ;
 }
 
-.mvDetails button{
-    background-color: #C0EEF2;
+.mvDetails a{
+    background-color: #537FE7;
     color:black;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 90px;
+    position: relative;
+    top: 13%;
+    left: 55%;
+
 }
 
-.mvDetails button:hover{
+.mvDetails a:hover{
     background-color: #537FE7;
     color: white;
+    font-size: large;
 }
 
 .mvDetails input{
-    width: 90%;
+    width: 70%;
+}
+
+.ticketBox input,.optFood input{
+    background-color:  #C0EEF2;
+    color: #000000;
+    border: 3px solid #537FE7;
+    text-align: center;
+    /* box-sizing: border-box; */
+}
+
+.mvDetails input{
+    background-color:  #C0EEF2;
+    /* border: 3px solid #537FE7; */
+    border: none;
+    color: #000000;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.mvDetails .cost{
+    display: flex;
+    align-items: center;
+}
+
+.cost h5{
+    margin-right:5px ;
+    width:35px;
 }
 
 
