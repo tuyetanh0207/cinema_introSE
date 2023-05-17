@@ -3,6 +3,8 @@ import styles from "./Movies.module.css"
 import { add_ad, help_ad, home_ad, logo_ad, movie_ad, msg_ad, person_ad, pwd_ad, setting_ad, signout_ad } from "@/assets/svgs";
 import Image from "next/image";
 import Header_admin from "@/components/Admin_page/Header_admin/Header_admin";
+
+
 export default function Movies_Admin (){
 
 

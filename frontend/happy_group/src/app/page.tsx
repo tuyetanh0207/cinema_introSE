@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import { Amiri_Quran, Inter } from 'next/font/google'
 import styles from './page.module.css'
 import NewMovies from '@/components/newmovies'
 import Loader from '@/components/loader'
@@ -16,6 +16,7 @@ import { useState } from 'react'
 import Filmcomment from '@/components/filmcomment/filmcomment'
 import { ClassificationTypeNames } from 'typescript'
 import { useSelector } from 'react-redux'
+import AdminAPI from './api/adminAPI'
 type movieInterface = {
     _id: string,
     duration: number,
@@ -45,9 +46,10 @@ export default function Home() {
     console.log("moviesss: ",movies)
     const [movie, setMovie] =useState([]);
     const fetchMovie = async  () => {
-        const res=await movieAPI.getMovie("6444f11de50cc0bfe26b3dfc");
-        setMovies(res.data);
-        console.log("movie: ",res.data)
+        const res=await AdminAPI.getAllShowtime();
+        const res1 = await AdminAPI.getShowtime("644e1fcf4fed9fdaf2ff74a5")
+        console.log("show time specific: ", res1.data)
+        console.log("showtime: ",res.data)
         // console.log("movie: ",typeof(res.data))
     }
     useEffect(()=> {

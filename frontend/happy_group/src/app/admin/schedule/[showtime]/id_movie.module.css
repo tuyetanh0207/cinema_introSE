@@ -5,18 +5,14 @@
     font-weight: 700;
     font-size: 15;
     width: 100%;
-    display: block;
+    display: flex;
 }
 .title{
     margin-bottom: 30px;
     color: black;
     font-weight: 500;
     /* margin-left: 10px; */
-    border-radius: 10px;
-    background-color: var(--primary-color-1);
-    width: fit-content;
-    color: var(--primary-color-4);
-    padding: 2px 5px;
+   
     
 }
 
@@ -44,15 +40,43 @@
     /* padding-top: 8px; */
 }
 .infor{
-    padding-top: 50px;
+    padding-top: 20px;
 }
 .edit{
     position: absolute;
-    right: 15px;
+    right: 10px;
+    top: 150px;
     width: fit-content;
-    margin-bottom: 20px;
+
+
     font-size: 12px;
     color: black;
-    margin-left: 10px;
+   
 
+}
+.edit:hover{
+    cursor: pointer;
+}
+.edit_icon{
+    position: relative;
+    left: -5px;
+}
+.label{
+    position: relative;
+    left: -10px;
+    border-radius: 5px;
+    background-color: var(--primary-color-1);
+    width: fit-content;
+    color: var(--primary-color-4);
+    padding: 2px 10px;
+}
+.input{
+    background-color: var(--primary-color-4);
+    border-style: none;
+    min-width: 300px;
+
+}
+.input:focus-visible{
+    border-style: none !important;
+    outline: none;
 }

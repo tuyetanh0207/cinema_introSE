@@ -4,7 +4,7 @@ import Sidebar from "@/components/Admin_page/Sidebar/Sidebar";
 import Movies_Admin from "./movies/page";
 import Header_admin from "@/components/Admin_page/Header_admin/Header_admin";
 import Schedule_Admin from "./schedule/page";
-export default function Layout (){
+export default function Layout ({children}:any){
 
 
     return(
@@ -14,7 +14,7 @@ export default function Layout (){
 
             <Header_admin/>
             {/* <Movies_Admin/> */}
-            <Schedule_Admin/>
+            {children}
             </div>
           
             </div>

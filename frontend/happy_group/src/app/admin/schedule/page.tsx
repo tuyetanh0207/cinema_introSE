@@ -1,5 +1,5 @@
 import styles from "./schedule.module.css"
-
+import React from "react"
 
 
 export default function Schedule_Admin (){
