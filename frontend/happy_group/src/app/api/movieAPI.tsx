@@ -21,12 +21,12 @@ const movieAPI = {
   getMovie: function (id: string){
     const url =`${apiV1}/movies/${id}`;
     return get (url,"");
-  }
+  },
 
   quickBuyTicket: function (query:string) {
     const url = `${apiV1}/quick-buy/${query}`;
     return get(url, "");
-  }
+  },
 
 
 
