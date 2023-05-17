@@ -1,9 +1,11 @@
 "use client"
-import styles from "./schedule.module.css"
-import AdminAPI from "@/app/api/AdminAPI";
+import styles from "./schedule.module.css";
+// import AdminAPI from 
  import { useEffect, useState } from 'react';//
  import React from 'react';
  import Image from 'next/image'
+import AdminAPI from "@/app/api/adminAPI";
+
 
 
 export default function Schedule_Admin (){
@@ -26,7 +28,7 @@ export default function Schedule_Admin (){
   <thead>
     <tr>
       <th>No.</th>
-      <th>ID</th>
+      {/* <th>ID</th> */}
       <th>Name</th>
       <th>Start</th>
       <th>End</th>
@@ -42,7 +44,7 @@ export default function Schedule_Admin (){
         {timeIndex === 0 ? (
           <>
             <td rowSpan={schedule.times.length}>{index + 1}</td>
-            <td rowSpan={schedule.times.length}>{schedule.movieId._id}</td>
+            {/* <td rowSpan={schedule.times.length}>{schedule.movieId._id}</td> */}
             <td rowSpan={schedule.times.length}>{schedule.movieId.title}</td>
             <td rowSpan={schedule.times.length}>{schedule.startDate}</td>
             <td rowSpan={schedule.times.length}>{schedule.endDate}</td>
