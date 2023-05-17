@@ -2,11 +2,11 @@ import { apiV1, apiV1_user, get, post, put, patch, delele} from "./generic";
 
 const movieAPI = {
   
-  getNowShowing: function () {
+  getNowShowingMovies: function () {
     const url = `${apiV1}/showtimes/nowShowing`;
     return get(url, "");
   },
-  getComingMovies: function () {
+  geComingSoonMovies: function () {
     const url = `${apiV1}/showtimes/comingSoon`;
     return get(url, "");
   },
@@ -29,6 +29,16 @@ const movieAPI = {
   },
 
 
+
+  getUpComingMovies: function () {
+    const url = `${apiV1}/showtimes/upcoming`;
+    return get(url, "");
+  },
+
+  getIDSeat: function(){
+    const url = `${apiV1}/seats/upload`;
+    return get(url, "");
+  }
 
   // patchResource: function (data: any, id: string, token: string) {
   //   const url = `${apiV1}/groups/resources?${id}`;
