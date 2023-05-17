@@ -6,9 +6,5 @@ const AdminAPI = {
     const url = `${apiV1}/showtimes/`;
     return get(url, "");
   },
-  getShowtime: function (id: string){
-    const url = `${apiV1}/showtimes/${id}`;
-    return get(url, "");
-  }
 }
-export default AdminAPI;
+export default AdminAPI
