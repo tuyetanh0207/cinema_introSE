@@ -7,7 +7,7 @@ const router = new express.Router();
 
 router.post("/upload", auth.manager, uploadMiddleware,seatController.uploadSeats);
 router.get("/", seatController.getAllSeats);
-router.delete("/", auth.manager, seatController.clearAllSeats);
+router.delete("/", auth.manager, seatController.clearAllSeats); 
 router.post("/book", auth.user, BookedSeatController.createBookedSeat);
 router.patch("/:id", auth.user, BookedSeatController.changeStatus);
 

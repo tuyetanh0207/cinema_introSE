@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const showtimeSchema = new Schema({
+  url: {
+    type: String,
+    required: true,
+    unique: true,
+  },
   movieId: {
     type: Schema.Types.ObjectId,
     ref: 'Movie',
@@ -18,6 +23,9 @@ const showtimeSchema = new Schema({
     items: {
       type: Schema.Types.Object,
       properties: {
+        date: {
+          type: Date,
+        },
         time: [{
           type: String,
         }],

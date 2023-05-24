@@ -55,6 +55,16 @@ const userSchema = Schema(
         }
       },
     },
+    gender: {
+      type: String,
+      enum: ['Nam', 'Nữ'],
+    },
+    address: {
+      type: String,
+    },
+    birthday: {
+      type: Date,
+    },
     imageurl: {
       type: String,
     },

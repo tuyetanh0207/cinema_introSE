@@ -5,7 +5,7 @@ const userController = {
     // create user
     createUser: async (req, res) => {
         try {
-            const {username, password, name, email, phone, role} = req.body;
+            const {username, password, name, email, phone, role, gender, address, birthday} = req.body;
             const userExists = await User.findOne({username});
             const emailExists = await User.findOne({email});
             const phoneExists = await User.findOne({phone});
@@ -24,10 +24,13 @@ const userController = {
                 password,
                 name, 
                 email,
-                phone
+                phone,
+                gender,
+                address,
+                birthday
             });
             await newUser.save();
-            const token = await newUser.generateAuthToken();
+            // const token = await newUser.generateAuthToken();
             res.status(201).json({message: 'User created successfully'});
         } catch (e) {
             console.log(e);
@@ -135,7 +138,7 @@ const userController = {
     // edit/update user
     updateUser: async (req, res) => {
         const updates = Object.keys(req.body);
-        const allowedUpdate = ['name', 'phone', 'username', 'email', 'password'];
+        const allowedUpdate = ['name', 'phone', 'username', 'email', 'password', 'gender', 'address', 'birthday'];
         const isValidOperation = updates.every(updates => allowedUpdate.includes(updates));
         if (!isValidOperation) 
             return res.status(400).json({error: 'Invalid update'});
@@ -158,7 +161,7 @@ const userController = {
         
         const _id = req.params.id;
         const updates = Object.keys(req.body);
-        const allowedUpdate = ['name', 'phone', 'username', 'email', 'password'];
+        const allowedUpdate = ['name', 'phone', 'username', 'email', 'password', 'gender', 'address', 'birthday'];
         const isValidOperation = updates.every(updates => allowedUpdate.includes(updates));
         if (!isValidOperation) 
             return res.status(400).json({error: 'Invalid update'});

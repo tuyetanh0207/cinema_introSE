@@ -8,7 +8,9 @@ router.post('/', auth.manager, showtimeController.createShowtime);
 router.get('/', showtimeController.getAllShowtimes);
 router.get('/nowShowing', showtimeController.getNowShowing);
 router.get('/upcoming', showtimeController.getUpcoming);
-router.get('/:id', showtimeController.getShowtimeById);
+
+// router.get('/:id', determineRoute,showtimeController.getShowtimeById);
+router.get('/:url', showtimeController.getShowtimeByUrl);
 router.patch('/:id', auth.manager, showtimeController.updateShowtimeById);
 router.delete('/:id', auth.manager, showtimeController.deleteShowtimeById);
 router.post('/upload', auth.manager, uploadMiddleware, showtimeController.uploadShowtimes);
