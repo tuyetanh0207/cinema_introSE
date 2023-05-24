@@ -137,18 +137,30 @@ const showtimeController = {
         const theatre = theatres.find(t => t._id.toString() === theatreId.toString());
         return theatre ? theatre.name : '';
       };
+
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
   
+
       const showtimeDetails = {
         id: showtime._id,
         movie: movie,
         startDate: showtime.startDate,
         endDate: showtime.endDate,
         isActive: showtime.isActive,
-        times: showtime.times.flatMap(timeSlot => timeSlot.map(t => ({
-          theatreId: t.theatreId,
-          theatreName: getTheatreName(t.theatreId),
-          time: t.time,
-        }))),
+        times: showtime.times.flatMap(timeSlot => timeSlot.map(t => {
+          const showtimeDate = new Date(t.date);          
+          if (showtimeDate >= currentDate) {
+            return {
+              date: t.date,
+              theatreId: t.theatreId,
+              theatreName: getTheatreName(t.theatreId),
+              time: t.time,
+            };
+          }
+          
+          return null;
+        })).filter(Boolean),
       };
   
       res.status(200).json(showtimeDetails);

@@ -85,18 +85,18 @@ const otherController = {
                 return res.status(404).json({ message: 'Showtime not found' });
             }
 
-            const theatreIds = showtime.times.map((timeSlot) => timeSlot[0].theatreId);
-            const times = showtime.times.map((timeSlot) => timeSlot[0].time);
+            const dates = showtime.times.flatMap((timeSlot) => timeSlot.map(t => t.date));
+            const theatreIds = showtime.times.flatMap((timeSlot) => timeSlot.map(t => t.theatreId));
+            const times = showtime.times.flatMap((timeSlot) => timeSlot.map(t => t.time));
 
-            const theatrePromises = theatreIds.map((theatreId) => {
-                return Theatre.findById(theatreId);
-            });
+            const theatrePromises = theatreIds.map((theatreId) => Theatre.findById(theatreId));
             const theatres = await Promise.all(theatrePromises);
 
             const theatreNames = theatres.map((theatre) => theatre.name);
 
             const data = {
                 showtimeId: showtime._id,
+                dates,
                 theatreNames,
                 times,
             };
@@ -106,7 +106,102 @@ const otherController = {
             console.log(error);
             return res.status(500).json({ message: 'Internal server error' });
         }
+    },
+
+    getDateOfShowtime: async (req, res) => {
+        const showtimeId = req.params.id;
+
+        try {
+            const showtime = await Showtime.findById(showtimeId);
+            if (!showtime) {
+                return res.status(404).json({ message: 'Showtime not found' });
+            }
+
+            const currentDate = new Date();
+            currentDate.setHours(0, 0, 0, 0);
+
+            const dates = [...new Set(showtime.times.flatMap((timeSlot) => timeSlot.map(async (t) => {
+                const showtimeDate = new Date(t.date);
+                if (showtimeDate > currentDate) {
+                    return showtimeDate.toISOString().split('T')[0]; // Extracting only the date part
+                }
+                return null;
+            })))];
+
+            const validDates = (await Promise.all(dates)).filter(date => date !== null);
+
+            return res.status(200).json({ dates: [...new Set(validDates)] }); // Returning distinct dates
+
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    },
+
+    getTheatreOfShowtime: async (req, res) => {
+        const showtimeId = req.params.id;
+        const dateParam = req.params.date;
+        const dateFormatted = dateParam.replace(/-/g, "/");
+    
+        try {
+            const showtime = await Showtime.findById(showtimeId);
+            if (!showtime) {
+                return res.status(404).json({ message: 'Showtime not found' });
+            }
+    
+            const theatres = [];
+            const theatreIds = [];
+    
+            const getTheatreName = async (theatreId) => {
+                try {
+                    const theatre = await Theatre.findById(theatreId);
+                    return theatre ? theatre.name : '';
+                } catch (error) {
+                    console.error(error);
+                    return '';
+                }
+            };
+    
+            for (const timeSlot of showtime.times) {
+                for (const t of timeSlot) {
+                    if (t.date === dateFormatted) {
+                        const theatreName = await getTheatreName(t.theatreId);
+                        theatres.push(theatreName);
+                        theatreIds.push(t.theatreId);
+                    }
+                }
+            }
+    
+            return res.status(200).json({ theatres, theatreIds });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
+    },
+
+    getTimeOfShowtime: async (req, res) => {
+        const showtimeId = req.params.id;
+        const dateParam = req.params.date;
+        const theatreId = req.params.theatreId;
+        
+        const dateFormatted = dateParam.replace(/-/g, "/");
+
+        try {
+            const showtime = await Showtime.findById(showtimeId);
+            if (!showtime) {
+                return res.status(404).json({ message: 'Showtime not found' });
+            }
+            
+            const timeSlots = showtime.times.flat().filter(t => t.date === dateFormatted && t.theatreId === theatreId);
+            const times = timeSlots.map(t => t.time);
+            
+            return res.status(200).json({ times });
+        } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+        }
     }
+
 
 }
 
