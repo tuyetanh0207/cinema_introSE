@@ -43,7 +43,8 @@ const showtimeController = {
 
         const showtimeDetail = {
           id: showtime._id,
-          movie: movie.title,
+          movieId: movie._id,
+          movieName: movie.title,
           startDate: showtime.startDate,
           endDate: showtime.endDate,
           isActive: showtime.isActive,
