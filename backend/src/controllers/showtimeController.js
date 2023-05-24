@@ -51,6 +51,7 @@ const showtimeController = {
           times: showtime.times.flatMap(timeSlot => timeSlot.map(t => ({
             theatreId: t.theatreId,
             theatreName: getTheatreName(t.theatreId),
+            date: t.date,
             time: t.time,
           }))),
         };
