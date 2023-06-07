@@ -39,5 +39,5 @@ app.use("/v1/", otherRouter);
 app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
   });
-
+ 
 app.listen(port, () => console.log(`app is running on port: ${port}`));

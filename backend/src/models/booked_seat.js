@@ -18,6 +18,10 @@ const BookedSeatSchema = new Schema({
         ref: 'Seat',
         required: true,
     },
+    date: {
+        type: Date,
+        required: true,
+    },
     time: {
         type: String,
         required: true,
