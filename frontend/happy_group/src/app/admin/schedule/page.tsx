@@ -2,7 +2,7 @@
 "use client"
 import styles from "./schedule.module.css";
 // import AdminAPI from 
- import { useEffect, useState } from 'react';//
+ import { useCallback, useEffect, useState } from 'react';//
  import React from 'react';
  import Image from 'next/image'
 import AdminAPI from "@/app/api/adminAPI";
@@ -48,11 +48,11 @@ export default function Schedule_Admin (){
   const [newsch_startDate, setNewsch_startDate]= useState("");
   const [newsch_endDate, setNewsch_endDate]= useState("");
   const [newsch_times, setNewsch_times]= useState([]);
-  const [newnumtimes, setNewNumTimes] = useState(0)
-  const [newtimes, setNewTimes] = useState([1, 2,3,4 ])
-  const [newTheatre, setNewTheatre] = useState([])
-  const [newNumTime, setNewNumTime] = useState<any[]>([3,3])
-  const [newTime, setNewTime] = useState<any[][]>([[1,2,3], [2,3,4]])
+  const [newnumtimes, setNewNumTimes] = useState(1)
+  const [newtimes, setNewTimes] = useState([""])
+  const [newTheatre, setNewTheatre] = useState([""])
+  const [newNumTime, setNewNumTime] = useState<any[]>([1])
+  const [newTime, setNewTime] = useState<any[][]>([[""]])
   // const [times, setTimes] = useState([])
   const handleAddScheduleButton = () => {
     setIsAddingSchedule(1);
@@ -61,31 +61,26 @@ export default function Schedule_Admin (){
   const handleSaveAddingButton = () => {
 
   }
-  const handleIncreaseDays=()=>{
-    console.log("day", newnumtimes)
-    setNewNumTimes(newnumtimes+1);
-    let temptimes= newtimes;
-    temptimes.push(1)
-    setNewTimes(temptimes)
-    console.log("day affter", newnumtimes)
-  }
-  const handleIncreaseTime=(idxtimes: number) =>{
-    // const a= document.getElementById('ll')
-    // var linknode = document.createElement("li");
+  const handleIncreaseDays=useCallback(()=>{
+  
+    setNewNumTimes((t) => newnumtimes+1);
 
-    // a?.appendChild(linknode)
-    console.log("day", newNumTime[idxtimes])
-    console.log("day 1", newTime[idxtimes])
+    setNewTimes((t) => [...t, ""])
+    console.log("day affter", newnumtimes)
+    setNewTime((t)=>[...t,[""]])
+  },[newnumtimes])
+  const handleIncreaseTime=useCallback((idxtimes: number) =>{
 
     let tempnumtime=newNumTime
     let temptime=newTime
     tempnumtime[idxtimes]=newNumTime[idxtimes]+1
-    temptime[idxtimes].push(1)
-    setNewTime(temptime)
-    setNewNumTime(tempnumtime)
-    console.log("day aff", newNumTime[idxtimes])
-    console.log("day 1 af", newTime[idxtimes])
-  }
+    temptime[idxtimes].push("")
+    setNewNumTimes((t) => t+1)
+    setNewTime((t) =>temptime)
+    setNewNumTime((t) => tempnumtime)
+  },[newNumTime,newTime,newnumtimes])
+  
+
 
     return(
       <div  className={styles.lay1}>
@@ -145,7 +140,7 @@ export default function Schedule_Admin (){
                               <option key = {theatre}>{ theatre.name}</option>
                             ))}
                           </select>
-                          {idxtimes!==newtimes.length?(<></>):(
+                          {idxtimes!==newtimes.length-1?(<></>):(
                             < Image src={add_ad}
                             onClick={()=>handleIncreaseDays()}
                             alt="" className={styles.add_row_img} width={20} height={20}/>
@@ -156,15 +151,17 @@ export default function Schedule_Admin (){
           
           {/* < Image src={add_ad} alt="" className={styles.add_row_img} width={20} height={20}/> */}
           <td className= {styles.add_sheet}> 
-         
-          <input type="text"/> 
-          <Image src={add_ad} 
-          onClick={()=>handleIncreaseTime(idxtimes)}
-          alt="" className={styles.add_row_img} width={20} height={20}/>
-            <ul id ="ll">
+
+          
+            <ul>
                {newTime[idxtimes]?.map((etime, idxtime) => (
                 <li key={idxtime} id={`${idxtimes}-${idxtime}`}>
                   <input value={etime} onClick={(e)=> handleTimeChange(idxtimes, idxtime, e.target.value)} key={idxtime}/>
+                 {idxtime!==newTime[idxtimes].length-1?(<></>):(
+                  <Image src={add_ad} 
+              onClick={()=>handleIncreaseTime(idxtimes)}
+              alt="" className={styles.add_row_img} width={20} height={20}/>
+                 )} 
                 </li>
               ))} 
         
