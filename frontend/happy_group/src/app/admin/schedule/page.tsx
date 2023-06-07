@@ -79,7 +79,6 @@ export default function Schedule_Admin (){
     setNewTime((t) =>temptime)
     setNewNumTime((t) => tempnumtime)
   },[newNumTime,newTime])
-  
 
 
     return(
