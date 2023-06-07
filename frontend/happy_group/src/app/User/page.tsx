@@ -21,7 +21,7 @@ export default function User (){
                         </ul>
                     </div>
                 </div>
-                <Image className={styles.pic} src={movie_img}></Image>
+                <Image className={styles.pic} src={movie_img} alt='er'></Image>
             </div>
 
             <div className={styles.Box2}>

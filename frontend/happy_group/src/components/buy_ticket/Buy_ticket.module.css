@@ -116,12 +116,16 @@
     align-items:center;
 }
 
+.optFood .content3 h5{
+    margin-left: 10px;
+}
+
 .optFood .content4{
     /* background-color: red;       */
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
-    padding: 0% 3% 0% 5%;
+    padding: 0% 3% 0% 15%;
 }
 
 .optFood .price{
@@ -137,8 +141,15 @@
     width: 90%;
 }
 
-.lay2 h3{
+.lay2 h5{
     color: black;
+}
+
+.lay2 input{
+    font-size:15px;
+}
+.content h5{
+    color: white;
 }
 
 .mvDetails h5{
@@ -176,8 +187,10 @@
 .ticketBox input,.optFood input{
     background-color:  #C0EEF2;
     color: #000000;
-    border: 3px solid #537FE7;
+    /* border: 3px solid #537FE7; */
+    border: none;
     text-align: center;
+
     /* box-sizing: border-box; */
 }
 

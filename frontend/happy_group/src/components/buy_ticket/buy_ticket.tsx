@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { HtmlHTMLAttributes, useEffect, useState,useRef } from 'react';//
 import React from 'react';
 import Link from 'next/link';
-// import { Link,useLocation } from 'react-router-dom';
 import { useRouter } from 'next/router';
 
 
@@ -14,10 +13,14 @@ export default function Buy_ticket (){
   var currentURL = window.location.href;
   var url = new URL(currentURL);
   var searchParams = new URLSearchParams(url.search);
-  var moviename = searchParams.get('movie');
-  var cine = searchParams.get('cinema');
+  var movieId = searchParams.get('movieId');
   var date = searchParams.get('date');
+  var theatreId = searchParams.get('theatreId');
   var time = searchParams.get('time');
+  console.log(movieId);
+  console.log(date);
+  console.log(theatreId);
+  console.log(time);
 
   // const location = useLocation();
 
@@ -137,26 +140,26 @@ return(
         <div className={styles.lay1}>
             <div className={styles.lay2}> 
                 <div className={styles.content}>
-                    <h3 className={styles.content1}>Loại vé</h3>
-                    <h3 className={styles.content2}>Số lượng</h3>
-                    <h3 className={styles.content2}>Giá (VNĐ)</h3>  
-                    <h3 className={styles.content2}>Tổng (VNĐ)</h3>
+                    <h5 className={styles.content1}>Loại vé</h5>
+                    <h5 className={styles.content2}>Số lượng</h5>
+                    <h5 className={styles.content2}>Giá (VNĐ)</h5>  
+                    <h5 className={styles.content2}>Tổng (VNĐ)</h5>
                 </div>
                 <div className={styles.ticketBox}>
                 <div className={styles.opt}>    
-                        <h3 className={styles.content1}>Người lớn<br/><sup><small>2D</small></sup></h3>
+                        <h5 className={styles.content1}>Người lớn<br/><sup><small>2D</small></sup></h5>
                         <input ref={quantity2DRef} onChange={() => {update2DTotal();updateBill();}} className={styles.inputNum} type="number" name="quantity" min="0" max="100" defaultValue={0}/>
                         <input ref={price2DRef} className={styles.price}type="number"name="quantity"  defaultValue={80000} readOnly/>
                         <input  ref={total2DRef} onChange={update2DTotal} className={styles.outputNum} type="number" name="quantity" readOnly/>
                     </div>
                     <div className={styles.opt}>    
-                        <h3 className={styles.content1}>Người lớn<br/><sup><small>3D</small></sup></h3>
+                        <h5 className={styles.content1}>Người lớn<br/><sup><small>3D</small></sup></h5>
                         <input ref={quantity3DRef} onChange={() => {update3DTotal();updateBill();}} className={styles.inputNum} type="number" name="quantity" min="0" max="100" defaultValue={0}/>
                         <input ref={price3DRef} className={styles.price}type="number"name="quantity"  defaultValue={100000} readOnly/>
                         <input  ref={total3DRef} onChange={update3DTotal} className={styles.outputNum} type="number" name="quantity" readOnly/>
                     </div>
                     <div className={styles.opt}>    
-                        <h3 className={styles.content1}>Người lớn<br/><sup><small>2D-bao gồm 2 vé</small></sup></h3>
+                        <h5 className={styles.content1}>Người lớn<br/><sup><small>2D-bao gồm 2 vé</small></sup></h5>
                         <input ref={quantityCPRef} onChange={() => {updateCPTotal();updateBill();}} className={styles.inputNum} type="number" name="quantity" min="0" max="100" defaultValue={0}/>
                         <input ref={priceCPRef} className={styles.price}type="number"name="quantity"  defaultValue={120000} readOnly/>
                         <input  ref={totalCPRef} onChange={updateCPTotal} className={styles.outputNum} type="number" name="quantity" readOnly/>
@@ -166,16 +169,16 @@ return(
                 </div>
 
                 <div className={styles.content}>
-                    <h3 className={styles.content1}>Bắp/Nước</h3>
-                    <h3 className={styles.content2}>Số lượng</h3>
-                    <h3 className={styles.content2}>Giá (VNĐ)</h3>
-                    <h3 className={styles.content2}>Tổng (VNĐ)</h3>
+                    <h5 className={styles.content1}>Bắp/Nước</h5>
+                    <h5 className={styles.content2}>Số lượng</h5>
+                    <h5 className={styles.content2}>Giá (VNĐ)</h5>
+                    <h5 className={styles.content2}>Tổng (VNĐ)</h5>
                 </div>
                 <div className={styles.food}>
                     <div className={styles.optFood}>
                         <div className={styles.content3} >
                          <Image src={food3} alt=""/>
-                        <h3>Combo 1 Big Extra<br/><sup><small>1 Ly nước ngọt size L + 01 Hộp bắp</small></sup></h3>
+                        <h5>Combo 1 Big Extra<br/><sup><small>1 Ly nước ngọt size L + 01 Hộp bắp</small></sup></h5>
                         </div>
                         <div className={styles.content4}>
                           <input ref={quantityCB1Ref} onChange={() => {updateCB1Total();updateBill();}} className={styles.inputNum} type="number" name="quantity" min="0" max="100" defaultValue={0}/>
@@ -188,7 +191,7 @@ return(
                 <div className={styles.optFood}>
                         <div className={styles.content3} >
                          <Image src={food1} alt=""/>
-                        <h3>Combo 1 Big Extra<br/><sup><small>1 Ly nước ngọt size L + 01 Hộp bắp + 1 Snack </small></sup></h3>
+                        <h5>Combo 1 Big Extra<br/><sup><small>1 Ly nước ngọt size L + 01 Hộp bắp + 1 Snack </small></sup></h5>
                         </div>
                         <div className={styles.content4}>
                           <input ref={quantityCB2Ref} onChange={() => {updateCB2Total();updateBill();}} className={styles.inputNum} type="number" name="quantity" min="0" max="100" defaultValue={0}/>
@@ -201,7 +204,7 @@ return(
                 <div className={styles.optFood}>
                         <div className={styles.content3} >
                          <Image src={food4} alt=""/>
-                        <h3>Combo 1 Big Extra<br/><sup><small>2 Ly nước ngọt size L + 01 Hộp bắp</small></sup></h3>
+                        <h5>Combo 1 Big Extra<br/><sup><small>2 Ly nước ngọt size L + 01 Hộp bắp</small></sup></h5>
                         </div>
                         <div className={styles.content4}>
                           <input ref={quantityCB3Ref} onChange={() => {updateCB3Total();updateBill();}} className={styles.inputNum} type="number" name="quantity" min="0" max="100" defaultValue={0}/>
@@ -214,7 +217,7 @@ return(
                 <div className={styles.optFood}>
                         <div className={styles.content3} >
                          <Image src={food2} alt=""/>
-                        <h3>Combo 1 Big Extra<br/><sup><small>2 Ly nước ngọt size L + 01 Hộp bắp + 1 Snack</small></sup></h3>
+                        <h5>Combo 1 Big Extra<br/><sup><small>2 Ly nước ngọt size L + 01 Hộp bắp + 1 Snack</small></sup></h5>
                         </div>
                         <div className={styles.content4}>
                           <input ref={quantityCB4Ref} onChange={() => {updateCB4Total();updateBill();}} className={styles.inputNum} type="number" name="quantity" min="0" max="100" defaultValue={0}/>
@@ -230,8 +233,8 @@ return(
             </div>
             <div className={styles.mvDetails}>
                 <Image src={picS1} alt=''></Image>
-                <h5>Tên: {moviename}</h5>
-                <h5>Rạp : {cine}</h5>
+                <h5>Tên: {movieId}</h5>
+                <h5>Rạp : {theatreId}</h5>
                 <h5>Suất chiếu : {time} | {date}</h5>    
                 <div className={styles.cost}>
                   <h5>Tổng: </h5>
