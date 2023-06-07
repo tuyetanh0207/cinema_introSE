@@ -25,6 +25,20 @@ const movieAPI = {
  
   quickBuyTicket: function (query:string) {
     const url = `${apiV1}/quick-buy/${query}`;
+  },
+  getDateOfShowtime: function (id:string) {
+    const url = `${apiV1}/quick-buy/date/${id}`;
+    return get(url, "");
+  },
+
+
+  getTheatreOfShowtime: function (id:string,date:string) {
+    const url = `${apiV1}/quick-buy/theatre/${id}/${date}`;
+    return get(url, "");
+  },
+
+  getTimeOfShowtime: function (id:string,date:string,theatre: string) {
+    const url = `${apiV1}/quick-buy/time/${id}/${date}/${theatre}`;
     return get(url, "");
   },
 

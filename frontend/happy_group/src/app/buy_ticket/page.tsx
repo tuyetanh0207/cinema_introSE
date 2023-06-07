@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { HtmlHTMLAttributes, useEffect, useState,useRef } from 'react';//
 import React from 'react';
 import Link from 'next/link';
-// import { Link,useLocation } from 'react-router-dom';
 import { useRouter } from 'next/router';
 
 
@@ -14,10 +13,14 @@ export default function Buy_ticket (){
   var currentURL = window.location.href;
   var url = new URL(currentURL);
   var searchParams = new URLSearchParams(url.search);
-  var moviename = searchParams.get('movie');
-  var cine = searchParams.get('cinema');
+  var movieId = searchParams.get('movieId');
   var date = searchParams.get('date');
+  var theatreId = searchParams.get('theatreId');
   var time = searchParams.get('time');
+  console.log(movieId);
+  console.log(date);
+  console.log(theatreId);
+  console.log(time);
 
   // const location = useLocation();
 
@@ -230,8 +233,8 @@ return(
             </div>
             <div className={styles.mvDetails}>
                 <Image src={picS1} alt=''></Image>
-                <h5>Tên: {moviename}</h5>
-                <h5>Rạp : {cine}</h5>
+                <h5>Tên: {movieId}</h5>
+                <h5>Rạp : {theatreId}</h5>
                 <h5>Suất chiếu : {time} | {date}</h5>    
                 <div className={styles.cost}>
                   <h5>Tổng: </h5>

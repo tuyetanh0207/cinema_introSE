@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 import movieAPI from '@/app/api/movieAPI'
 
-  
+
 
 export default function Banner () {
 
@@ -59,30 +59,39 @@ export default function Banner () {
               }
       }
 
-      function valid1() {
-        var Select1 = document.getElementsByName("movie")[0] as HTMLInputElement;
-        var Opt2 = document.getElementById("Opt2") as HTMLInputElement;
-            if (Select1.value != "") {
-            Opt2.disabled = false;
-            console.log(Select1)
-        }
-    }
 
-    function valid2() {
-        var Select2 = document.getElementsByName("cinema")[0] as HTMLInputElement;
-        var Opt3 = document.getElementById("Opt3") as HTMLInputElement;
-            if (Select2.value != "") {
-            Opt3.disabled = false;
-        }
-    }
+      const [selectedShowtimeId, setSelectedShowtimeId] = useState("");
+      const [selectedDate, setSelectedDate] = useState("");
+      const [selectedTheatreId, setSelectedTheatreId] = useState("");
+      const [selectedTime, setSelectedTime] = useState("");
+      
 
-    function valid3() {
-        var Select3 = document.getElementsByName("date")[0] as HTMLInputElement;
-        var Opt4 = document.getElementById("Opt4") as HTMLInputElement;
-            if (Select3.value != "") {
-            Opt4.disabled = false;
-        }
-    }
+      const handleMovieChange = (event) => {
+        const selectedId = event.target.value;
+        setSelectedShowtimeId(selectedId);
+        qTikcet(selectedId);
+      };
+
+
+      const handleDateChange = (event) => {
+        const selectedDate = event.target.value;
+        setSelectedDate(selectedDate)
+        qTikcet1(selectedShowtimeId, selectedDate);
+      };
+
+      const handleTheatreChange = (event) => {
+        const selectedTheatreId = event.target.value;
+        setSelectedTheatreId(selectedTheatreId);
+        qTikcet2(selectedShowtimeId, selectedDate,selectedTheatreId);
+      };
+
+      
+      const handleTimeChange = (event) => {
+        const selectedTime = event.target.value;
+        setSelectedTime(selectedTime);
+      };
+
+      
 
 
     
@@ -91,29 +100,79 @@ export default function Banner () {
     const [slides, setslides] = useState<any[]>([]); ///
     const slide = async () => {
       const SlideData = await BannerAPI.getAllSlides();
-      console.log("res: ", SlideData);
+      // console.log("res: ", SlideData);
       setslides(SlideData.data);
       }
 
     const [movies, pickMovies] = useState<any[]>([]); ///
     const movie = async () => {
-    const MovieData = await movieAPI.getNowShowingMovies();
-        console.log("res: ", MovieData);
+    const MovieData = await movieAPI.getNowShowing();
+        // console.log("res: ", MovieData);
         pickMovies(MovieData.data);
         }
 
-        const [qtickets, quickTickets] = useState<any[]>([]); ///
-    const qTikcet = async (query: string) => {
-    const TicketData = await movieAPI.quickBuyTicket(query);
-        console.log("res: ", TicketData);
-        pickMovies(TicketData.data);
-        }
+    const [qtickets, quickTickets] = useState<any[]>([]); ///
+    const qTikcet = async (id: string) => {
+      const TicketData = await movieAPI.getDateOfShowtime(id);
+      // console.log("res: ", TicketData);
+      quickTickets(TicketData.data.dates);
+    }
+
+
+
+    const [qtickets1, quickTickets1] = useState<any[]>([]);
+    const qTikcet1 = async (id: string, date: string) => {
+      const TicketData1 = await movieAPI.getTheatreOfShowtime(id, date);
+      // console.log("res: ", TicketData1);
+
+  const ticketIds = TicketData1.data.theatres;
+  const ticketNames = TicketData1.data.theatreIds;
+
+  const combinedData = ticketIds.map((name: any, index: number) => {
+    return {
+      name,
+      id: ticketNames[index]
+    };
+  });
+
+  // console.log("combinedData: ", combinedData);
+
+  quickTickets1(combinedData);
+}
+
+function isButtonDisabled() {
+  const movieId = document.getElementsByName('movieId')[0]?.value;
+  const date = document.getElementsByName('date')[0]?.value;
+  const theatreId = document.getElementsByName('theatreId')[0]?.value;
+  const time = document.getElementsByName('time')[0]?.value;
+
+  console.log(movieId);
+  console.log(date);
+  console.log(theatreId);
+  console.log(time);
+
+  // Kiểm tra nếu một trong các select không được chọn
+  if (!movieId || !date || !theatreId || !time) {
+    return true; // Vô hiệu hóa nút "Mua vé"
+  }
+
+  return false; // Kích hoạt nút "Mua vé"
+}
+
+
+
+    const [qtickets2, quickTickets2] = useState<any[]>([]); ///
+    const qTikcet2 = async (id: string,date: string,theatre: string) => {
+      const TicketData2 = await movieAPI.getTimeOfShowtime(id,date,theatre);
+      // console.log("res: ", TicketData2);
+      quickTickets2(TicketData2.data.times[0]);
+    }
 
 
       useEffect(()=>{
         slide();
         movie();
-        // qtickets();
+        // qTikcet("showtimeId");
     },[])
 
 
@@ -146,26 +205,28 @@ export default function Banner () {
         {/* Form begin */}
             <div className={styles.opt}>
                 <label>MUA VÉ NHANH</label>
-                <form action="./booking">
-                    <select name="movie" onChange={valid1}>
+                <form action="./buy_ticket">
+                    <select name="movieId" onChange={handleMovieChange}>
                         <option value="" hidden>Chọn phim</option> 
-                        {movies.map((movie, index) => (<option key={index} value={movie.showtimeId}>{movie.movieTitle}</option>))}  
-
+                        {movies.map((mvName, index) => (<option key={index} value={mvName.showtimeId}>{mvName.movieTitle}</option>))} 
                     </select>   
-
-                     <select name="theatre" id="Opt2" onChange={valid2} disabled>
-                        <option value="" hidden>Chọn rạp</option> 
-                        {movies.map((movie, index) => (<option key={index} value={movie.language}>{movie.language}</option>))}
-                    </select>
-                     <select name="date" id="Opt3" onChange={valid3} disabled>
+                    
+                     <select name="date" onChange={handleDateChange} >
                         <option value="" hidden>Chọn ngày</option> 
-                        {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
+                        {qtickets.map((dates, index) => (<option key={index} value={dates}>{dates}</option>))}
                     </select>
-                    <select name="time" id="Opt4" disabled>
-                        <option value="" hidden>Chọn suất</option> 
-                        {movies.map((movie, index) => (<option key={index} value={movie.title}>{movie.title}</option>))}
+        
+                    <select name="theatreId" onChange={handleTheatreChange} > 
+                        <option value="" hidden>Chọn rạp</option> 
+                        {qtickets1.map((theatres, index) => (<option key={index} value={theatres.id}>{theatres.name}</option>))}
                     </select> 
-                    <button type="submit" className={styles.buy_btn}>Mua vé</button>
+
+                    <select name="time"  onChange={handleTimeChange}> 
+                        <option value="" hidden>Chọn suất chiếu</option> 
+                        {qtickets2.map((times, index) => (<option key={index} value={times}>{times}</option>))}
+                    </select> 
+                    {/* <button type="submit" className={styles.buy_btn}>Mua vé</button> */}
+                    <button type="submit" className={styles.buy_btn} disabled={isButtonDisabled()}>Mua vé</button>
                 </form>
 
             </div>
