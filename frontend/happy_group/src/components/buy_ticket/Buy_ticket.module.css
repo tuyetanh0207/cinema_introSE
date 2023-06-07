@@ -1,0 +1,203 @@
+.lay1{
+    width: 100vw;
+    height: 100vh;
+    background-color: #E9F8F9;
+    /* left:0; */
+    border-radius: 50px ;
+    display: block;
+    margin-bottom: 100px;
+    position: relative;
+}
+
+.lay2{
+    position: absolute;
+    width: 60%;
+    height: 90%;
+    background-color: #537FE7;
+    left:8%;
+    top: 13%;
+    border-radius: 50px ;
+}
+
+.mvDetails
+{
+    position: relative;
+    width: 20%;
+    height: 60%;
+    background: #C0EEF2;
+    left:75%;
+    top: 13%;
+    border-radius: 30px ;
+    border: 10px solid #537FE7;
+    padding:1% 0% 0% 2% ;
+}
+
+.ticketBox{
+    position: relative;
+    width: 90%;
+    height: 30%;
+    background-color: #C0EEF2;
+    border-radius: 30px;
+    left:5%;
+
+    
+}
+
+.food{
+    position: relative;
+    width: 90%;
+    height: 50%;
+    background-color: #C0EEF2;
+    border-radius: 30px;
+    left:5%;
+}
+
+
+.content{
+    display: flex;
+    position: relative;
+    width: 80%;
+    height: 8%; 
+    left:10%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+ .content1{
+    width: 40%;
+    /* background-color: red; */
+}
+
+
+.opt
+{
+    display: flex;
+    width: 100%;
+    height: 30%;
+    /* background-color: red; */
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 3% 0 4%;
+    box-sizing: border-box ;
+}
+
+.price{
+    width: 10%
+}
+
+.outputNum{
+    width: 15%
+}
+
+
+.optFood
+{
+    display: flex;
+    width: 100%;
+    height: 25%;
+    /* background-color: aqua; */
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 0% 3% 0% 4%;
+    box-sizing: border-box ;
+}
+
+.optFood img{
+    width: 30%;
+    height: 90%;
+}
+
+
+.optFood .content3{
+    display: flex;
+    width: 45%;
+    height: 100%;
+    /* background-color: red; */
+    align-items:center;
+}
+
+.optFood .content4{
+    /* background-color: red;       */
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 0% 3% 0% 5%;
+}
+
+.optFood .price{
+    width:20%;
+}
+
+.optFood .outputNum{
+    width:25%;
+}
+
+.mvDetails img{
+    height: 40%;
+    width: 90%;
+}
+
+.lay2 h3{
+    color: black;
+}
+
+.mvDetails h5{
+    width: 90%;
+    border-bottom: 2px solid #000000;
+    color: black;
+    margin-top:10px ;
+}
+
+.mvDetails a{
+    background-color: #537FE7;
+    color:black;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 90px;
+    position: relative;
+    top: 13%;
+    left: 55%;
+
+}
+
+.mvDetails a:hover{
+    background-color: #537FE7;
+    color: white;
+    font-size: large;
+}
+
+.mvDetails input{
+    width: 70%;
+}
+
+.ticketBox input,.optFood input{
+    background-color:  #C0EEF2;
+    color: #000000;
+    border: 3px solid #537FE7;
+    text-align: center;
+    /* box-sizing: border-box; */
+}
+
+.mvDetails input{
+    background-color:  #C0EEF2;
+    /* border: 3px solid #537FE7; */
+    border: none;
+    color: #000000;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.mvDetails .cost{
+    display: flex;
+    align-items: center;
+}
+
+.cost h5{
+    margin-right:5px ;
+    width:35px;
+}
+
+

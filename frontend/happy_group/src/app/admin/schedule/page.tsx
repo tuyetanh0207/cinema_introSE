@@ -46,15 +46,15 @@ export default function Schedule_Admin (){
             <td rowSpan={schedule.times.length}>{index + 1}</td>
             {/* <td rowSpan={schedule.times.length}>{schedule.movieId._id}</td> */}
             <td rowSpan={schedule.times.length}>{schedule.movieId.title}</td>
-            <td rowSpan={schedule.times.length}>{schedule.startDate}</td>
-            <td rowSpan={schedule.times.length}>{schedule.endDate}</td>
+            <td rowSpan={schedule.times.length}>{schedule.startDate.slice(0,10)}</td>
+            <td rowSpan={schedule.times.length}>{schedule.endDate.slice(0,10)}</td>
           </>
         ) : null}
      
-        <td>{timeSlot[0].theatreId}</td>
+        <td>{timeSlot.theatreName}</td>
         <td>
           <ul>
-            {timeSlot[0].time.map((time, index) => (
+            {timeSlot.time.map((time, index) => (
               <li key={index}>
                 <span key={index}>{time} </span>
               </li>

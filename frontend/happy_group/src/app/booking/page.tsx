@@ -2,17 +2,35 @@
 import { useEffect, useState } from 'react';
 import styles from './Seat.module.css';
 import movieAPI from '@/app/api/movieAPI';
+import Buy_ticket from '@/components/buy_ticket/buy_ticket';
+import { useSelector } from 'react-redux';
 
+type reservationInterface = {
+  userID: string,
+  name: string,
+  phoneNumber: string,
+  email: string,
+  showtimeId: string,
+  seats: string[],
+  totalPrice: number
+}
 export default function Seat() {
+  
+  const user= useSelector((state: any) =>state.auth.login.currentUser)
+  console.log("user", user)
+  const [reservation, setReservation] = useState<reservationInterface>();
+  const [userID, setUserID] = useState(user._id)
   const [seats, setSeats] = useState<any[]>([]);
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-
+  const [showtimeID, setShowtimeID] = useState("6464c8e8cd1fef31dabb349a")
+  const [totalPrice, setTotalPrice] = useState(0)
+  const [showtime, setShowtime] = useState({time: "14:00",date: "2023/05/10", theatreID: "6444144c5b1c5239b1d3825c"})
   useEffect(() => {
     const fetchSeats = async () => {
       try {
-        const response = await movieAPI.getIDSeat();
+        const response = await movieAPI.getAllSeats();
         const seatArr = response.data.seats;
-        console.log("res: ", seatArr);
+        console.log("res: ", response.data);
         setSeats(seatArr);
       } catch (error) {
         console.error('Error fetching seats:', error);
@@ -43,6 +61,10 @@ export default function Seat() {
       }
     });
   };
+  const handleBookButton = () => {
+    setReservation({userID: user.user._id, name: user.user.name, phoneNumber: user.user.phone, email: user.user.email, seats: selectedSeats, totalPrice: 0, showtimeId: showtimeID })
+	
+  }
 
   const handleNextClick = () => {
     selectedSeats.forEach((selectedSeat) => {
@@ -125,10 +147,13 @@ export default function Seat() {
           <button className={styles.bt} onClick={handleNextClick}>
             Tiếp theo
           </button>
+          <button className={styles.bt} onClick={handleBookButton}>
+            BOOK NOW!
+          </button>
         </div>
       </div>
-
-      
+      <Buy_ticket/>
+   
     </>
   );
 }

@@ -36,7 +36,7 @@ const movieAPI = {
   },
 
   getIDSeat: function(){
-    const url = `${apiV1}/seats/upload`;
+    const url = `${apiV1}/seats`;
     return get(url, "");
   }
 
