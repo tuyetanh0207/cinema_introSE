@@ -78,7 +78,7 @@ export default function Schedule_Admin (){
     setNewNumTimes((t) => t+1)
     setNewTime((t) =>temptime)
     setNewNumTime((t) => tempnumtime)
-  },[newNumTime,newTime,newnumtimes])
+  },[newNumTime,newTime])
   
 
 
