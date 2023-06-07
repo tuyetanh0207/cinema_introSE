@@ -51,7 +51,7 @@ export default function Schedule_Admin (){
   const [newnumtimes, setNewNumTimes] = useState(0)
   const [newtimes, setNewTimes] = useState([1, 2,3,4 ])
   const [newTheatre, setNewTheatre] = useState([])
-  const [newNumTime, setNewNumTime] = useState<any[]>([])
+  const [newNumTime, setNewNumTime] = useState<any[]>([3,3])
   const [newTime, setNewTime] = useState<any[][]>([[1,2,3], [2,3,4]])
   // const [times, setTimes] = useState([])
   const handleAddScheduleButton = () => {
@@ -70,11 +70,21 @@ export default function Schedule_Admin (){
     console.log("day affter", newnumtimes)
   }
   const handleIncreaseTime=(idxtimes: number) =>{
+    // const a= document.getElementById('ll')
+    // var linknode = document.createElement("li");
+
+    // a?.appendChild(linknode)
+    console.log("day", newNumTime[idxtimes])
+    console.log("day 1", newTime[idxtimes])
+
     let tempnumtime=newNumTime
     let temptime=newTime
     tempnumtime[idxtimes]=newNumTime[idxtimes]+1
-    temptime[idxtimes].push()
+    temptime[idxtimes].push(1)
     setNewTime(temptime)
+    setNewNumTime(tempnumtime)
+    console.log("day aff", newNumTime[idxtimes])
+    console.log("day 1 af", newTime[idxtimes])
   }
 
     return(
@@ -151,9 +161,9 @@ export default function Schedule_Admin (){
           <Image src={add_ad} 
           onClick={()=>handleIncreaseTime(idxtimes)}
           alt="" className={styles.add_row_img} width={20} height={20}/>
-            <ul>
+            <ul id ="ll">
                {newTime[idxtimes]?.map((etime, idxtime) => (
-                <li key={idxtime}>
+                <li key={idxtime} id={`${idxtimes}-${idxtime}`}>
                   <input value={etime} onClick={(e)=> handleTimeChange(idxtimes, idxtime, e.target.value)} key={idxtime}/>
                 </li>
               ))} 
