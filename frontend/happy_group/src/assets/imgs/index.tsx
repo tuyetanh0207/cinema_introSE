@@ -10,6 +10,7 @@ import food4 from './food4.jpg'
 import picS1 from './picS1.jpg'
 import movie_img from "./movie.jpg"
 import avt_ad from "./avt.png"
+import ava from "./ava.jpg"
 
 export {
     test,
@@ -22,6 +23,7 @@ export {
     food3,
     food4,
     picS1,
-    movie_img
-    ,avt_ad
+    movie_img,
+    avt_ad,
+    ava
 }
