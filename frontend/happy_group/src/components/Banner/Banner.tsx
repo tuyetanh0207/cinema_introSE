@@ -97,7 +97,7 @@ export default function Banner () {
 
     const [movies, pickMovies] = useState<any[]>([]); ///
     const movie = async () => {
-    const MovieData = await movieAPI.getNowShowing();
+    const MovieData = await movieAPI.getNowShowingMovies();
         console.log("res: ", MovieData);
         pickMovies(MovieData.data);
         }
@@ -146,14 +146,14 @@ export default function Banner () {
         {/* Form begin */}
             <div className={styles.opt}>
                 <label>MUA VÉ NHANH</label>
-                <form action="./buy_ticket">
+                <form action="./booking">
                     <select name="movie" onChange={valid1}>
                         <option value="" hidden>Chọn phim</option> 
-                        {movies.map((movie, index) => (<option key={index} value={movie.movieTitle}>{movie.movieTitle}</option>))}  
+                        {movies.map((movie, index) => (<option key={index} value={movie.showtimeId}>{movie.movieTitle}</option>))}  
 
                     </select>   
 
-                     <select name="cinema" id="Opt2" onChange={valid2} disabled>
+                     <select name="theatre" id="Opt2" onChange={valid2} disabled>
                         <option value="" hidden>Chọn rạp</option> 
                         {movies.map((movie, index) => (<option key={index} value={movie.language}>{movie.language}</option>))}
                     </select>

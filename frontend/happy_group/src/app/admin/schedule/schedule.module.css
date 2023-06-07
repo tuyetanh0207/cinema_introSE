@@ -2,14 +2,24 @@
     color: black;
     width: 80vw;
 }
-
+.table tr {
+    /* display: flex; */
+}
+.table tbody{
+    /* display: block; */
+}
 .table th{
     border: 1px solid black;
 }
 
 .table td{
     border: 1px solid black;
+    vertical-align: top;
 }
+.input{
+    border: 1px solid black;
+
+ }
 .table input{
     background-color: white;
     color: black;
@@ -19,4 +29,19 @@
 }
 .table li{
     list-style-type: none;
+}
+.add_row_img{
+    /* position:relative; */
+    position: absolute;
+    margin-left: -9px;
+
+}
+ 
+.add_sheet{
+    /* display: inline-flex; */
+    /* width: fit-content; */
+}
+
+.add_sheet select{
+    width: 100%;
 }

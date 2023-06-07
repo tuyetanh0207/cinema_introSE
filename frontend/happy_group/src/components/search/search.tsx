@@ -13,7 +13,8 @@ export default function SearchComp() {
       const HandleSearch = function (e: { target: { value: string }; }) {
         const fetchSearchMovie= async(query: string) => {
           const res = await movieAPI.searchMovie(query);
-          setMovies(res.data.movies);
+          setMovies(res.data);
+          // console.log("search", res.data)
         }
         setSearchInput(e.target.value);
   

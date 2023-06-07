@@ -47,8 +47,8 @@ export default function Home() {
     const [movie, setMovie] =useState([]);
     const fetchMovie = async  () => {
         const res=await AdminAPI.getAllShowtime();
-        const res1 = await AdminAPI.getShowtime("644e1fcf4fed9fdaf2ff74a5")
-        console.log("show time specific: ", res1.data)
+        // const res1 = await AdminAPI.getAllShowtime("644e1fcf4fed9fdaf2ff74a5")
+        // console.log("show time specific: ", res1.data)
         console.log("showtime: ",res.data)
         // console.log("movie: ",typeof(res.data))
     }

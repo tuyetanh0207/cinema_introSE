@@ -22,7 +22,7 @@ const movieAPI = {
     const url =`${apiV1}/movies/${id}`;
     return get (url,"");
   },
-
+ 
   quickBuyTicket: function (query:string) {
     const url = `${apiV1}/quick-buy/${query}`;
     return get(url, "");
@@ -37,6 +37,10 @@ const movieAPI = {
 
   getIDSeat: function(){
     const url = `${apiV1}/seats`;
+    return get(url, "");
+  },
+  getAllSeats: function(){
+    const url = `${apiV1}/seats/`;
     return get(url, "");
   }
 
