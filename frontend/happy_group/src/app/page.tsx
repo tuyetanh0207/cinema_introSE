@@ -8,6 +8,8 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import BannerAPI from './api/BannerAPI'
 import Banner from '@/components/Banner/Banner'
+import Nowshowing from '@/components/Nowshowing/Nowshowing'
+import Upcoming from '@/components/Upcoming/Upcoming'
 import movieAPI from './api/movieAPI'
 // import { useRouter } from 'next/router'
 import { useRouter } from 'next/navigation'
@@ -71,6 +73,8 @@ export default function Home() {
           })
       } */}
       <Banner/>
+      <Nowshowing/>
+      <Upcoming/>
       <Filmcomment/>
       {/* <Idfilm/> */}
       </>
