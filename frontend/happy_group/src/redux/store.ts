@@ -9,6 +9,7 @@ export default configureStore({
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
 import userReducer from "./userSlice";
+import bookingReducer from "./bookingSlide"
 import {
   persistStore,
   persistReducer,
@@ -26,7 +27,7 @@ const persistConfig = {
   version: 1,
   storage,
 };
-const rootReducer = combineReducers({ auth: authReducer, users: userReducer });
+const rootReducer = combineReducers({ auth: authReducer, users: userReducer, booking: bookingReducer });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({

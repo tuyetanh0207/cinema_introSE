@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from 'react-redux'//
 import { useRouter } from 'next/navigation'
 import Link from 'next/link';
 import movieAPI from '@/app/api/movieAPI'
+import showtimeAPI from '@/app/api/showtimeAPI'
+import { bookingMovie } from '@/redux/apiRequests'
 
 
 
@@ -69,20 +71,20 @@ export default function Banner () {
       const handleMovieChange = (event) => {
         const selectedId = event.target.value;
         setSelectedShowtimeId(selectedId);
-        qTikcet(selectedId);
+        fetchtheatre(selectedId)
       };
 
 
       const handleDateChange = (event) => {
         const selectedDate = event.target.value;
         setSelectedDate(selectedDate)
-        qTikcet1(selectedShowtimeId, selectedDate);
+        qTikcet1(selectedShowtimeId, selectedTheatreId, selectedDate);
       };
 
       const handleTheatreChange = (event) => {
         const selectedTheatreId = event.target.value;
         setSelectedTheatreId(selectedTheatreId);
-        qTikcet2(selectedShowtimeId, selectedDate,selectedTheatreId);
+        qTikcet2(selectedShowtimeId,selectedTheatreId);
       };
 
       
@@ -103,14 +105,20 @@ export default function Banner () {
       // console.log("res: ", SlideData);
       setslides(SlideData.data);
       }
-
     const [movies, pickMovies] = useState<any[]>([]); ///
     const movie = async () => {
     const MovieData = await movieAPI.getNowShowingMovies();
         // console.log("res: ", MovieData);
         pickMovies(MovieData.data);
-        }
+    }
 
+
+    const [theatres, setTheatres] = useState<string[]>([])
+    const fetchtheatre = async (id: string) => {
+    const MovieData = await showtimeAPI.quickbuy(id, "","");
+        // console.log("res: ", MovieData);
+        setTheatres(MovieData.data);
+    }
     const [qtickets, quickTickets] = useState<any[]>([]); ///
     const qTikcet = async (id: string) => {
       const TicketData = await movieAPI.getDateOfShowtime(id);
@@ -119,12 +127,12 @@ export default function Banner () {
     }
 
 
-
+    const [times, setTimes]=useState<string[]>([])
     const [qtickets1, quickTickets1] = useState<any[]>([]);
-    const qTikcet1 = async (id: string, date: string) => {
-      const TicketData1 = await movieAPI.getTheatreOfShowtime(id, date);
+    const qTikcet1 = async (id: string, theatre: string, date: string) => {
+      const TicketData1 = await showtimeAPI.quickbuy(id, theatre,date);
       // console.log("res: ", TicketData1);
-
+      setTimes(TicketData1.data)
   const ticketIds = TicketData1.data.theatres;
   const ticketNames = TicketData1.data.theatreIds;
 
@@ -162,10 +170,10 @@ function isButtonDisabled() {
 
 
     const [qtickets2, quickTickets2] = useState<any[]>([]); ///
-    const qTikcet2 = async (id: string,date: string,theatre: string) => {
-      const TicketData2 = await movieAPI.getTimeOfShowtime(id,date,theatre);
+    const qTikcet2 = async (id: string,theatre: string) => {
+      const TicketData2 = await showtimeAPI.quickbuy(id,theatre, "");
       // console.log("res: ", TicketData2);
-      quickTickets2(TicketData2.data.times[0]);
+      quickTickets2(TicketData2.data);
     }
 
 
@@ -174,7 +182,17 @@ function isButtonDisabled() {
         movie();
         // qTikcet("showtimeId");
     },[])
-
+     const dispatch =useDispatch
+     const router =useRouter()
+    const handleBuyBtn= ()=>{
+      const newBooking ={
+        showtimeId: selectedShowtimeId,
+        date: selectedDate,
+        theatreName: selectedTheatreId,
+        time: selectedTime
+      }
+      bookingMovie(newBooking, dispatch, router)
+    }
 
 
     return (
@@ -210,23 +228,24 @@ function isButtonDisabled() {
                         <option value="" hidden>Chọn phim</option> 
                         {movies.map((mvName, index) => (<option key={index} value={mvName.showtimeId}>{mvName.movieTitle}</option>))} 
                     </select>   
-                    
-                     <select name="date" onChange={handleDateChange} >
-                        <option value="" hidden>Chọn ngày</option> 
-                        {qtickets.map((dates, index) => (<option key={index} value={dates}>{dates}</option>))}
-                    </select>
-        
+
                     <select name="theatreId" onChange={handleTheatreChange} > 
                         <option value="" hidden>Chọn rạp</option> 
-                        {qtickets1.map((theatres, index) => (<option key={index} value={theatres.id}>{theatres.name}</option>))}
+                        {theatres.map((theatres, index) => (<option key={index} value={theatres}>{theatres}</option>))}
                     </select> 
 
+                     <select name="date" onChange={handleDateChange} >
+                        <option value="" hidden>Chọn ngày</option> 
+                        {qtickets2.map((dates, index) => (<option key={index} value={dates.slice(0,10)}>{dates.slice(0,10)}</option>))}
+                    </select>
+        
+                   
                     <select name="time"  onChange={handleTimeChange}> 
                         <option value="" hidden>Chọn suất chiếu</option> 
-                        {qtickets2.map((times, index) => (<option key={index} value={times}>{times}</option>))}
+                        {times.map((times, index) => (<option key={index} value={times}>{times}</option>))}
                     </select> 
                     {/* <button type="submit" className={styles.buy_btn}>Mua vé</button> */}
-                    <button type="submit" className={styles.buy_btn} disabled={isButtonDisabled()}>Mua vé</button>
+                    <button type="submit" className={styles.buy_btn} onClick={()=>handleBuyBtn()} disabled={isButtonDisabled()}>Mua vé</button>
                 </form>
 
             </div>

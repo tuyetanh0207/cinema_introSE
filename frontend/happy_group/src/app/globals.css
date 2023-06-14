@@ -43,4 +43,7 @@
   button:focus-within{
     outline: 0 !important;
   }
+  input:focus{
+    outline: 0;
+  }
   

@@ -14,14 +14,18 @@ const showtimeAPI = {
 //     const url=`${apiV1}/search?q=${query}`;
 //     return get(url, "");
 //   },
-//   getAllMovies: function () {
-//     const url =`${apiV1}/movies/`;
-//     return get(url,"");
-//   },
+  getAllShowtimes: function () {
+    const url =`${apiV1}/showtimes/`;
+    return get(url,"");
+  },
   getShowtime: function (id: string){
     const url =`${apiV1}/showtimes/id/${id}`;
     return get (url,"");
   },
+  quickbuy: function (showtimeId: string, theatre: string, date:string){
+    const url =`${apiV1}/schedules/search/?showtimeId=${showtimeId}&&theatre=${theatre}&&date=${date}`
+    return get(url, "")
+  }
  
  
 };

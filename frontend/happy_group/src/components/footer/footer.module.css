@@ -5,7 +5,7 @@
     bottom: 0%;
     display: flex;
     width: 100%;
-    color: #C0EEF2;
+    color: #C0EEF2 !important;
     background-color: black;
     height: 300px;
     font-family: 'Segoe UI';
@@ -57,12 +57,21 @@
 .foot_list_item{
     list-style: none !important;
     line-height: 35px;
-    
+    color: #C0EEF2 !important;
 
 }
-.foot_list_item :hover{
-    color: orange;
+.foot_list_item a{
+    list-style: none !important;
+    line-height: 35px;
+    color: #C0EEF2 !important;
+    font-weight: 400;
+
 }
+.foot_list_item a:hover{
+    color: orange !important;
+
+}
+
 .under{
     margin: 8px 0 8px 0;
     display: block;
@@ -98,8 +107,9 @@
 .p{
     color: gray;
     display: inline;
-    font-size: 16px;
+    font-size: 12px;
     font-style: normal;
     margin-left: 30px;
     word-wrap: normal;
+    font-weight: 300;
 }

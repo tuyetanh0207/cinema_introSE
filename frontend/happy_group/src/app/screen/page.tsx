@@ -15,7 +15,7 @@ import PopupResult from '@/components/popup_result/popup_result';
 
 export default function Seat () {
   const user = useSelector((state: any)=> state.auth.login.currentUser)
-  const userId= user.user._id
+  const userId= user?.user?._id
   const [seats, setSeats] = useState<any[]>([]);
   const [selectedSeats, setSelectedSeats] = useState<any[]>([]);
   const [selectedDoubleSeats, setSelectedDoubleSeats] = useState<any[]>([]);
@@ -59,7 +59,7 @@ export default function Seat () {
   }
  
   const setBookedSeatss = async function (id: string, data: any){
-    const res = await screenAPI.setBookedSeat(screenInfo._id,data, user.token)
+    const res = await screenAPI.setBookedSeat(screenInfo._id,data, user?.token)
     const dt =res.data
     let seats:string[]
     seats=bookedseats
@@ -123,8 +123,8 @@ export default function Seat () {
         totalPrice: totalPrice
       }
 
-    const res1 = screenAPI.createReservation(userId, newReservation, user.token)
-    const res2 = screenAPI.bookReservation((await res1).data._id, user.token)
+    const res1 = screenAPI.createReservation(userId, newReservation, user?.token)
+    const res2 = screenAPI.bookReservation((await res1).data._id, user?.token)
     setNoti((await res2).data.message)
       setModalOpen(true)
     setSelectedDoubleSeats([])

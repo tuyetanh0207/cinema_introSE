@@ -30,3 +30,28 @@ export type showtimeInterface = {
     },
   
 }
+
+export type movieInterface={
+        _id: "6480701eaaa085da98cc8390",
+        title: "The Lion King",
+        image: "https://res.cloudinary.com/da2qtf6sw/image/upload/v1686488013/poster/d5hdsquwwsa6qhj8b4jl.jpg",
+        language: [
+            "English"
+        ],
+        genre: [
+            "Animation",
+            "Adventure",
+            "Drama"
+        ],
+        director: "Jon Favreau",
+        cast: [
+            "Donald Glover",
+            "Beyoncé Knowles",
+            "Chiwetel Ejiofor",
+            "James Earl Jones"
+        ],
+        description: "After the murder of his father, a young lion prince flees his kingdom only to learn the true meaning of responsibility and bravery.",
+        duration: 118,
+        rating: 6.9,
+    
+}
