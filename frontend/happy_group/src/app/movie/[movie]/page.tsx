@@ -32,7 +32,7 @@ export default function MoviesPage( {params, searchParams}: Props) {
     console.log("hihi");
     console.log("prarams only",params);
     console.log("pros",params.movie);
-    const id=params.movie
+   
     const [movie, setMovie]= useState<movieInterface>()
     const fetchMovie = async () => {
       const res= await movieAPI.getMovie(id);

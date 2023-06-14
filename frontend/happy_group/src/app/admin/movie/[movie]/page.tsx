@@ -1,3 +1,4 @@
+"use client"
 import s from './Film_manager.module.css'
 import React, { useState, useEffect } from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton, TextField } from '@mui/material'
@@ -12,6 +13,13 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {FaTimes} from 'react-icons/fa';
+import movieAPI from '@/app/api/movieAPI';
+import { ResolvingMetadata, Metadata } from 'next';
+
+type Props = {
+  params: { movie: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 interface DataRow {
     No: number;
@@ -35,8 +43,10 @@ interface films{
   id: number;
 }
 
-export default function Film_manager () {
-    
+export default function Film_manager ({params, searchParams}: Props) {
+  // id của phim
+      const id=params.movie
+      console.log("id",id)
       const urlsche='https://643d49466afd66da6af2b0df.mockapi.io/api/schedules'
       const urlfilm='https://643d49466afd66da6af2b0df.mockapi.io/api/film'
       const toastOptionsError = {
@@ -499,4 +509,29 @@ export default function Film_manager () {
       <ToastContainer />
     </div>
     );
+}
+
+
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent?: ResolvingMetadata,
+): Promise<Metadata> {
+  // read route params
+  const id = params.movie;
+ 
+  const res= await movieAPI.getMovie(id) ;
+  const movie=res.data  
+  return {
+  title: movie.title
+
+  };
+}
+
+export async function generateStaticParams() {
+  const res= await movieAPI.getAllMovies();
+  const movies=res.data
+  return movies.map((movie:any) => ({
+    slug: movie._id,
+  }));
 }
