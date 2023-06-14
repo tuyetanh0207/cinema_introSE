@@ -74,6 +74,7 @@
     padding-left: 40px;
     font-weight: bold !important;
     font-family: 'Segoe UI Symbol';
+    cursor: pointer;
 }
 .searchbar{
     font-weight: 400;

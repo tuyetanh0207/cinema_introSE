@@ -25,13 +25,13 @@ const router= useRouter()
         <ModalBody>
 
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter className={styles.footer}>
             {button?.map((btn:string, index:number)=>(
                 <button
                     color={color[index]}
                     type="button"
                     onClick={() => {setModalOpen(!modalOpen);router.push(urls[index])}}
-                    className={styles.button}
+                    className={styles.ripple}
                     
                 >
                     {btn}

@@ -65,7 +65,7 @@ export default function Header () {
     return (
         <div className={`${styles.header}`}>
             <div className={`${styles.subheader}`}>
-                <div className={styles.logo}>
+                <div className={styles.logo} onClick={()=>router.push("/")}>
                     <Image src={logoIcon} alt=''></Image>     
                      Happy Group         
                 </div>

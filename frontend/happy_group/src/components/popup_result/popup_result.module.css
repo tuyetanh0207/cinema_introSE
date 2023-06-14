@@ -26,18 +26,11 @@
     margin-bottom: 40px;
     margin-top: 40px;
     color:#537FE7;
-    padding: 10px;
+    padding: 20px;
 }
 .modal-header{
   
 
-}
-.button_{
-    margin-left: 40px;
-    background-color: var(--primary-color-1);
-    padding: 10px;
-    border-radius: 20px;
-    color: white;
 }
 
 @keyframes slide-in-up {
@@ -55,7 +48,7 @@
     }
   }
 
-  .button{
+.footer button{
     margin-top: 20px;
     padding: 10px;
     margin-right: 20px;
@@ -66,7 +59,7 @@
     color:#537FE7;
     font-weight: 600;
   }
-  .button:hover{
+ .footer  button:hover{
     box-shadow: 0px 0px 80px -80px #537FE7 inset;
     border: solid 0.11em;
     transition: 0.8s;
@@ -88,7 +81,8 @@
     background-repeat: no-repeat; 
     background-position: 50%; 
     transform: scale(10, 10); 
-    opacity: 0; transition: transform .5s, 
+    opacity: 0; 
+    transition: transform .5s, 
     opacity 1s; 
   } 
   .ripple:active:after { 

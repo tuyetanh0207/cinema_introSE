@@ -31,17 +31,14 @@ export default function Seat () {
   const [screenInfo, setScreenInfo] = useState<any>()
   const showtimeId="6480756e0f9d8b1e1ff3818a"
   const [showtime, setShowtime]=useState<showtimeInterface>()
-  console.log("lai")
   useEffect(() => {
     const fetchScreen = async () => {
       try {
         const response = await screenAPI.getScreenByInfo(scheduleId, "12:00")
         setScreenInfo(response.data[0])
          setSeatArr(response.data[0].seatArray);
-        console.log("res: ", seatArr);
         setSeats(seatArr);
       } catch (error) {
-        console.error('Error fetching seats:', error);
       }
     };
     const fetchShowtime = async ()=>{
@@ -62,29 +59,22 @@ export default function Seat () {
   }
  
   const setBookedSeatss = async function (id: string, data: any){
-    const res = await screenAPI.setBookedSeat(screenInfo._id,data)
+    const res = await screenAPI.setBookedSeat(screenInfo._id,data, user.token)
     const dt =res.data
-    console.log("re.", dt.bookedList[0]._id) 
     let seats:string[]
     seats=bookedseats
     for (let i=0;i<dt.bookedList.length;i++){
-      console.log("re. i", dt.bookedList[i]._id) 
       seats.push(dt.bookedList[i]._id.toString() );
     }
-    console.log("set", seats)
     setBookedSeats(seats)
     return seats;
     //  res.data.bookedList.map((seat:any, index:number)=>{return seat._id})
   }
   const handleSeatClick = (arr:any[]) => {
     if (arr[0]!== seatArr.length-1){
-      console.log("arr vua cho", arr)
       setSelectedSeats((prevSelectedSeats) => {
-        console.log("prev arr", prevSelectedSeats)
         if (prevSelectedSeats.some(ar => ar.toString() ===arr.toString())) {
-          console.log("chon trung")
           // Nếu seat đã được chọn, xóa khỏi danh sách selectedSeats
-          console.log("da xoa", prevSelectedSeats.filter((id) => id.toString()!==arr.toString()))
           setTotalPrice((selectedSeats.length-1)*price[0] + selectedDoubleSeats.length*price[1])
 
           return prevSelectedSeats.filter((id) => id.toString()!==arr.toString());
@@ -98,13 +88,9 @@ export default function Seat () {
       });
     }
     else {
-      console.log("arr vua cho la doi", arr)
       setSelectedDoubleSeats((prevSelectedSeats) => {
-        console.log("prev arr", prevSelectedSeats)
         if (prevSelectedSeats.some(ar => ar.toString() ===arr.toString())) {
-          console.log("chon trung")
           // Nếu seat đã được chọn, xóa khỏi danh sách selectedSeats
-          console.log("da xoa", prevSelectedSeats.filter((id) => id.toString()!==arr.toString()))
           setTotalPrice((selectedSeats.length)*price[0] + (selectedDoubleSeats.length-1)*price[1])
 
           return prevSelectedSeats.filter((id) => id.toString()!==arr.toString());
@@ -112,15 +98,11 @@ export default function Seat () {
           // Nếu seat chưa được chọn, thêm vào danh sách selectedSeats
           setTotalPrice((selectedSeats.length)*price[0] + (selectedDoubleSeats.length+1)*price[1])
 
-          console.log("dc choj", [...prevSelectedSeats, arr])
           return [...prevSelectedSeats, arr];
         }
       });
     }
-    console.log("sele", selectedSeats)
     setTotalPrice(selectedSeats.length*price[0] + selectedDoubleSeats.length*price[1])
-    console.log("TEO", totalPrice)
-    console.log("teo 1", selectedSeats.length*price[0] + selectedDoubleSeats.length*price[1])
    
   };
   const handlecreatebtn = async()=>{
@@ -131,11 +113,8 @@ export default function Seat () {
   const [modelOpen, setModalOpen]=useState(false)
   const [totalPrice, setTotalPrice]=useState(selectedSeats.length*price[0] + selectedDoubleSeats.length*price[1])
   const handleBookingBtn = async() => {
-    console.log("booke cli", selectedSeats, selectedDoubleSeats)
     setBookedSeats([])
       const res  = setBookedSeatss(screenInfo._id, selectedSeats)
-      // console.log("booked seat id", bookedseats)
-      // console.log("res after lis", res)
       setTotalPrice(selectedSeats.length*price[0] + selectedDoubleSeats.length*price[1])
       const newReservation ={
         userId: userId,
@@ -143,7 +122,6 @@ export default function Seat () {
         seats: bookedseats,
         totalPrice: totalPrice
       }
-      console.log("new re", newReservation)
 
     const res1 = screenAPI.createReservation(userId, newReservation, user.token)
     const res2 = screenAPI.bookReservation((await res1).data._id, user.token)
@@ -153,7 +131,6 @@ export default function Seat () {
     setSelectedSeats([])
     setTotalPrice(0)
   }
-  // console.log("booked seat id", bookedseats)
   return (
     <div className=''>
     {
@@ -228,7 +205,7 @@ export default function Seat () {
             </p>
           </div>
 
-          <button className={styles.bt} onClick={()=>{setIsChoosingSeat(0);}}>
+          <button className={styles.ripple} onClick={()=>{setIsChoosingSeat(0);}}>
             Tiếp theo
           </button>
         </div>

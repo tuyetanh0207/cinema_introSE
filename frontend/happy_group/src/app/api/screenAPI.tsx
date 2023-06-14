@@ -10,9 +10,9 @@ const screenAPI = {
     const url =`${apiV1}/screens`;
     return getWithData(url,"", { scheduleId: scheduleID, time: time})
   },
-  setBookedSeat: function (screenID: string, data:any){
+  setBookedSeat: function (screenID: string, data:any, token: string){
     const url = `${apiV1}/screens/booked-seat/${screenID}`;
-    return post (url, data, "")
+    return post (url, data, token)
   },
   createScreen: function (scheduleId: string, time: string){
     const url = `${apiV1}/screens/`;

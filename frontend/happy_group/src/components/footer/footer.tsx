@@ -12,8 +12,8 @@ export default function Footer () {
                 <ul className={styles.foot_list}>
                     <h1 className={styles.h1}>GIỚI THIỆU</h1>
                     <Image src={un_foot} alt='' className={styles.under}/>
-                    <li className={styles.foot_list_item}>Về chúng tôi
-                        {/* <Link className={styles.link} href={''}>Về chúng tôi</Link> */}
+                    <li className={styles.foot_list_item}>
+                        <Link className={styles.link} href={''}>Về chúng tôi</Link>
                     </li>
                     <li className={styles.foot_list_item}>
                         <Link className={styles.link} href={''}>Thỏa thuận sử dụng</Link>
@@ -117,7 +117,7 @@ export default function Footer () {
             </div>
             </div>
             <div className={styles.bottom}>
-                <Image src={logo_white} alt='' className={styles.logo}/>
+                <Image src={logo_white} alt='' className={styles.logo} width={60} height={60}/>
                   Happy Group 
                 <p className={styles.p}>KTX khu A, khu phố 6, phường Linh trung, thành phố Thủ Đức, HCM</p>
             </div>

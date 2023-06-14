@@ -11,7 +11,7 @@ import iosIcon from './ios_foot.svg'
 import androidIcon from './android_foot.svg'
 import bg_foot from './bg_footer.svg'
 import un_foot from './underline_footer.svg'
-import logo_white from './logo_white.svg'
+import logo_white from './logo_white.png'
 import right_arrow from './changed_right.svg'
 import left_arrow from './changed_left.svg'
 import help_ad from "./help_ad.svg"

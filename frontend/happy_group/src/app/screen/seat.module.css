@@ -369,7 +369,7 @@ p.text span {
   border-style: solid 20px #6a91eb !important;
 
 }
-.mvDetails1 button{
+.mvDetails1 button, .movie_container button{
   margin-top: 20px;
   padding: 10px;
   margin-right: 20px;
@@ -380,7 +380,7 @@ p.text span {
   color:#537FE7;
   font-weight: 600;
 }
-.mvDetails1 button:hover{
+.mvDetails1 button:hover, .movie_container button:hover{
   box-shadow: 0px 0px 80px -80px #537FE7 inset;
   border: solid 0.11em;
   transition: 0.8s;
