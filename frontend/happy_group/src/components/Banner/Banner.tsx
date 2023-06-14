@@ -133,25 +133,25 @@ export default function Banner () {
       const TicketData1 = await showtimeAPI.quickbuy(id, theatre,date);
       // console.log("res: ", TicketData1);
       setTimes(TicketData1.data)
-  const ticketIds = TicketData1.data.theatres;
-  const ticketNames = TicketData1.data.theatreIds;
+  // const ticketIds = TicketData1.data.theatres;
+  // const ticketNames = TicketData1.data.theatreIds;
 
-  const combinedData = ticketIds.map((name: any, index: number) => {
-    return {
-      name,
-      id: ticketNames[index]
-    };
-  });
+  // const combinedData = ticketIds.map((name: any, index: number) => {
+  //   return {
+  //     name,
+  //     id: ticketNames[index]
+  //   };
+  // });
 
   // console.log("combinedData: ", combinedData);
 
-  quickTickets1(combinedData);
+  // quickTickets1(combinedData);
 }
 
 function isButtonDisabled() {
-  const movieId = document.getElementsByName('movieId')[0]?.value;
+  const movieId = document.getElementsByName('showtimeId')[0]?.value;
   const date = document.getElementsByName('date')[0]?.value;
-  const theatreId = document.getElementsByName('theatreId')[0]?.value;
+  const theatreId = document.getElementsByName('theatreName')[0]?.value;
   const time = document.getElementsByName('time')[0]?.value;
 
   console.log(movieId);
@@ -185,13 +185,13 @@ function isButtonDisabled() {
      const dispatch =useDispatch
      const router =useRouter()
     const handleBuyBtn= ()=>{
-      const newBooking ={
-        showtimeId: selectedShowtimeId,
-        date: selectedDate,
-        theatreName: selectedTheatreId,
-        time: selectedTime
-      }
-      bookingMovie(newBooking, dispatch, router)
+      // const newBooking ={
+      //   showtimeId: selectedShowtimeId,
+      //   date: selectedDate,
+      //   theatreName: selectedTheatreId,
+      //   time: selectedTime
+      // }
+      // bookingMovie(newBooking, dispatch, router)
     }
 
 
@@ -223,13 +223,13 @@ function isButtonDisabled() {
         {/* Form begin */}
             <div className={styles.opt}>
                 <label>MUA VÉ NHANH</label>
-                <form action="./buy_ticket">
-                    <select name="movieId" onChange={handleMovieChange}>
+                <form action="./screen">
+                    <select name="showtimeId" onChange={handleMovieChange}>
                         <option value="" hidden>Chọn phim</option> 
                         {movies.map((mvName, index) => (<option key={index} value={mvName.showtimeId}>{mvName.movieTitle}</option>))} 
                     </select>   
 
-                    <select name="theatreId" onChange={handleTheatreChange} > 
+                    <select name="theatreName" onChange={handleTheatreChange} > 
                         <option value="" hidden>Chọn rạp</option> 
                         {theatres.map((theatres, index) => (<option key={index} value={theatres}>{theatres}</option>))}
                     </select> 

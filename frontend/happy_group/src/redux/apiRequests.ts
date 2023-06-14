@@ -1,4 +1,4 @@
-import { booking } from './apiRequests';
+
 import axios, { AxiosInstance } from "axios";
 import UserAPI from "@/app/api/userAPI";
 import {useRouter} from "next/router"

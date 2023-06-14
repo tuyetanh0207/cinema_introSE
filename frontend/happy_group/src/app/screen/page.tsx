@@ -12,45 +12,63 @@ import { showtimeInterface } from '../api/apiResponse';
 import { toASCII } from 'punycode';
 import { Sree_Krushnadevaraya } from 'next/font/google';
 import PopupResult from '@/components/popup_result/popup_result';
+import axios from 'axios';
 
 export default function Seat () {
+  var currentURL = window.location.href;
+  var url = new URL(currentURL);
+  var searchParams = new URLSearchParams(url.search);
   const user = useSelector((state: any)=> state.auth.login.currentUser)
   const userId= user?.user?._id
   const [seats, setSeats] = useState<any[]>([]);
   const [selectedSeats, setSelectedSeats] = useState<any[]>([]);
   const [selectedDoubleSeats, setSelectedDoubleSeats] = useState<any[]>([]);
   const [isChoosingSeat, setIsChoosingSeat] =useState(1)
-  const [time,setTime] = useState("14:00")
-  const [scheduleId, setScheduleID]= useState("6480b4c5d6b19729a6efd158")
+  const [time,setTime] = useState(searchParams.get('time')||"")
+  const [scheduleId, setScheduleID]= useState(searchParams.get('showtimeId')||"")
   const [seatArr, setSeatArr]= useState<any[]>([])
-  const price =[50000,90000]
-  const movieImg = picS1;
-  const movieName = "chuaw cos"
-  const theatreName = "chua co"
+  const price =[50000,100000]
+  const date = searchParams.get("date")||""
+
+  const theatreName = searchParams.get('theatreName')||""
   const [bookedseats, setBookedSeats] = useState<any[]>([])
   const [screenInfo, setScreenInfo] = useState<any>()
-  const showtimeId="6480756e0f9d8b1e1ff3818a"
+  const showtimeId=searchParams.get('showtimeId')||""
   const [showtime, setShowtime]=useState<showtimeInterface>()
+  const [banks, setBanks] = useState<any[]>([])
+
   useEffect(() => {
     const fetchScreen = async () => {
-      try {
-        const response = await screenAPI.getScreenByInfo(scheduleId, "12:00")
-        setScreenInfo(response.data[0])
-         setSeatArr(response.data[0].seatArray);
-        setSeats(seatArr);
-      } catch (error) {
-      }
-    };
-    const fetchShowtime = async ()=>{
-      const res = await showtimeAPI.getShowtime(showtimeId);
-      setShowtime(res.data)
 
-    }
+      const response = await screenAPI.getScreenByShowtime(user?.token,showtimeId, theatreName,date, time);
 
+      setScreenInfo(response.data);
+      setSeatArr(response.data.seatArray);
+          
+       
+      } 
     fetchScreen();
-    fetchShowtime();
-  }, []);
+ 
+  },[]);
+  const fetchShowtime = async ()=>{
+    const res = await showtimeAPI.getShowtime(showtimeId);
+    setShowtime(res.data);
 
+  }
+  const fetchBanks = async ()=>{
+  //  const res = await fetch()
+   axios
+      .get("https://api.vietqr.io/v2/banks")
+      .then((res) => {
+        setBanks(res.data.data);
+        console.log("hhi", res.data.data)
+        return res.data ;
+      })
+  }
+  useEffect(()=>{
+    fetchBanks()
+    fetchShowtime();
+  },[])
   const convert2Alphabet = (seat:any[])=>{
     const alp = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", 
   "M", "N", "O", "P", "Q", "R"]
@@ -59,6 +77,7 @@ export default function Seat () {
   }
  
   const setBookedSeatss = async function (id: string, data: any){
+    setBookedSeats([])
     const res = await screenAPI.setBookedSeat(screenInfo._id,data, user?.token)
     const dt =res.data
     let seats:string[]
@@ -109,12 +128,21 @@ export default function Seat () {
     const res = await screenAPI.createScreen(screenInfo.scheduleId, "12:00")
     setScreenInfo(res.data)
   }
+  const vietnamBankAccountPattern = /^[0-9]{10,13}$/;
+  const [bankAccountNumber, setBankAccount] =useState("") ;
+  const isValidBankAccount = vietnamBankAccountPattern.test(bankAccountNumber);
+  
+  console.log(isValidBankAccount); // Output: true
   const [noti, setNoti]= useState("")
+  const [reser, setreser] =useState("")
   const [modelOpen, setModalOpen]=useState(false)
   const [totalPrice, setTotalPrice]=useState(selectedSeats.length*price[0] + selectedDoubleSeats.length*price[1])
   const handleBookingBtn = async() => {
     setBookedSeats([])
-      const res  = setBookedSeatss(screenInfo._id, selectedSeats)
+    console.log("dounle",bookedseats)
+   
+  
+    console.log("dounle 2",bookedseats)
       setTotalPrice(selectedSeats.length*price[0] + selectedDoubleSeats.length*price[1])
       const newReservation ={
         userId: userId,
@@ -122,14 +150,41 @@ export default function Seat () {
         seats: bookedseats,
         totalPrice: totalPrice
       }
-
+      console.log(newReservation)
+      console.log("dounle 3",bookedseats)
+ 
     const res1 = screenAPI.createReservation(userId, newReservation, user?.token)
-    const res2 = screenAPI.bookReservation((await res1).data._id, user?.token)
-    setNoti((await res2).data.message)
-      setModalOpen(true)
-    setSelectedDoubleSeats([])
-    setSelectedSeats([])
-    setTotalPrice(0)
+      setTimeout(async () => {
+        const res2 = screenAPI.bookReservation((await res1).data._id, user?.token)
+        console.log("dounle 4",bookedseats)
+        const reserv= (await res1).data._id
+        console.log("re", reserv)
+        setreser(reserv)
+        setNoti((await res2).data.message)
+        setModalOpen(true)
+        setSelectedDoubleSeats([])
+        setSelectedSeats([])
+        setTotalPrice(0)
+        setBookedSeats([])
+        console.log("dounle 5",bookedseats)
+      }, 10);
+  
+  }
+  const handleBackBtn=async ()=>{
+    const res = await screenAPI.deleteBookedSeat(user?.token,bookedseats[0])
+    setBookedSeats([])
+    setIsChoosingSeat(1)
+  }
+  const handleNextBtn = async()=>{
+    setIsChoosingSeat(0);
+    setBookedSeats([])
+    console.log("dounle",bookedseats)
+    if (selectedDoubleSeats.length!==0||selectedSeats.length!==0){
+      const res  = await setBookedSeatss(screenInfo._id, selectedSeats.concat(selectedDoubleSeats))
+    }
+    console.log("dounle",selectedDoubleSeats)
+  
+    console.log("dounle 2",bookedseats)
   }
   return (
     <div className=''>
@@ -205,7 +260,7 @@ export default function Seat () {
             </p>
           </div>
 
-          <button className={styles.ripple} onClick={()=>{setIsChoosingSeat(0);}}>
+          <button className={styles.ripple} onClick={()=>{handleNextBtn()}}>
             Tiếp theo
           </button>
         </div>
@@ -283,7 +338,7 @@ export default function Seat () {
                         </div>
                         <div className={styles.content4}>
                           <div className={styles.divNum}     defaultValue={0}/>
-                          <div  className={styles.price}   defaultValue={90000} />
+                          <div  className={styles.price}   defaultValue={price[1]} />
                           <div   className={styles.outputNum}    />
                         </div>
                     
@@ -322,11 +377,18 @@ export default function Seat () {
             </div>
             <div className={styles.mvDetails1}>
             <div className={styles.input}> 
-                <input type="text" id='username'  placeholder='Ngân hàng' className={styles.username} />
-                <input type="text" id ='password'  placeholder='Số tài khoản' className={styles.username} />
+                <select className={styles.username}>
+                  {banks.map((e)=>
+                  <option key={e}>({e.bin}) - {e.shortName}</option>)}
+                </select>
+       
+                <input type="text" id ='password' onChange={(e)=>setBankAccount(e.target.value)} placeholder='Số tài khoản' className={styles.username} />
+                {vietnamBankAccountPattern.test(bankAccountNumber)?(<p>
+                Số tài khoản hợp lệ!</p>):(<h8>Số tài khoản không hơp lệ!
+                </h8>)}
             </div>
                
-                <button className={styles.ripple} onClick={()=> setIsChoosingSeat(1)}>QUAY LẠI</button>
+                <button className={styles.ripple} onClick={()=> handleBackBtn()}>QUAY LẠI</button>
                   {/* <button onClick={()=> handlecreatebtn()}>taoj cr</button> */}
                 <button onClick={()=> handleBookingBtn()}>THANH TOÁN</button>
               
@@ -337,7 +399,7 @@ export default function Seat () {
       
     }
    
-      <PopupResult message={noti} button={["Về trang chủ", "Xem lại vé"]} urls={["/", "/"]}
+      <PopupResult message={noti} button={["Về trang chủ", "Xem lại vé"]} urls={["/", `/user/reservation/${reser}`]}
       modalOpen={modelOpen} setModalOpen={setModalOpen}  />
  
        

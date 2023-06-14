@@ -55,3 +55,39 @@ export type movieInterface={
         rating: 6.9,
     
 }
+
+export type reservationInterface ={
+
+        reservation: {
+            _id: "648a17a5dbe06d9af9b643e5",
+            userId: "64897c9ee4fcfe09c32ead48",
+            showtimeId: "6489ec98ba4769263484ac62",
+            seats: [
+                "648a165ddbe06d9af9b643de",
+                "648a165ddbe06d9af9b643e0"
+            ],
+            totalPrice: 100,
+            status: "Booked",
+            expirationTime: "2023-06-14T19:50:21.071Z",
+            createdAt: "2023-06-14T19:40:21.072Z",
+            updatedAt: "2023-06-14T19:42:15.887Z",
+      
+        },
+        tickets: [
+            {
+                movieTitle: "Joker",
+                date: "2023-06-15T00:00:00.000Z",
+                time: "14:00",
+                seatPosition: "B3",
+                theatre: "Happy Us Theatre Quận 1"
+            },
+            {
+                movieTitle: "Joker",
+                date: "2023-06-15T00:00:00.000Z",
+                time: "14:00",
+                seatPosition: "B4",
+                theatre: "Happy Us Theatre Quận 1"
+            }
+        ]
+
+}
