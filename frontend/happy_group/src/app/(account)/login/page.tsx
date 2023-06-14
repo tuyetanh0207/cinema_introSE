@@ -44,7 +44,7 @@ loginUser(newUser, dispatch,router);
    
             <form className={styles.form} onSubmit={handleSubmit} >
               <div className={styles.input}> <input type="text" id='username' onChange={(e)=> setUsername(e.target.value)} placeholder='Tên đăng nhập' className={styles.username} />
-                <input type="text" id ='password' onChange={(e)=> setPassword(e.target.value)} placeholder='Mật khẩu' className={styles.username} /></div>
+                <input type="password" id ='password' onChange={(e)=> setPassword(e.target.value)} placeholder='Mật khẩu' className={styles.username} /></div>
                
                 <div className={styles.footer}>
                     <div className={styles.forget_pwd}>

@@ -2,12 +2,14 @@
     font-family: 'Segoe UI';
     width: 100%;
     font-style: normal;
+    background-color: #E9F8F9;
 }
 .subheader{
     height: 55px;
     display: flex;
     align-items: center;
 }
+
 .navbar {
 
     height: 55px;
@@ -27,6 +29,17 @@
 
 
 }
+.navbar_list li {
+    /* color: white !important; */
+}
+.navbar_list a {
+    color: white !important;
+
+}
+.navbar_list a:hover{
+    color: orange !important;
+    text-decoration: none;
+}
 .navbar_list_icon{
     right: 0%;
     position: absolute;
@@ -36,12 +49,10 @@
 .navbar_item, .navbar_item_icon{
     display: inline-block;
     font-size: 18px;
-    color: white;
+    color: white !important;
 
 }
-.navbar_item :hover{
-    color: orange;
-}
+
 .navbar_item_icon :hover{
     filter: 
     invert(0.5)
@@ -133,6 +144,9 @@
     /* animation: 500ms ease-in-out 0s normal none 1 running fadeInDown; */
     padding-top: 0px;
     padding-bottom: 0px;
+}
+.is_sticky a{
+    color:  #537FE7 !important;
 }
 .img{
     background-image: url(../../assets/imgs/movie.jpg);

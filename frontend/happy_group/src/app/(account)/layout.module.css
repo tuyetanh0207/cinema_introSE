@@ -10,6 +10,7 @@
 .popup{
     width: 50%;
     height: 70%;
+    min-width: 300px;
     background-color: white;
     left: 50%;
     top:50%;

@@ -12,6 +12,8 @@ import movieAPI from './api/movieAPI'
 // import { useRouter } from 'next/router'
 import { useRouter } from 'next/navigation'
 
+import buy_ticket from '@/components/buy_ticket/buy_ticket'
+
 import { useState } from 'react'
 import Filmcomment from '@/components/filmcomment/filmcomment'
 import { ClassificationTypeNames } from 'typescript'

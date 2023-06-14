@@ -106,7 +106,7 @@ export default function Banner () {
 
     const [movies, pickMovies] = useState<any[]>([]); ///
     const movie = async () => {
-    const MovieData = await movieAPI.getNowShowing();
+    const MovieData = await movieAPI.getNowShowingMovies();
         // console.log("res: ", MovieData);
         pickMovies(MovieData.data);
         }

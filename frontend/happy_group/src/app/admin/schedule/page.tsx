@@ -90,13 +90,11 @@ export default function Schedule_Admin (){
   <thead>
     <tr>
       <th>No.</th>
-      {/* <th>ID</th> */}
       <th>Name</th>
       <th>Start</th>
       <th>End</th>
       <th>Date</th>
       <th>Theatre</th>
-    
       <th>Time</th>
       <th>opt</th>
     </tr>
@@ -147,8 +145,6 @@ export default function Schedule_Admin (){
                    
                   </td>
   
-          
-          {/* < Image src={add_ad} alt="" className={styles.add_row_img} width={20} height={20}/> */}
           <td className= {styles.add_sheet}> 
 
           
@@ -182,7 +178,7 @@ export default function Schedule_Admin (){
           <>
             <td rowSpan={schedule.times.length}>{index + 1}</td>
             {/* <td rowSpan={schedule.times.length}>{schedule.movieId._id}</td> */}
-            <td rowSpan={schedule.times.length}>{schedule.movie}</td>
+            <td rowSpan={schedule.times.length}>{schedule.movieName}</td>
             <td rowSpan={schedule.times.length}>{schedule.startDate.substring(0,10)}</td>
             <td rowSpan={schedule.times.length}>{schedule.endDate.substring(0,10)}</td>
           </>
