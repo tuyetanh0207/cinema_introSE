@@ -40,16 +40,34 @@ export default function Seat () {
   useEffect(() => {
     const fetchScreen = async () => {
 
-      const response = await screenAPI.getScreenByShowtime(user?.token,showtimeId, theatreName,date, time);
+      const res = await screenAPI.getScreenByShowtime(user?.token,showtimeId, theatreName,date, time);
 
-      setScreenInfo(response.data);
-      setSeatArr(response.data.seatArray);
+      setScreenInfo(res.data);
+      setSeatArr(res.data.seatArray);
+
+      selectedSeats.forEach((element, index) => {
+        if (res.data.seatArr[element[0]][element[1]]===1){
+          selectedSeats.splice(index,1);
+      }
+      
+        
+      });
+
+      selectedDoubleSeats.forEach((element, index) => {
+        if (res.data.seatArr[element[0]][element[1]]===1){
+          selectedSeats.splice(index,1);
+      }
+      
+        
+      });
           
        
       } 
     fetchScreen();
  
   },[]);
+
+
   const fetchShowtime = async ()=>{
     const res = await showtimeAPI.getShowtime(showtimeId);
     setShowtime(res.data);
