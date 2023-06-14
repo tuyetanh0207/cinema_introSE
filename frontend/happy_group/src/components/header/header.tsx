@@ -58,7 +58,7 @@ export default function Header () {
   const isSticky = () => {
     /* Method that will fix header after a specific scrollable */
     const scrollTop = window.scrollY;
-    scrollTop >= 100 ? setSticky(true) : setSticky(false);
+    scrollTop >= 55 ? setSticky(true) : setSticky(false);
     // setSticky(true)
   };
 
@@ -90,29 +90,31 @@ export default function Header () {
             
             </div>
             {sticky? (
+                 <>
+                 <div className={styles.subheader}></div>
                  <div className={`${styles.navbar} ${styles.is_sticky}`}>
-                 <ul className={styles.navbar_list}>
-                     <li className={styles.navbar_item}><Link href={''}>Trang chủ</Link></li>
-                     <li className={styles.navbar_item}><Link href={''}>Mua vé</Link></li>
-                     <li className={styles.navbar_item}><Link href={''}>Phim</Link></li>
-                     <li className={styles.navbar_item}><Link href={''}>Phim hot</Link></li>
-                     <li className={styles.navbar_item}><Link href={''}>Góc điện ảnh</Link></li>
-                     <li className={styles.navbar_item}><Link href={''}>Rạp/Giá vé</Link></li>
-                     <li className={styles.navbar_item}><Link href={''}>Hỗ trợ</Link></li>
- 
-                 </ul>
-                 <ul className={styles.navbar_list_icon}>
-                 <li className={styles.navbar_item_icon}>
-                     <Image src={fbIcon} alt={''}></Image>
-                 </li>
-                 <li className={styles.navbar_item_icon}>
-                     <Image src={twitterIcon} alt={''}></Image>
-                 </li>
-                 <li className={styles.navbar_item_icon}>
-                     <Image src={instaIcon} alt={''}></Image>
-                 </li>
-                 </ul>
-             </div>
+                    <ul className={styles.navbar_list}>
+                        <li className={styles.navbar_item}><Link href={''}>Trang chủ</Link></li>
+                        <li className={styles.navbar_item}><Link href={''}>Mua vé</Link></li>
+                        <li className={styles.navbar_item}><Link href={''}>Phim</Link></li>
+                        <li className={styles.navbar_item}><Link href={''}>Phim hot</Link></li>
+                        <li className={styles.navbar_item}><Link href={''}>Góc điện ảnh</Link></li>
+                        <li className={styles.navbar_item}><Link href={''}>Rạp/Giá vé</Link></li>
+                        <li className={styles.navbar_item}><Link href={''}>Hỗ trợ</Link></li>
+
+                    </ul>
+                    <ul className={styles.navbar_list_icon}>
+                        <li className={styles.navbar_item_icon}>
+                            <Image src={fbIcon} alt={''}></Image>
+                        </li>
+                        <li className={styles.navbar_item_icon}>
+                            <Image src={twitterIcon} alt={''}></Image>
+                        </li>
+                        <li className={styles.navbar_item_icon}>
+                            <Image src={instaIcon} alt={''}></Image>
+                        </li>
+                    </ul>
+                </div></>
             ):(
                 <div className={styles.navbar}>
                 <ul className={styles.navbar_list}>

@@ -14,6 +14,15 @@ export const config = function (token: string) {
     },
   };
 };
+export const configWithData = function (token: string, data: any) {
+  return {
+    headers: {
+      "content-type": "application/json",
+      'Tokens': `Bearer ${token}`,
+    },
+    data: data
+  };
+};
 
 export const get = function (url: string, token: string) {
   return new Promise<{ data: any }>((resolve, reject) =>
@@ -30,6 +39,24 @@ export const get = function (url: string, token: string) {
       })
   );
 };
+
+
+export const getWithData = function (url: string, token: string, data:any) {
+  return new Promise<{ data: any }>((resolve, reject) =>
+    axios
+      .get(url, configWithData(token, data))
+      .then((res) => {
+        // return data
+        return resolve({ data: res.data });
+      })
+      .catch((err) => {
+        // return err message
+        if (!err.response) return reject(err.message);
+        return reject(err.response.data.message);
+      })
+  );
+};
+
 
 export const post = function (url: string, data: any, token: string) {
   return new Promise<{ data: any }>((resolve, reject) =>

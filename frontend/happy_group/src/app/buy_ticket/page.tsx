@@ -1,15 +1,13 @@
 "use client"
 
-import Buy_ticket from "@/components/buy_ticket/buy_ticket"
-
+import "react"
 
 export default function Buy_ticket (){
 
 
 
   return(
-
-    <Buy_ticket/>
+    <><Buy_ticket/></>
   )
 }
 
