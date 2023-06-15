@@ -200,8 +200,13 @@ function isButtonDisabled() {
         {/* slides begin */}
             <div className={styles.slides} id={'pic'}>
             {/* <!--image begin */}
-                {slides.map((slide, index) => (<div className={styles.slide} key={index}><img src={slide.imageUrl} alt={''} /></div>))}
-
+                {slides.map((slide, index) => (
+                    <div className={styles.slide} key={index}>
+                        <img src={slide} alt={''} />
+                    
+                    </div>
+                    ))}
+                
             </div>
         {/* slides end*/}
             <div onClick={() => side_slide(1)} className={styles.change_btn} id={styles.left}>

@@ -2,6 +2,7 @@
     height: 500px;
     overflow: hidden;
     position: relative;
+    margin-bottom: 100px;
   }
   
   .slides {
@@ -17,7 +18,7 @@
   }
 
   .change_btn {
-    width: 40px;
+    width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +26,7 @@
     cursor: pointer;
     position: absolute;
     top: 0;
+    /* background-color: #000; */
   }
   
   #left {
@@ -51,11 +53,11 @@
 
 
 #left:hover{
-    background-image:  linear-gradient(-90deg,#C0EEF2,#C0EEF200); 
+  transform: scale(1.2);
 }
 
 #right:hover{
-    background-image:  linear-gradient(90deg,#537fe7,#537fe700); 
+  transform: scale(1.2);
 }
 
 .Banner .opt{
@@ -67,8 +69,10 @@ right: 100px;
 box-sizing: border-box;
 display: flex;
 flex-direction: column;
-background-color: #C0EEF2;
-opacity: 0.85;
+backdrop-filter: blur(20px);
+background-color: rgba(255, 255, 255, 0.2);
+box-shadow: 0px 0px 10px #000;
+animation: slideIn 2s forwards;
 }
 
 .opt select{
@@ -88,6 +92,7 @@ opacity: 0.85;
     text-align: center;
     line-height: 50px;
     margin-bottom: 30px;
+    animation: colorAnimation 1s infinite;
  }
 
  .opt .buy_btn{
@@ -107,3 +112,29 @@ opacity: 0.85;
  }
  
 
+ @keyframes slideIn {
+  0% {
+    opacity: 0;
+    top: -200px;
+  }
+  100% {
+    opacity: 1;
+    top: 50px; /* Final position at the center */
+  }
+}
+
+
+@keyframes colorAnimation {
+  0% {
+    color: rgb(0, 0, 0);
+  }
+  33% {
+    color: rgb(167, 167, 190);
+  }
+  66% {
+    color: rgb(0, 0, 0);
+  }
+  100% {
+    color: rgb(255, 255, 255);
+  }
+}

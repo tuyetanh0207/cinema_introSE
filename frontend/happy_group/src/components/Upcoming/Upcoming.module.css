@@ -112,13 +112,14 @@
     height: 50px;
     background-color: aqua;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 15%;
     transform: translate(-50%, -50%);
     margin-bottom: 30px;
     border: 0;
     transition: transform 0.3s ease;
     transform: translateY(500px);
+    color: #0a3c64;
 }
   
 .movie_item:hover .btn_more {

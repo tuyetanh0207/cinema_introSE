@@ -93,6 +93,7 @@
 .img:hover {
     filter: brightness(30%);
     transition: all 0.3s ease;
+    /* backdrop-filter: blur(20px); */
 }
 
 .listfilm {
@@ -112,12 +113,12 @@
     height: 50px;
     background-color: aqua;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 15%;
     transform: translate(-50%, -50%);
     margin-bottom: 30px;
     border: 0;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     transform: translateY(500px);
 }
   
@@ -125,6 +126,6 @@
     transform: translateY(0);
 }
 
-.btn_more :hover{
-    background-color: #000000;
+.btn_more:hover {
+    transform: translateY(0);
 }

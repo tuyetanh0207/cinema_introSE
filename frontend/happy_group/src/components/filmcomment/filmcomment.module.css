@@ -21,6 +21,7 @@
     flex-direction: column;
 	flex-basis: 55%;
 	display: grid;
+    margin-left: 30px;
 }
 
 .box {
@@ -31,7 +32,7 @@
 .image {
 	flex-basis: 40%;
 	height: 100px;
-	background-color: #ffffff;
+	/* background-color: #ffffff; */
 }
 .image:hover{
     filter: brightness(40%);
