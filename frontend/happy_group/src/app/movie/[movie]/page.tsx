@@ -6,21 +6,23 @@ import Loader from "@/components/loader";
 import {clock} from '@/assets/svgs';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
+import showtimeAPI from "@/app/api/showtimeAPI";
+
 type movieInterface = {
-    _id: string,
-    duration: number,
-    title: string,
-    image: string,
-    language: [],
-    genre : [],
-    director: string,
-    cast : [],
-    // releaseDate: string,
-    rating: number,
-    description: string,
-    releaseDate: string
-}
+    _id: string;
+    title: string;
+    image: string;
+    language: string[];
+    genre: string[];
+    director: string;
+    cast: string[];
+    description: string;
+    duration: number;
+    rating: number;
+    __v: number;
+  };
+  
 type Props = {
     params: { movie: string };
     searchParams: { [key: string]: string | string[] | undefined };
@@ -29,20 +31,80 @@ type Props = {
 
 
 export default function MoviesPage( {params, searchParams}: Props) {
+    const id=params.movie
     console.log("hihi");
     console.log("prarams only",params);
     console.log("pros",params.movie);
    
     const [movie, setMovie]= useState<movieInterface>()
     const fetchMovie = async () => {
-      const res= await movieAPI.getMovie(id);
-      setMovie(res.data)
+      const res= await showtimeAPI.getShowtime(id);
+      console.log('data', res.data)
+      setMovie(res.data.movie)
     }
     useEffect(()=> {
       fetchMovie();
   },[])
-// console.log("ket qua", specificMovie)
-    
+
+  const [selectedDate, setSelectedDate] = useState('2023-06-13');
+  const [useDate, setUseDate]=useState('2023/06/13')
+    function handleDateChange(event: ChangeEvent<HTMLInputElement>): void {
+        setSelectedDate(event.target.value);
+        const date = event.target.value.replace(/-/g, "/");
+        setUseDate(event.target.value.replace(/-/g, "/"))   
+    }
+
+    const [selectedTheater, setSelectedTheater] = useState('Tất cả các rạp');
+
+    const handleTheaterChange = (event) => {
+        setSelectedTheater(event.target.value);
+      };
+
+     //showtime
+     const fetchSche = async () => {
+       const res= await showtimeAPI.quickbuy(id,'',useDate);
+       res.data.forEach(item => {
+             for (let i = 0; i < res.data.length; i++) {
+                     if(item.theatre==='Happy Us Theatre Quận 1'){
+                         setQ1(item.time)
+                     }
+                     if(item.theatre==='Happy Us Theatre Quận 2'){
+                         setQ2(item.time)
+                     }
+                     if(item.theatre==='Happy Us Theatre Quận 3'){
+                         setQ3(item.time)
+                     }
+                     if(item.theatre==='Happy Us Theatre Quận 4'){
+                         setQ4(item.time)
+                     }
+                     if(item.theatre==='Happy Us Theatre Quận 5'){
+                         setQ5(item.time)
+                     }
+               }
+         }  
+       );
+     }
+     useEffect(()=> {
+       fetchSche();
+   },[useDate])
+   const [Q1, setQ1] = useState([]);
+   const [Q2, setQ2] = useState([]);
+   const [Q3, setQ3] = useState([]);
+   const [Q4, setQ4] = useState([]);
+   const [Q5, setQ5] = useState([]);
+
+   const handleClick = (theatreName: string, time: string) => {
+    const showtimeId=params.movie;
+    theatreName=encodeURIComponent(theatreName);
+    const date=selectedDate;
+    time=encodeURIComponent(time);
+    const link = `http://localhost:3000/screen?showtimeId=${showtimeId}&theatreName=${theatreName}&date=${date}&time=${time}&fbclid=IwAR34WyDJEGXy12f310JUJfyj62-do7hb8Bk4aoqu8Sjm5zMNU_8z9LAJx34`;
+
+    window.location.href = link;
+
+   
+  };
+  
     return (
       <>
       <div className={s.idfilm}>
@@ -50,7 +112,7 @@ export default function MoviesPage( {params, searchParams}: Props) {
           <a className={s.db} href="https://www.galaxycine.vn/">TRANG CHỦ</a>
           {
               (!movie ) ? 
-                  <Loader />:<div> {movie.title}</div>
+                  <Loader />:<div className={s.space}> {movie.title}</div>
           }   
       </div>
        <div className={s.container}>
@@ -173,125 +235,105 @@ export default function MoviesPage( {params, searchParams}: Props) {
        <div className={s.mschedule}>
             <div> LỊCH CHIẾU</div>
             <div className={s.select}>
-                <input type="date" className={s.datetime} value="2023-04-04"></input>
-                <select  className={s.theater}>
+                <input type="date" className={s.datetime} value={selectedDate} onChange={handleDateChange}></input>
+                <select  className={s.theater} onChange={handleTheaterChange}>
                     <option>Tất cả các rạp</option>
-                    <option>Galaxy Nguyễn Du</option>
-                    <option>Galaxy Tân Bình</option>
-                    <option>Galaxy Kinh Dương Vương</option>
-                    <option>Galaxy Quang Trung</option>
-                    <option>Galaxy Bến Tre</option>
-                    <option>Galaxy Đà Nẵng</option>
+                    <option>Happy Us Theatre Quận 1</option>
+                    <option>Happy Us Theatre Quận 2</option>
+                    <option>Happy Us Theatre Quận 3</option>
+                    <option>Happy Us Theatre Quận 4</option>
+                    <option>Happy Us Theatre Quận 5</option>
                 </select>
             </div>
-            <div className={s.box}>
+            <div className={s.box} style={{ display: selectedTheater === 'Happy Us Theatre Quận 1' || selectedTheater === 'Tất cả các rạp' ? 'block' : 'none' }}>
                 <div className={s.namett}>
-                    Galaxy Nguyễn Du
+                Happy Us Theatre Quận 1
                 </div>
                 <div className={s.schedule}>
                         <div className={s.type}>
                         2D - Phụ đề
                         </div>
                         <div className={s.alltime}>
-                            <div className={s.time}>14:45</div>
-                            <div className={s.time}>17:15</div>
-                            <div className={s.time}>19:45</div>
-                            <div className={s.time}>20:30</div>
-                            <div className={s.time}>22:00</div>
+                        {Q1.map((element, index) => (
+                            <div key={index} className={s.time} onClick={() => handleClick('Happy Us Theatre Quận 1', element)}>
+                            {element}
+                            </div>
+                        ))}
                         </div>
                 </div>  
             </div>
 
-            <div className={s.box}>
+            <div className={s.box} style={{ display: selectedTheater === 'Happy Us Theatre Quận 2' || selectedTheater === 'Tất cả các rạp' ? 'block' : 'none' }}>
                 <div className={s.namett}>
-                    Galaxy Tân Bình
+                Happy Us Theatre Quận 2
                 </div>
                 <div className={s.schedule}>
                         <div className={s.type}>
                         2D - Phụ đề
                         </div>
                         <div className={s.alltime}>
-                            <div className={s.time}>14:45</div>
-                            <div className={s.time}>17:15</div>
-                            <div className={s.time}>19:45</div>
-                            <div className={s.time}>20:30</div>
-                            <div className={s.time}>22:00</div>
+                        {Q2.map((element, index) => (
+                            <div key={index} className={s.time} onClick={() => handleClick('Happy Us Theatre Quận 2', element)}>
+                            {element}
+                            </div>
+                        ))}
                         </div>
                 </div>  
             </div>
 
-            <div className={s.box}>
+            <div className={s.box} style={{ display: selectedTheater === 'Happy Us Theatre Quận 3' || selectedTheater === 'Tất cả các rạp' ? 'block' : 'none' }}>
                 <div className={s.namett}>
-                    Galaxy Kinh Dương Vương
+                Happy Us Theatre Quận 3
                 </div>
                 <div className={s.schedule}>
                         <div className={s.type}>
                         2D - Phụ đề
                         </div>
                         <div className={s.alltime}>
-                            <div className={s.time}>14:45</div>
-                            <div className={s.time}>17:15</div>
-                            <div className={s.time}>19:45</div>
-                            <div className={s.time}>20:30</div>
-                            <div className={s.time}>22:00</div>
+                        {Q3.map((element, index) => (
+                            <div key={index} className={s.time} onClick={() => handleClick('Happy Us Theatre Quận 3', element)}>
+                            {element}
+                            </div>
+                        ))}
                         </div>
                 </div>  
             </div>
 
-            <div className={s.box}>
+            <div className={s.box} style={{ display: selectedTheater === 'Happy Us Theatre Quận 4' || selectedTheater === 'Tất cả các rạp' ? 'block' : 'none' }} >
                 <div className={s.namett}>
-                    Galaxy Quang Trung
+                Happy Us Theatre Quận 4
                 </div>
                 <div className={s.schedule}>
                         <div className={s.type}>
                         2D - Phụ đề
                         </div>
                         <div className={s.alltime}>
-                            <div className={s.time}>14:45</div>
-                            <div className={s.time}>17:15</div>
-                            <div className={s.time}>19:45</div>
-                            <div className={s.time}>20:30</div>
-                            <div className={s.time}>22:00</div>
+                        {Q4.map((element, index) => (
+                            <div key={index} className={s.time} onClick={() => handleClick('Happy Us Theatre Quận 4', element)}>
+                            {element}
+                            </div>
+                        ))}
                         </div>
                 </div>  
             </div>
 
-            <div className={s.box}>
+            <div className={s.box} style={{ display: selectedTheater === 'Happy Us Theatre Quận 5' || selectedTheater === 'Tất cả các rạp' ? 'block' : 'none' }}>
                 <div className={s.namett}>
-                    Galaxy Bến Tre
+                Happy Us Theatre Quận 5
                 </div>
                 <div className={s.schedule}>
                         <div className={s.type}>
                         2D - Phụ đề
                         </div>
                         <div className={s.alltime}>
-                            <div className={s.time}>14:45</div>
-                            <div className={s.time}>17:15</div>
-                            <div className={s.time}>19:45</div>
-                            <div className={s.time}>20:30</div>
-                            <div className={s.time}>22:00</div>
+                        {Q5.map((element, index) => (
+                            <div key={index} className={s.time} onClick={() => handleClick('Happy Us Theatre Quận 5', element)}>
+                            {element}
+                            </div>
+                        ))}
                         </div>
                 </div>  
             </div>
-
-            <div className={s.box}>
-                <div className={s.namett}>
-                    Galaxy Đà Nẵng
-                </div>
-                <div className={s.schedule}>
-                        <div className={s.type}>
-                        2D - Phụ đề
-                        </div>
-                        <div className={s.alltime}>
-                            <div className={s.time}>14:45</div>
-                            <div className={s.time}>17:15</div>
-                            <div className={s.time}>19:45</div>
-                            <div className={s.time}>20:30</div>
-                            <div className={s.time}>22:00</div>
-                        </div>
-                </div>  
-            </div>
-
        </div> 
     
   </div>
@@ -311,15 +353,13 @@ export async function generateMetadata(
     const res= await movieAPI.getMovie(id) ;
     const movie=res.data  
 console.log("Movie: ", movie)
-
     return {
     title: movie.title
-
     };
   }
 
 export async function generateStaticParams() {
-  const res= await movieAPI.getAllMovies();
+  const res= await showtimeAPI.getAllShowtimes();
   const movies=res.data
   // console.log("Movies path: ", movies)
   return movies.map((movie:any) => ({

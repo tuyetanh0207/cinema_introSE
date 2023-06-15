@@ -10,6 +10,10 @@
     font-size: larger;
     font-weight: bolder;
 }
+.space{
+    white-space: pre;
+    color:rgb(255, 77, 0);
+}
 
 .container {  
     display: flex;
@@ -173,7 +177,7 @@
 .schedule{
     display:flex;
     flex-direction: row;
-    width: 800px;
+    width: 95%;
     border: 1px solid black;
     padding: 10px;
     padding-top: 30px;
@@ -210,7 +214,7 @@
 }
 .theater{
     font-size: 20px;
-    width: 200px;
+    width: 300px;
     margin-left: 150px;
 }
 
