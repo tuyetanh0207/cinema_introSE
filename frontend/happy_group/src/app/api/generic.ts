@@ -16,11 +16,10 @@ export const config = function (token: string) {
 };
 export const configWithData = function (token: string, data: any) {
   return {
-    headers: {
-      "content-type": "application/json",
-      'Tokens': `Bearer ${token}`,
-    },
-    data: data
+    method: 'get',
+    maxBodyLength: Infinity,
+    headers: {    },
+    data: `{\r\n    "scheduleId": "${data.scheduleId}",\r\n    "time": "${data.time}\r\n}"`
   };
 };
 
@@ -64,7 +63,7 @@ export const post = function (url: string, data: any, token: string) {
       .post(url, data, config(token))
       .then((res) => {
         // return data
-        console.log("header: ", config(token))
+        // console.log("header: ", config(token))
         return resolve({ data: res.data });
       })
       .catch((err) => {

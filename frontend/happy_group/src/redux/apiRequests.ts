@@ -1,4 +1,4 @@
-import { booking } from './apiRequests';
+
 import axios, { AxiosInstance } from "axios";
 import UserAPI from "@/app/api/userAPI";
 import {useRouter} from "next/router"
@@ -59,6 +59,11 @@ export const loginUser = async (user: any, dispatch: (arg0: { payload: any; type
 
     const res=await UserAPI.login(user);
     dispatch(loginSuccess(res.data));
+    if(res.data.user.role==="admin"){
+      router.push("/admin/movie")
+    } else if (res.data.user.role==="manager"){
+      router.push("/admin/movie")
+    } else
     router.push("/")
     return 1
   } catch (err) {
@@ -116,10 +121,11 @@ export const logOut = async (dispatch: (arg0: { payload: any; type: "auth/logOut
     await UserAPI.logout({id},token);
 
     dispatch(logOutSuccess());
-    // router.push("/")
+    router.push("/")
   } catch (err) {
     dispatch(logOutFailed());
     console.log(err)
+    router.push("/")
   }
 };
 

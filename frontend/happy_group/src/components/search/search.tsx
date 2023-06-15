@@ -5,6 +5,7 @@ import movieAPI from "@/app/api/movieAPI";
 import { fbIcon,searchIcon, twitterIcon, instaIcon, logoIcon, logoutIcon } from '@/assets/svgs'
 import {movie_img} from '@/assets/imgs'
 import Link from "next/link";
+import showtimeAPI from "@/app/api/showtimeAPI";
 export default function SearchComp() {
       const [searchInput, setSearchInput]=useState("");
       const [movies, setMovies]=useState([])
@@ -12,7 +13,7 @@ export default function SearchComp() {
       const [isHoverList, setIsHoverList]=useState(false)
       const HandleSearch = function (e: { target: { value: string }; }) {
         const fetchSearchMovie= async(query: string) => {
-          const res = await movieAPI.searchMovie(query);
+          const res = await showtimeAPI.searchShowtimes(query)
           setMovies(res.data);
           // console.log("search", res.data)
         }

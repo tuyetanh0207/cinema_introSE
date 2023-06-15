@@ -19,6 +19,7 @@ import Filmcomment from '@/components/filmcomment/filmcomment'
 import { ClassificationTypeNames } from 'typescript'
 import { useSelector } from 'react-redux'
 import AdminAPI from './api/adminAPI'
+import Link from 'next/link'
 type movieInterface = {
     _id: string,
     duration: number,
@@ -58,23 +59,15 @@ export default function Home() {
         fetchMovie();
     },[])
    
-    
+
   return (
       <>
-    {/* {
-          slides2.map((slide3:any,index)=> {
-              return(
-                  <>
-                    <h3>{slide3.imageUrl}</h3>
-                  </>
-              )
-          })
-      } */}
+
       <Banner/>
       <Filmcomment/>
       {/* <Idfilm/> */}
       </>
-
+  
   
 
   )

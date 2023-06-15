@@ -219,7 +219,7 @@ p.text span {
 {
   position: relative;
   width: 20%;
-  height: 300px;
+  height: fit-content;
   background: #C0EEF2;
   left:75%;
   top: 13%;
@@ -346,9 +346,10 @@ p.text span {
   margin-bottom: 40px;
   outline: solid 1px #6a91eb !important;
   box-shadow: 3px 3px 10px 1px #C0EEF2;
-  padding: 5px 50px 5px 20px;
+  padding: 5px 10px 5px 20px;
   border-radius: 20px;
   z-index: inherit;
+  width: 200px;
 }
 .input ::placeholder{
   font-family: 'Segoe UI';
@@ -369,10 +370,16 @@ p.text span {
   border-style: solid 20px #6a91eb !important;
 
 }
+.input p{
+  color:#537FE7;
+}
+.input h8{
+  color:rgb(210, 82, 82);
+}
 .mvDetails1 button, .movie_container button{
   margin-top: 20px;
   padding: 10px;
-  margin-right: 20px;
+  margin-right: 5px;
   margin-bottom: 20px;
   border-radius: 5px;
   border: solid 1px #a7b8df;

@@ -1,9 +1,20 @@
+"use client"
 import React from "react";
 import styles from "./Sidebar.module.css"
 import { help_ad, home_ad, logo_ad, movie_ad, msg_ad, person_ad, pwd_ad, setting_ad, signout_ad } from "@/assets/svgs";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "@/redux/apiRequests";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { log } from "console";
 export default function Sidebar (){
-
+    const dispatch =useDispatch()
+    const router =useRouter()
+    const user= useSelector((state:any)=>state.auth.login.currentUser)
+    const handleSignoutBtn=()=>{
+        logOut(dispatch,user?.user?._id,user?.token, axios,router)
+    }
 
     return(
         <div className={styles.sidebar}>
@@ -33,9 +44,9 @@ export default function Sidebar (){
                 <div className={styles.menu_item}>
                     <Image  className={styles.icon} width={30}height={30}src={help_ad} alt=""/>
                     Help</div>
-                <div className={styles.menu_item}>
+                <div className={styles.menu_item} onClick={()=>handleSignoutBtn()}>
                     <Image  className={styles.icon} width={30}height={30}src={signout_ad} alt=""/>
-                    Sign <output></output></div>
+                    Sign out</div>
             </div>
         </div>
     )

@@ -48,7 +48,7 @@ const authSlice = createSlice({
         },
        
         logOutStart: (state) => {
-            // state.logout.isFetching= true;
+            state.logout.isFetching= true;
 
         },
         logOutSuccess: (state) => {

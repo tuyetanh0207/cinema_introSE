@@ -14,6 +14,7 @@ import  Link  from "next/link";
 export default function Movies_Admin (){
     const [movies, setMovies] = useState<movieInterface[]>([])
     const user = useSelector((state: any)=>state.auth.login.currentUser)
+    console.log("user", user?.token)
     const tabname=["All", "Now Showing", "Coming Soon"]
     const [tabidx, setTabidx]=useState(0)
     const fetchMovies = async () => {
