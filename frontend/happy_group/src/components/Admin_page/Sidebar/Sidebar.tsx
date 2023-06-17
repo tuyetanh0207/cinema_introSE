@@ -26,11 +26,11 @@ export default function Sidebar (){
                 <div className={styles.menu_item}>
                     <Image  className={styles.icon} width={30}height={30}src={home_ad} alt=""/>
                     Dashboard</div>
-                <div className={`${styles.menu_item} ${styles.menu_item_focus_custom}`}>
+                <div className={`${styles.menu_item} ${styles.menu_item_focus_custom}`} onClick={()=>router.push("/admin/movie")}>
                     <Image  className={styles.icon} width={30}height={30}src={movie_ad} alt=""/>
                     Movies</div>
-                <div className={styles.menu_item}>
-                    <Image  className={styles.icon} width={30}height={30}src={person_ad} alt=""/>
+                <div className={styles.menu_item} onClick={()=>router.push("/admin/schedule")}>
+                    <Image  className={styles.icon} width={30}height={30}src={person_ad}  alt=""/>
                     Schedules</div>
                 <div className={styles.menu_item}>
                     <Image  className={styles.icon} width={30}height={30}src={msg_ad} alt=""/>

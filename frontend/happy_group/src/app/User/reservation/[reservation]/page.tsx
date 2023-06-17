@@ -14,6 +14,7 @@ type Props = {
   };
 export default function User ({params, searchParams}:Props){
     const reservationID = params.reservation
+    console.log("re", reservationID)
     const [reservation, setReservation]= useState<reservationInterface>()
     const token = useSelector((state:any)=> state.auth.login.currentUser.token)
     const fetchReservation = async()=>{

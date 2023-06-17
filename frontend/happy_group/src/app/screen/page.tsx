@@ -45,21 +45,21 @@ export default function Seat () {
       setScreenInfo(res.data);
       setSeatArr(res.data.seatArray);
 
-      selectedSeats.forEach((element, index) => {
-        if (res.data.seatArr[element[0]][element[1]]===1){
-          selectedSeats.splice(index,1);
-      }
+      // selectedSeats?.forEach((element, index) => {
+      //   if (res.data.seatArray[element[0]][element[1]]===1){
+      //     selectedSeats.splice(index,1);
+      // }
       
         
-      });
+      // });
 
-      selectedDoubleSeats.forEach((element, index) => {
-        if (res.data.seatArr[element[0]][element[1]]===1){
-          selectedSeats.splice(index,1);
-      }
+      // selectedDoubleSeats.forEach((element, index) => {
+      //   if (res.data.seatArray[element[0]][element[1]]===1){
+      //     selectedDoubleSeats.splice(index,1);
+      // }
       
         
-      });
+      // });
           
        
       } 
@@ -417,7 +417,7 @@ export default function Seat () {
       
     }
    
-      <PopupResult message={noti} button={["Về trang chủ", "Xem lại vé"]} urls={["/", `/user/reservation/${reser}`]}
+      <PopupResult message={noti} button={["Về trang chủ", "Xem lại vé"]} urls={["/", `/User/reservation/${reser}`]}
       modalOpen={modelOpen} setModalOpen={setModalOpen}  />
  
        
