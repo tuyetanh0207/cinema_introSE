@@ -31,10 +31,9 @@
     list-style-type: none;
 }
 .add_row_img{
-    /* position:relative; */
-    position: absolute;
-    margin-left: -9px;
-
+    margin-left: 50%;
+    transform: translateX(-50%);
+    vertical-align: middle;
 }
  
 .add_sheet{

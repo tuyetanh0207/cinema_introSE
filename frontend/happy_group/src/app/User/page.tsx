@@ -33,6 +33,7 @@ export default function User (){
                     <th>Ngày xem</th>
                     <th>Suất chiếu</th>
                     <th>Tổng tiền</th>
+                    <th>Chi Tiết</th>
                 </tr>
                 <tr>
                     <td>Avengers: Endgame</td>
@@ -40,6 +41,7 @@ export default function User (){
                     <td>2023-06-10</td>
                     <td>18:00</td>
                     <td>$20</td>
+                    <td><a href="/user/reservation/"reservationID >chi tiết</a></td>
                 </tr>
                 <tr>
                     <td>Jurassic Park</td>
@@ -47,6 +49,7 @@ export default function User (){
                     <td>2023-06-12</td>
                     <td>20:30</td>
                     <td>$15</td>
+                    <td><a href="/user/reservation/"reservationID >chi tiết</a></td>
                 </tr>
             </table>
                 </div>
