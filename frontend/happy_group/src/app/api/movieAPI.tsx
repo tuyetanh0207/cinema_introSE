@@ -59,6 +59,20 @@ const movieAPI = {
   },
   
 
+  getUser: function(token: string){
+    const url = `${apiV1}/user/`;
+    return get(url,token);
+  },
+
+  // getUser: function (token: string) {
+  //   const url = `${apiV1}/user/`;
+  //   return axios.get(url, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // },
+
 };
 
 export default movieAPI;

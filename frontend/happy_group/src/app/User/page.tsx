@@ -9,44 +9,54 @@ import { useSelector } from "react-redux";
 
 export default function User (){
 
-    const [movies, setMovies] = useState<movieInterface[]>([])
-    const user = useSelector((state: any)=>state.auth.login.currentUser)
-    const tabname=["All", "Now Showing", "Coming Soon"]
-    const [tabidx, setTabidx]=useState(0)
-    const fetchMovies = async () => {
-        const res = await movieAPI.getAllMovies (user?.token);
-        setMovies(res.data)
-    }
-    const handleCreateBtn=(id: string)=>{
-
-    }
-        useEffect(()=>{
-        fetchMovies()
-    },[])
+  const user = useSelector((state: any) => state.auth.login.currentUser);
+  console.log(user); // Kiểm tra thông tin người dùng trong console log
+    
 
     return(
         <div className={styles.body}>
             <div className={styles.Box1}>
                 <div className={styles.ibox}>
-                    <h1>haha</h1>
-                    {movies.map((movie:movieInterface, index) => (
-                        <div>{movie.genre[0]} haha</div>
-                        
-                    ))
-                    }
 
-                    <div className={styles.name}> Bùi Quang Tùng</div>
-                    <div className={styles.info}>
-                        
-                    
-                        <ul className={styles.infoList}>
-                            <li>Giới Tính:{} </li>
-                            <li>SĐT: </li>
-                            <li>Ngày Sinh: </li>
-                            <li>Email: </li>
-                            <li>Địa chỉ: </li>
-                        </ul>
-                    </div>
+
+                    <div className={styles.name}> {user.user?.name}</div>
+
+                    <div className={styles.infoList}>
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>Số điện thoại:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.phone}</span>
+                            </div>
+                        </div>
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>Email:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.email}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>Vai trò:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.role}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>User Name:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.username}</span>
+                            </div>
+                        </div>
+                        </div>
                 </div>
                 <Image className={styles.pic} src={movie_img} alt='er'></Image>
             </div>

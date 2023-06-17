@@ -2,8 +2,7 @@ import movieAPI from '@/app/api/movieAPI'
 import { useEffect,useState } from 'react'
 
 import styles from './Nowshowing.module.css'
-import { fbIcon, searchIcon } from '@/assets/svgs'
-import Image from 'next/image'
+import { pdc } from '@/assets/imgs'
 
 export default function ListFilm () {
     
@@ -35,10 +34,8 @@ export default function ListFilm () {
         </div>
 
         <div className={styles.body}>
-            <div className={styles.body_head_tag}>
-                <div className={styles.head_tag}>
-                    <div className={styles.text_tag}>phim đang chiếu</div>
-                </div>
+            <div className={styles.dragon}>
+                <img src={pdc.src} alt="Movie" />
             </div>
 
 
