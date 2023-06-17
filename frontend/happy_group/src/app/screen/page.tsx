@@ -65,7 +65,7 @@ export default function Seat () {
       } 
     fetchScreen();
  
-  },[]);
+  });
 
 
   const fetchShowtime = async ()=>{

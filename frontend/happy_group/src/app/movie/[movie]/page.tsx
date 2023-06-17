@@ -62,7 +62,7 @@ export default function MoviesPage( {params, searchParams}: Props) {
 
      //showtime
      const fetchSche = async () => {
-       const res= await showtimeAPI.quickbuy(id,'',useDate);
+       const res= await showtimeAPI.quickbuy1(id,'',useDate);
        res.data.forEach(item => {
              for (let i = 0; i < res.data.length; i++) {
                      if(item.theatre==='Happy Us Theatre Quận 1'){

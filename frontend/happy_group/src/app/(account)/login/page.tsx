@@ -12,6 +12,7 @@ import { loginUser } from '@/redux/apiRequests'
 import authSlice from '@/redux/authSlice'
 import { useRouter } from 'next/navigation'
 import { useNavigate } from 'react-router-dom'
+import PopupResult from '@/components/popup_result/popup_result'
 
 
 
@@ -21,6 +22,8 @@ export default function Login_Form () {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const [noti, setnoti]= useState("")
+  const [modalOpen,setModalOpen]=useState(false);
   // const navigate = useNavigate();
   const router=useRouter();
   const handleSubmit =  (e: { preventDefault: () => void }) => {
@@ -53,6 +56,8 @@ loginUser(newUser, dispatch,router);
                     <button className={styles.btn}>Đăng nhập</button>
                 </div> 
             </form>
+            <PopupResult message={noti} button={["Về trang chủ", "Xem lại vé"]} urls={["/", `/user/reservation/`]}
+      modalOpen={modalOpen} setModalOpen={setModalOpen}  />
             </>
         
   )

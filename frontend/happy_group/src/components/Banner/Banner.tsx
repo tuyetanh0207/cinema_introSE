@@ -68,27 +68,27 @@ export default function Banner () {
       const [selectedTime, setSelectedTime] = useState("");
       
 
-      const handleMovieChange = (event) => {
+      const handleMovieChange = (event: { target: { value: any } }) => {
         const selectedId = event.target.value;
         setSelectedShowtimeId(selectedId);
         fetchtheatre(selectedId)
       };
 
 
-      const handleDateChange = (event) => {
+      const handleDateChange = (event: { target: { value: any } }) => {
         const selectedDate = event.target.value;
         setSelectedDate(selectedDate)
         qTikcet1(selectedShowtimeId, selectedTheatreId, selectedDate);
       };
 
-      const handleTheatreChange = (event) => {
+      const handleTheatreChange = (event: { target: { value: any } }) => {
         const selectedTheatreId = event.target.value;
         setSelectedTheatreId(selectedTheatreId);
         qTikcet2(selectedShowtimeId,selectedTheatreId);
       };
 
       
-      const handleTimeChange = (event) => {
+      const handleTimeChange = (event: { target: { value: any } }) => {
         const selectedTime = event.target.value;
         setSelectedTime(selectedTime);
       };
@@ -119,13 +119,6 @@ export default function Banner () {
         // console.log("res: ", MovieData);
         setTheatres(MovieData.data);
     }
-    const [qtickets, quickTickets] = useState<any[]>([]); ///
-    const qTikcet = async (id: string) => {
-      const TicketData = await movieAPI.getDateOfShowtime(id);
-      // console.log("res: ", TicketData);
-      quickTickets(TicketData.data.dates);
-    }
-
 
     const [times, setTimes]=useState<string[]>([])
     const [qtickets1, quickTickets1] = useState<any[]>([]);
@@ -133,19 +126,7 @@ export default function Banner () {
       const TicketData1 = await showtimeAPI.quickbuy(id, theatre,date);
       // console.log("res: ", TicketData1);
       setTimes(TicketData1.data)
-  // const ticketIds = TicketData1.data.theatres;
-  // const ticketNames = TicketData1.data.theatreIds;
 
-  // const combinedData = ticketIds.map((name: any, index: number) => {
-  //   return {
-  //     name,
-  //     id: ticketNames[index]
-  //   };
-  // });
-
-  // console.log("combinedData: ", combinedData);
-
-  // quickTickets1(combinedData);
 }
 
 function isButtonDisabled() {

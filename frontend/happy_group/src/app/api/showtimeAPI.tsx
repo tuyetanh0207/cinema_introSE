@@ -12,7 +12,11 @@ const showtimeAPI = {
     return get (url,"");
   },
   quickbuy: function (showtimeId: string, theatre: string, date:string){
-    const url =`${apiV1}/schedules/?showtimeId=${showtimeId}&&theatre=${theatre}&&date=${date}`
+    const url =`${apiV1}/schedules/search/?showtimeId=${showtimeId}&theatre=${theatre}&date=${date}`
+    return get(url, "")
+  },
+  quickbuy1: function (showtimeId: string, theatre: string, date:string){
+    const url =`${apiV1}/schedules/?showtimeId=${showtimeId}&theatre=${theatre}&date=${date}`
     return get(url, "")
   },
   searchShowtimes: function(query: string){

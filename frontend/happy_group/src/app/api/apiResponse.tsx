@@ -32,6 +32,7 @@ export type showtimeInterface = {
 }
 
 export type movieInterface={
+        showtimeId: any
         _id: "6480701eaaa085da98cc8390",
         title: "The Lion King",
         image: "https://res.cloudinary.com/da2qtf6sw/image/upload/v1686488013/poster/d5hdsquwwsa6qhj8b4jl.jpg",

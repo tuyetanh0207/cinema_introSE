@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { loginUser, registerUser } from '@/redux/apiRequests';
 import { useNavigate } from 'react-router';
+import PopupResult from '@/components/popup_result/popup_result';
 export default function Signup_Form() {
     const [username_regis,setusername_regis]=useState("");
     const [password_regis,setpassword_regis]=useState("");
@@ -16,8 +17,10 @@ export default function Signup_Form() {
 
     const dispatch=useDispatch();
     const router=useRouter();
-   
-    const handleSubmit =(e: { preventDefault: () => void; })=>{
+    const [noti, setnoti]= useState("")
+    const [modalOpen,setModalOpen]=useState(false);
+    const [error, setError]=useState("loi ne")
+    const handleSubmit = async (e: { preventDefault: () => void; })=>{
         e.preventDefault();
         const newUser={
             username: username_regis,
@@ -26,10 +29,19 @@ export default function Signup_Form() {
             email:email,
             phone: phone
         }
-        console.log("newuser", newUser)
-        console.log("login: ",{username:username_regis,password: password_regis})
-        registerUser(newUser, dispatch,router)
-        loginUser({username:username_regis,password: password_regis}, dispatch,router)
+        //console.log("newuser", newUser)
+        //console.log("login: ",{username:username_regis,password: password_regis})
+        const res = await registerUser(newUser, dispatch,router)
+        
+        console.log("res",res)
+        if (res==="1"){
+            setnoti(res);
+            setModalOpen(true)
+        }
+        else {
+            setError(res.error)
+        }
+        //loginUser({username:username_regis,password: password_regis}, dispatch,router)
     }
 
     return (
@@ -46,12 +58,16 @@ export default function Signup_Form() {
                 <input type="text" id="repassword" onChange={(e) => setrepassword(e.target.value)} placeholder='Nhập lại mật khẩu' className={styles.username} />
                 <input type="text" id="email" onChange={(e) => setemail(e.target.value)} placeholder='Email' className={styles.username} />
                 <input type="text" id="phone" onChange={(e) =>setphone(e.target.value)} placeholder='Phone' className={styles.username} />
+                
             <div className={styles.footer}>
+                <span>{error}kk</span>
                 <button className={styles.btn} onClick={()=>handleSubmit}>Đăng ký</button>
                 <p className={styles.forget_pwd}>
                     <Link href={''} className={styles.link}>Đã có tài khoản? Đăng nhập ngay!</Link></p>
 
             </div>  
+            <PopupResult message={noti} button={["Về trang chủ", "Xem lại vé"]} urls={["/", `/user/reservation/`]}
+      modalOpen={modalOpen} setModalOpen={setModalOpen}  />
             </form>
             </>
     
