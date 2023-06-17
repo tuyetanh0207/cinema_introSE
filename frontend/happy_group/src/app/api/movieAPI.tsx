@@ -18,11 +18,33 @@ const movieAPI = {
     const url =`${apiV1}/movies/`;
     return get(url,token);
   },
-  getMovie: function (id: string){
+  getMovie: function (id: string, token:string){
     const url =`${apiV1}/movies/${id}`;
-    return get (url,"");
+    return get (url,token);
   },
  
+  quickBuyTicket: function (query:string) {
+    const url = `${apiV1}/quick-buy/${query}`;
+  },
+  getDateOfShowtime: function (id:string) {
+    const url = `${apiV1}/quick-buy/date/${id}`;
+    return get(url, "");
+  },
+  postMovie: function (data:any, token:string){
+    const url = '${apiV1}/movies/upload}'
+    return post(url, data, token);
+  },
+
+
+  getTheatreOfShowtime: function (id:string,date:string) {
+    const url = `${apiV1}/quick-buy/theatre/${id}/${date}`;
+    return get(url, "");
+  },
+
+  getTimeOfShowtime: function (id:string,date:string,theatre: string) {
+    const url = `${apiV1}/quick-buy/time/${id}/${date}/${theatre}`;
+    return get(url, "");
+  },
 
 
 

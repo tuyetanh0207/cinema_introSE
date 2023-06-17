@@ -1,78 +1,44 @@
 .idfilm{
     background-color: #E9F8F9;
 }
-.title{
-    display:flex;
-    flex-direction: row;
-    background-color: #E9F8F9;
-    margin-left: 150px;
-    transform: scale(0.9);
-    font-size: larger;
-    font-weight: bolder;
-}
-.space{
-    white-space: pre;
-    color:rgb(255, 77, 0);
-}
 
-.container {  
+
+.container {
     display: flex;
 	justify-content: space-between;
     background-color: #E9F8F9;
     transform: scale(0.9);
-    height: 750px;
+    height: 650px;
     width: 1200px;
-    margin-left: 150px;
+    margin-left: 170px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4), 0px 0px 30px rgba(0, 0, 0, 0.2), 0px 0px 40px rgba(0, 0, 0, 0.1);
 }
 
 .leftcolumn {
     display:flex;
-    flex-basis: 67%;
+    justify-content: center;
+    flex-basis: 50%;
     flex-direction: column;
-    background-color:#E9F8F9;
-    width: 780px;
-    height: auto;
+    background-color:#e6e1e1cd;
+    align-items: center;
 }
 .rightcolumn {
     display:flex;
-    flex-basis: 30%;
+    flex-basis: 80%;
     flex-direction: column;
     justify-content: center;
     background-color:#C0EEF2;
-    width: auto;
-    height: auto;
 }
 
   
-.imagewrapper img {
-    margin:20px;
-    width: 310px;
-    height: 190px;
-  }
-.img:hover{
-    opacity:0.8;
+
+.a1 img{
+    width: 400px;
+    height: 600px;
+    border: 10px solid;
+    border-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet) 1;
 }
 
-.frametop{
-    display:flex;
-    flex-direction: row;
-    flex-basis: 55%;
-    background-color:#E9F8F9;
-    margin-bottom: 5%;
-  }
-.framebot{
-    display:flex;
-    flex-basis: 40%;
-    background-color:#C0EEF2;
-  }
-.a1 img{
-    width: 300px;
-    height: 455px;
-}
-.text{
-    font-size: large;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
 .a1{
     display: flex;
     flex-basis:37%;
@@ -81,74 +47,105 @@
 .intro{
     display:flex;
     flex-direction: column;
-    flex-basis: 63%;
+    flex-basis: 95%;
     background-color:#C0EEF2;
 }
 
 .i1{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 25px;
-    line-height: 24px;
-    display: flex;
-    align-items: center;
-    margin:20px;
+    font-family: 'MyriadItalic', Arial, sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 48px;
+    display: inline-block;
+    background-color: #f1f1f1;
+    color: #333333;
+    border-radius: 10px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .i2{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 19px;
-    display: flex;
-    align-items: center;
-    margin: 13px;
-}
-.j1{
-    font-family: 'Inter';
-    font-style: normal;
+    font-family: 'Myriad', sans-serif;
+    font-style: italic;
     font-weight: 600;
     font-size: 20px;
-    line-height: 29px;
+    line-height: 24px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+}
+.i3{
+    max-height: 24px; /* Đặt chiều cao tối đa cho 2 dòng */
+    line-height: 24px; /* Đặt độ cao của mỗi dòng */
+    overflow: hidden; /* Ẩn phần vượt quá */
+    font-family: 'Myriad', sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+}
+.j1{
+    font-family: 'Myriad', sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    margin-left: 13px;
+    background-color: #e6e1e1cd;
+    width: 200px;
     text-align: center;
-    margin-bottom: 15px;
-    margin-left:10px
+    border: 3px solid;
+    border-image: linear-gradient(to right, #F06292, #FF8A65) 1;
 }
 .j2{
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
-    margin-left: 10px;
-    margin-right: 10px;
+    font-family: 'Myriad', sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 13px;
+    max-height: 3.6em; /* Đặt chiều cao tối đa cho 2 dòng */
+    line-height: 1.8em; /* Đặt độ cao của mỗi dòng */
+    overflow: hidden; /* Ẩn phần vượt quá */
 }
+.btnbooking{
+font-family: 'Myriad', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-left: 250px;
+  margin-top:0px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FF4081; /* Màu hồng */
+  color: #FFFFFF; /* Màu trắng */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 200px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+}
+.btnbooking:hover {
+    background-color: #E91E63; /* Màu hồng đậm */
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+  }
 .db {
 	color: black;
     transition: color 0.1s ease;
     text-decoration: none;
 }
-.db:hover{
-    font-style: italic;
-    color: rgb(255, 77, 0);
-}
-.more{
-    color: black;
-    transition: color 0.1s ease;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    margin-left: 100px;
-    text-decoration: solid black underline;
-}
-.more:hover{
-    color: rgb(255, 77, 0);
-    text-decoration: solid rgb(255, 77, 0) underline;
-    font-style: italic;
-}
+
+
 .starvote{
     display:flex;
     flex-direction: row;
@@ -156,11 +153,52 @@
 .mschedule{
     display:flex;
     flex-direction: column;
-    background-color: #E9F8F9;
-    margin-left: 150px;
-    transform: scale(0.9);
+    margin-left: 40px;
+    transform: scale(0.8);
     font-size: larger;
     font-weight: bolder;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4), 0px 0px 30px rgba(0, 0, 0, 0.2), 0px 0px 40px rgba(0, 0, 0, 0.1);
+}
+.schewrap{
+    background-color: #cdcdf5;
+    padding: 10px;
+    border-radius: 10px;
+    width: 250px;
+    height: 70px;
+    margin-left: 40%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+.sche{
+    font-size: 30px;
+    color: #333;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+}
+.newmoviewrap{
+    background-color: #cdcdf5;
+    padding: 5px;
+    border-radius: 10px;
+    width: 400px;
+    height: 60px;
+    margin-left: 37%;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-top:40px;    
+}
+.newmovie{
+    font-size: 25px;
+    color: #333;
+    margin: 0;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+    font-weight: 700;
 }
 .box{
     display:flex;
@@ -205,7 +243,7 @@
 }
 
 .select{
-    margin-top:20px;
+    margin-top:30px;
 }
 .datetime{
     width: 200px;
@@ -251,42 +289,41 @@
     color: #FFC107;
   }
 
-.des{
+
+
+
+.slider {
+    width: 71%;
+    overflow: hidden;
+   scrollbar-color: rgba(255, 255, 255, 0.5);
+    margin-left: 230px;
+    background-color: black;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4), 0px 0px 30px rgba(0, 0, 0, 0.2), 0px 0px 40px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+  
+  .slidercontainer {
     display: flex;
-    flex-direction: row;
-    transform: scale(0.7);
-    text-align: center;
-}
-
-.noknow{
-    background-color: rgb(0, 132, 255);
-    height: 45px;
-    width: 75px;
-    font-size: 23px;
-    font-weight: 700;
-    margin-right: 10px;
-    border-radius: 15px;
-    text-align: center ;
-    padding-top: 10px;
-}
-
-.clock{
-    display:flex;
-    flex-direction: row;
-    width:150px;
-    align-items: center;
-    background-color: rgb(0, 132, 255);
-    border-radius: 15px;
-    font-size: 23px;
-    font-weight: 700;
-    margin-left: 50px;
-}
-
-.icon{
-    width: 40px;
-    height: 40px;
-    margin-right: 15px;
-}
+    flex-wrap: nowrap;
+    transition: all 0.5s;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+  .slidercontainer img {
+    width: 250px;
+    height: auto;
+    margin: 10px;
+  }
+  
+  .sliderbuttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .sliderbutton {
+    font-size: 24px;
+  }
 
 
 
