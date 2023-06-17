@@ -18,6 +18,7 @@ export default function Schedule_Admin (){
    const [theatreList, setTheatreList]= useState([])
    const [Schedules, take] = useState<any[]>([]); ///
    const [SById, setSByID] = useState<any[]>([]); ///
+  
   let count=1;
    const Schedule = async () => {
      const ScheduleData = await AdminAPI.getAllShowtime();
