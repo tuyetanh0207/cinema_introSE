@@ -2,12 +2,14 @@
 import movieAPI from "../../api/movieAPI";
 import axios from "axios";
 import s from './idfilm.module.css'
-import Loader from "@/components/loader";
-import {clock} from '@/assets/svgs';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from "next/image";
-import { ChangeEvent, MouseEventHandler, useEffect, useState } from "react";
+import { ChangeEvent, MouseEventHandler, useEffect, useRef, useState } from "react";
 import showtimeAPI from "@/app/api/showtimeAPI";
+import { ClassNames } from "@emotion/react";
+import Slider from 'react-slick';
+import PerfectScrollbar from "react-perfect-scrollbar";
+import { useSelector } from "react-redux";
 
 type movieInterface = {
     _id: string;
@@ -23,6 +25,7 @@ type movieInterface = {
     __v: number;
   };
   
+  
 type Props = {
     params: { movie: string };
     searchParams: { [key: string]: string | string[] | undefined };
@@ -32,10 +35,7 @@ type Props = {
 
 export default function MoviesPage( {params, searchParams}: Props) {
     const id=params.movie
-    console.log("hihi");
-    console.log("prarams only",params);
-    console.log("pros",params.movie);
-   
+  
     const [movie, setMovie]= useState<movieInterface>()
     const fetchMovie = async () => {
       const res= await showtimeAPI.getShowtime(id);
@@ -46,11 +46,23 @@ export default function MoviesPage( {params, searchParams}: Props) {
       fetchMovie();
   },[])
 
+  const user=useSelector((state:any)=> state.auth.login.currentUser)
+  const token=user?.token
+  const [films, setfilms] = useState<movieInterface[]>([]);
+
+  const stt = async () => {
+    const res11 = await movieAPI.getAllMovies(token)
+    setfilms(res11.data)
+    console.log(res11.data)
+  }    
+  useEffect(()=>{
+      stt();
+  },[])
+
   const [selectedDate, setSelectedDate] = useState('2023-06-13');
   const [useDate, setUseDate]=useState('2023/06/13')
     function handleDateChange(event: ChangeEvent<HTMLInputElement>): void {
         setSelectedDate(event.target.value);
-        const date = event.target.value.replace(/-/g, "/");
         setUseDate(event.target.value.replace(/-/g, "/"))   
     }
 
@@ -63,6 +75,11 @@ export default function MoviesPage( {params, searchParams}: Props) {
      //showtime
      const fetchSche = async () => {
        const res= await showtimeAPI.quickbuy(id,'',useDate);
+       setQ1([])
+       setQ2([])
+       setQ3([])
+       setQ4([])
+       setQ5([])
        res.data.forEach(item => {
              for (let i = 0; i < res.data.length; i++) {
                      if(item.theatre==='Happy Us Theatre Quận 1'){
@@ -99,73 +116,86 @@ export default function MoviesPage( {params, searchParams}: Props) {
     const date=selectedDate;
     time=encodeURIComponent(time);
     const link = `http://localhost:3000/screen?showtimeId=${showtimeId}&theatreName=${theatreName}&date=${date}&time=${time}&fbclid=IwAR34WyDJEGXy12f310JUJfyj62-do7hb8Bk4aoqu8Sjm5zMNU_8z9LAJx34`;
-
     window.location.href = link;
-
-   
   };
+   
   
+  const clickbutton = () => {
+    const scrollOptions: ScrollToOptions = { top: 1400, behavior: 'smooth' }; 
+    window.scrollTo(scrollOptions); 
+  };
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isScrollingRight, setIsScrollingRight] = useState(true);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (containerRef.current) {
+        const { scrollWidth, clientWidth, scrollLeft } = containerRef.current;
+        if (isScrollingRight) {
+          containerRef.current.scrollLeft += 270; 
+        } else {
+          containerRef.current.scrollLeft -= 270; 
+        }
+  
+        if (scrollLeft === 0) {
+          setIsScrollingRight(true);
+        } else if (scrollWidth - clientWidth - scrollLeft<1) {
+          setIsScrollingRight(false);
+        }
+      }
+    }, 2500); // 1000 milliseconds = 1 second
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isScrollingRight]);
+    
+
     return (
       <>
       <div className={s.idfilm}>
-      <div className={s.title}>
-          <a className={s.db} href="https://www.galaxycine.vn/">TRANG CHỦ</a>
-          {
-              (!movie ) ? 
-                  <Loader />:<div className={s.space}> {movie.title}</div>
-          }   
-      </div>
+     
        <div className={s.container}>
             <div className={s.leftcolumn}>
-                <div className={s.frametop}>
-
                     <div className={s.a1}>
                         {
                             (!movie ) ? 
-                                <Loader />:
+                            <div></div>:
                                 <img src={movie.image} alt="Mô tả ảnh"/>
                         }
                     </div>
-                    
-                    <div className={s.intro}>
+            </div>
+
+            <div className={s.rightcolumn}>
+                <div className={s.intro}>
                         {
                             (!movie ) ? 
-                                <Loader />:<div className={s.i1}>{movie.title}</div>
+                            <div></div>:<div className={s.i1}>{movie.title}</div>
                         }
-
-                        <div className={s.des}>
-                            <div className={s.noknow}>C16</div>
-                            <div className={s.clock}>
-                                <Image src={clock} alt="" className={s.icon} />
-                                <div className={s.hour}>120 phút</div>
-                            </div>
-                        </div>
-
 
                          {
                             (!movie ) ? 
-                            <Loader />:<div className={s.i2}>Language: {movie.language[0]}, {movie.language[1]}</div>
+                            <div></div>:<div className={s.i2}>Language: {movie.language.join(", ")}</div>
                         }
                         {
                             (!movie ) ? 
-                            <Loader />:<div className={s.i2}>Genre: {movie.genre[0]}, {movie.genre[1]}, {movie.genre[2]} </div>
+                            <div></div>:<div className={s.i2}>Genre: {movie.genre.join(", ")} </div>
                         }
                         {
                             (!movie ) ? 
-                            <Loader />:<div className={s.i2}>Director: {movie.director}</div>
+                            <div></div>:<div className={s.i2}>Director: {movie.director}</div>
                         }
                         {
                             (!movie ) ? 
-                            <Loader />:<div className={s.i2}>Cast: {movie.cast[0]}, {movie.cast[1]}, {movie.cast[2]}</div>
+                            <div></div>:<div className={s.i3}>Cast: {movie.cast.join(", ")}</div>
                         }
                         {
                             (!movie ) ? 
-                            <Loader />:<div className={s.i2}>Release Date: {movie.releaseDate}</div>
+                            <div></div>:<div className={s.i2}>Duration: {movie.duration} min</div>
                         }
                         
                         {
                             (!movie ) ? 
-                            <Loader />:<div className={s.i2}>Rating: {movie.rating}</div>
+                            <div></div>:<div className={s.i2}>Rating: {movie.rating}</div>
                         } 
                         <div className={s.starvote}>
                             <div className={s.i2}>Rate: </div>
@@ -183,57 +213,44 @@ export default function MoviesPage( {params, searchParams}: Props) {
                             </div>
 
                         </div>
-                       
-                    </div>
-                    
-                </div>
-                <div className={s.framebot}>
-                    <div>
+
+                        
                         <div>
                             <div className={s.j1}> DESCRIPTION</div>
                             {
                                 (!movie ) ? 
-                                    <Loader />:<div className={s.j2}>{movie.description}</div>
+                                <div></div>:<div className={s.j2}>{movie.description}</div>
                             }
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div className={s.rightcolumn}>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/dat-ve/biet-doi-rat-on">
-                        {
-                            (!movie ) ? 
-                                <Loader />:
-                                <img className={s.img} src={movie.image} alt="Mô tả ảnh"/>
-                        }
-                        </a>
-                    </div>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/dat-ve/sieu-lua-gap-sieu-lay">
-                        {
-                            (!movie ) ? 
-                                <Loader />:
-                                <img className={s.img} src={movie.image} alt="Mô tả ảnh"/>
-                        }
-                        </a>
-                    </div>
-                    <div className={s.imagewrapper}>
-                        <a className={s.a} href="https://www.galaxycine.vn/dat-ve/trinh-cong-son">
-                        {
-                            (!movie ) ? 
-                                <Loader />:
-                                <img className={s.img} src={movie.image} alt="Mô tả ảnh"/>
-                        }
-                        </a>
-                    </div>
-                    <div className={s.more}>
-                        <a className={s.more} href="https://www.galaxycine.vn/phim-dang-chieu">XEM THÊM</a>
+                        <button className={s.btnbooking} onClick={clickbutton}>ĐẶT VÉ</button>
+                
                     </div>
             </div>
        </div>
+       <div className={s.newmoviewrap}>
+       <div className={s.newmovie}> PHIM HAY TRONG TUẦN</div>
+       </div>
+
+       <div className={s.slider}>
+        <div className={s.slidercontainer} ref={containerRef}>
+          <a href={"http://localhost:3000/movie/"+films[2]?.showtimeId}> <img src={films[2]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[3]?.showtimeId}> <img src={films[3]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[4]?.showtimeId}> <img src={films[4]?.image} /> </a>
+          <a href={"http://localhost:3000/movie/"+films[5]?.showtimeId}> <img src={films[5]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[7]?.showtimeId}> <img src={films[7]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[8]?.showtimeId}> <img src={films[8]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[9]?.showtimeId}> <img src={films[9]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[10]?.showtimeId}> <img src={films[10]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[11]?.showtimeId}> <img src={films[11]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[13]?.showtimeId}> <img src={films[13]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+films[14]?.showtimeId}> <img src={films[14]?.image} /> </a>   
+       
+            </div>
+     </div>
        <div className={s.mschedule}>
-            <div> LỊCH CHIẾU</div>
+             <div className={s.schewrap}>
+                <div className={s.sche}> LỊCH CHIẾU</div>
+            </div>
             <div className={s.select}>
                 <input type="date" className={s.datetime} value={selectedDate} onChange={handleDateChange}></input>
                 <select  className={s.theater} onChange={handleTheaterChange}>
@@ -339,7 +356,7 @@ export default function MoviesPage( {params, searchParams}: Props) {
   </div>
       </>
     )
-}
+};
 
 
 
