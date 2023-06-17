@@ -17,6 +17,8 @@ export default function Schedule_Admin (){
    const [movieList, setMovieList] = useState([]);
    const [theatreList, setTheatreList]= useState([])
    const [Schedules, take] = useState<any[]>([]); ///
+   const [SById, setSByID] = useState<any[]>([]); ///
+  let count=1;
    const Schedule = async () => {
      const ScheduleData = await AdminAPI.getAllShowtime();
      console.log("res: ", ScheduleData);
@@ -38,13 +40,15 @@ export default function Schedule_Admin (){
       setMovieList(res.data);
       console.log("Movies : ", res.data);
     }
-
+    
+    // SchById();
     fetchMovieList();
     fetchTheatreList();
   },[])
   /// new schedule
   const maxtheatre=10
   const [newsch_movieID, setNewsch_movieID] = useState("")
+  const [newsch_movieName, setNewsch_movieName] = useState("")
   const [newsch_startDate, setNewsch_startDate]= useState("");
   const [newsch_endDate, setNewsch_endDate]= useState("");
   const [newsch_times, setNewsch_times]= useState([]);
@@ -53,14 +57,36 @@ export default function Schedule_Admin (){
   const [newTheatre, setNewTheatre] = useState([""])
   const [newNumTime, setNewNumTime] = useState<any[]>([1])
   const [newTime, setNewTime] = useState<any[][]>([[""]])
-  // const [times, setTimes] = useState([])
+
+  const Cinema = ['Happy Us Theatre Quận 1', 
+                  'Happy Us Theatre Quận 2', 
+                  'Happy Us Theatre Quận 3', 
+                  'Happy Us Theatre Quận 4',
+                  'Happy Us Theatre Quận 5',  ];
+
+
   const handleAddScheduleButton = () => {
     setIsAddingSchedule(1);
    
   }
   const handleSaveAddingButton = () => {
-
-  }
+    const data = {
+      movieName: newsch_movieName,
+      startDate: newsch_startDate,
+      endDate: newsch_endDate,
+      isActive: true,
+      times: newsch_times.map((date, idxtimes) => {
+        return {
+          _id: `648a020e27d32dfd9816931${idxtimes}`,
+        showtimeId: "6489ec98ba4769263484ac62",
+        date: date,
+        theatreName: newTheatre,
+        time: newTime[idxtimes],
+        };
+      }),
+    };
+    console.log(data);
+  };
   const handleIncreaseDays=useCallback(()=>{
   
     setNewNumTimes((t) => newnumtimes+1);
@@ -69,6 +95,46 @@ export default function Schedule_Admin (){
     console.log("day affter", newnumtimes)
     setNewTime((t)=>[...t,[""]])
   },[newnumtimes])
+
+
+
+
+  const handleMovieChange = (event) => {
+    const selectedMovieTitle = event.target.value;
+    setNewsch_movieName(selectedMovieTitle);
+  };
+
+
+  const handleStartDateChange = (value) => {
+    setNewsch_startDate(value);
+  };
+
+  const handleEndDateChange = (value) => {
+    setNewsch_endDate(value);
+  };
+
+  const handleDayRowChange = (idxtimes, event) => {
+    const value = event.target.value;
+    const formattedDate = value.replaceAll("-", "/");
+    const newTimesCopy = [...newsch_times];
+    newTimesCopy[idxtimes] = formattedDate;
+    setNewsch_times(newTimesCopy);
+  };
+
+  const handleTheatreChange = (event) => {
+    const selectedTheatreName = event.target.value;
+    setNewTheatre(selectedTheatreName);
+  };
+
+  const handleTimeChange = (idxtimes, idxtime, value) => {
+    const newTimeCopy = [...newTime[idxtimes]];
+    newTimeCopy[idxtime] = value;
+  
+    const newTimeCopyArray = [...newTime];
+    newTimeCopyArray[idxtimes] = newTimeCopy;
+    setNewTime(newTimeCopyArray);
+  };
+  
   const handleIncreaseTime=useCallback((idxtimes: number) =>{
 
     let tempnumtime=newNumTime
@@ -84,20 +150,15 @@ export default function Schedule_Admin (){
 
     return(
       <div  className={styles.lay1}>
-        <div className={styles.addmovie} onClick={()=>{handleAddScheduleButton(); console.log("isadding:", isAddingSchedule)}}>
-                    <Image src={add_ad} alt="" width={15} height={15}/> Add schedule
-                </div>
         <table className={styles.table}>
   <thead>
     <tr>
       <th>No.</th>
-      {/* <th>ID</th> */}
       <th>Name</th>
       <th>Start</th>
       <th>End</th>
       <th>Date</th>
       <th>Theatre</th>
-    
       <th>Time</th>
       <th>opt</th>
     </tr>
@@ -117,56 +178,58 @@ export default function Schedule_Admin (){
               {/* name */}
               <td >
                 {/* <label htmlFor="">Choose movie</label> */}
-                <select name="movies" id="movies">
-                  {movieList.map((movie: any)=> (
-                    <option key = {movie}>{ movie.title}</option>
+                <select name="movies" id="movies" onChange={handleMovieChange}>
+                <option value="" hidden>Chọn phim</option> 
+                  {Schedules.map((movie: any)=> (
+                    <option key = {movie}>{ movie.movieName}</option>
                   ))}
                 </select>
               </td>
               {/* start date */}
-              <td ><input className={styles.input} value={newsch_startDate} onChange={(e)=>handleStartDateChange( e.target.value)} type="text"/></td>
+              <td ><input className={styles.input} value={newsch_startDate} onChange={(e)=>handleStartDateChange( e.target.value)} type="date"/></td>
               {/* end date */}
-              <td ><input  className={styles.input} value={newsch_endDate} onChange={(e)=>handleEndDateChange( e.target.value)} type="text"/></td>
+              <td ><input  className={styles.input} value={newsch_endDate} onChange={(e)=>handleEndDateChange( e.target.value)} type="date"/></td>
             </>
               ):null}
               {/* date */}
 
                   <td >
-                    <input value={etimes} onChange={(e)=> handleDayRowChange(idxtimes, e.target.value)} className={styles.input} type="text"/>   
+                    <input value={newsch_times} onChange={(e)=> handleDayRowChange(idxtimes, e)} className={styles.input} type="text"/>   
                   </td>
-                  <td className= {styles.add_sheet}>
-                    <select name="theatres" id="theatres">
-                            {theatreList.map((theatre: any)=> (
-                              <option key = {theatre}>{ theatre.name}</option>
-                            ))}
-                          </select>
-                          {idxtimes!==newtimes.length-1?(<></>):(
-                            < Image src={add_ad}
-                            onClick={()=>handleIncreaseDays()}
-                            alt="" className={styles.add_row_img} width={20} height={20}/>
-                          )}
-                   
+                  <td className={styles.add_sheet}> <select name="theatres" id="theatres" onChange={handleTheatreChange}>
+                  <option value="" hidden>Chọn Rạp</option> 
+                      {Cinema.map((theatre: any) => (
+                        <option key={theatre}>{theatre}</option>
+                      ))} </select>
+                    {/* {idxtimes !== newtimes.length - 1 ? (
+                      <></>
+                    ) : (
+                      <Image
+                        src={add_ad} onClick={handleIncreaseDays} alt="" className={styles.add_row_img} width={20} height={20}/>
+                    )} */}
                   </td>
   
           
-          {/* < Image src={add_ad} alt="" className={styles.add_row_img} width={20} height={20}/> */}
           <td className= {styles.add_sheet}> 
 
           
-            <ul>
-               {newTime[idxtimes]?.map((etime, idxtime) => (
-                <li key={idxtime} id={`${idxtimes}-${idxtime}`}>
-                  <input value={etime} onClick={(e)=> handleTimeChange(idxtimes, idxtime, e.target.value)} key={idxtime}/>
-                 {idxtime!==newTime[idxtimes].length-1?(<></>):(
-                  <Image src={add_ad} 
-              onClick={()=>handleIncreaseTime(idxtimes)}
-              alt="" className={styles.add_row_img} width={20} height={20}/>
-                 )} 
-                </li>
-              ))} 
-        
-         
-            </ul>
+          <ul>
+          {newTime[idxtimes]?.map((etime, idxtime) => (
+            <li key={idxtime} id={`${idxtimes}-${idxtime}`}>
+              <input
+                value={etime}
+                onChange={(e) => handleTimeChange(idxtimes, idxtime, e.target.value)}
+                key={idxtime}
+              />
+              {idxtime !== newTime[idxtimes].length - 1 ? (
+                <></>
+              ) : (
+                <Image
+                  src={add_ad}onClick={() => handleIncreaseTime(idxtimes)} alt="" className={styles.add_row_img} width={20} height={20}/>
+              )}
+            </li>
+          ))}
+</ul>
           </td>
           <td><button onClick={handleSaveAddingButton}>Save</button></td>
         </tr>
@@ -176,20 +239,19 @@ export default function Schedule_Admin (){
      
     {/* ))
   ))} */}
-  {Schedules.map((schedule, index) => (schedule.startDate ==="2023-05-09T17:00:00.000Z")?( 
-    schedule.times.map((timeSlot:any, timeIndex:any) => (
+  {Schedules.map((schedule, index) => (schedule.schedules.length >0)?( 
+    schedule.schedules.map((timeSlot:any, timeIndex:any) => (
       <tr key={`${index}-${timeIndex}`}>
         {timeIndex === 0 ? (
           <>
-            <td rowSpan={schedule.times.length}>{index + 1}</td>
-            {/* <td rowSpan={schedule.times.length}>{schedule.movieId._id}</td> */}
-            <td rowSpan={schedule.times.length}>{schedule.movie}</td>
-            <td rowSpan={schedule.times.length}>{schedule.startDate.substring(0,10)}</td>
-            <td rowSpan={schedule.times.length}>{schedule.endDate.substring(0,10)}</td>
+            <td rowSpan={schedule.schedules.length}>{count++}</td>
+            <td rowSpan={schedule.schedules.length}>{schedule.movieName}</td>
+            <td rowSpan={schedule.schedules.length}>{schedule.dateRange.start.substring(0,10)}</td>
+            <td rowSpan={schedule.schedules.length}>{schedule.dateRange.end.substring(0,10)}</td>
           </>
         ) : null}
-       <td>{timeSlot.date}</td>
-        <td>{timeSlot.theatreName}</td>
+       <td>{timeSlot.date.substring(0,10)}</td>
+        <td>{timeSlot.theatre}</td>
        
         <td>
           <ul>
@@ -203,7 +265,8 @@ export default function Schedule_Admin (){
         <td>opt</td>
       </tr>
     ))
-  ):(<></>))}
+  ):(<></>))
+  }
 </tbody>
 </table>
 

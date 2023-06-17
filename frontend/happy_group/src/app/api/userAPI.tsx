@@ -18,6 +18,9 @@ const UserAPI = {
     const url=  `${apiV1_user}/users/register`
     return post(url, user,"")
   }
+
+
+  
   // patchResource: function (data: any, id: string, token: string) {
   //   const url = `${apiV1}/groups/resources?${id}`;
   //   return patch(url, data, token);
