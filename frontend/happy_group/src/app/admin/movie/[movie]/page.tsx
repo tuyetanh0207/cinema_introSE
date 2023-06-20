@@ -1,7 +1,7 @@
 "use client"
 import s from './Film_manager.module.css'
 import React, { useState, useEffect } from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton, TextField } from '@mui/material'
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton, TextField, MenuItem, Select } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,15 +17,13 @@ import movieAPI from '@/app/api/movieAPI';
 import { ResolvingMetadata, Metadata } from 'next';
 import { useDispatch, useSelector } from 'react-redux';
 import showtimeAPI from '@/app/api/showtimeAPI';
+import DatePicker from '@mui/lab/DatePicker';
+import { format } from 'date-fns'; // Import thư viện date-fns để định dạng ngày tháng
 
 
 type Props = {
   params: { movie: string };
   searchParams: { [key: string]: string | string[] | undefined };
-};
-type DateRange= {
-  start: string;
-  end: string;
 };
 type Schedule ={
   _id: string;
@@ -43,14 +41,6 @@ type addSchedule ={
   time: string[];
 };
 
-type stData ={
-  id: string;
-  movieId: string;
-  movieName: string;
-  dateRange: DateRange;
-  isActive: boolean;
-  schedules: Schedule[];
-};
 type films = {
     _id: string;
     title: string;
@@ -67,46 +57,25 @@ type films = {
   
 
 export default function Film_manager ({params, searchParams}: Props) {
+
   // id của phim
       const id=params.movie
       const user=useSelector((state:any)=> state.auth.login.currentUser)
       const token=user?.token
+      console.log('token ne ', token)
       const [films, setfilms] = useState<films>();
 
       const stt = async () => {
-        const res11 = await movieAPI.getMovie(id,token)
-        setfilms(res11.data)
-        const title=encodeURIComponent(res11.data.title)
-        const ress= await showtimeAPI.searchShowtimes(title)
-        const res3= await showtimeAPI.getSchebyShowtime(ress.data[0].showtimeId)
+        const res11= await showtimeAPI.getShowtime(id)
+        setfilms(res11.data.movie)
+        const res3= await showtimeAPI.getSchebyShowtime(id)
         setAllSche(res3.data)
         setSche(res3.data.slice(0,5))
       }    
       useEffect(()=>{
           stt();
       },[])
-
-      const myFilm: films = {
-        _id: "123",
-        title: "Example Film",
-        image: "example.jpg",
-        language: ["English"],
-        genre: ["Action", "Adventure"],
-        director: "John Doe",
-        cast: ["Actor 1", "Actor 2"],
-        description: "This is an example film.",
-        duration: 120,
-        rating: 4.5,
-        __v: 1,
-      };
-      const stt1 = async () => {
-        const respond=await movieAPI.postMovie(myFilm,token);
-        console.log('respond ne: ', respond)
-      }    
-      useEffect(()=>{
-          stt1();
-      },[])
-
+        
 
       const toastOptionsError = {
         position: 'top-center',
@@ -178,36 +147,33 @@ export default function Film_manager ({params, searchParams}: Props) {
         setText(e.target.value);
         films.description=e.target.value;
       };
-
-      const handleSaveClick = () => {
+      const handleSaveClick = async () => {
+        const moviedata= {
+          title: films?.title,
+          image: films?.image,
+          language:films?.language,
+          genre: films?.genre,
+          director: films?.director,
+          cast: films?.cast,
+          description: films?.description,
+          duration: films?.duration,
+          rating: films?.rating
+        }
+        const id=films?._id
         setIsEditing(false);
-   
-        // axios.delete(urlfilm+'/'+i.toString())
-        // .then(response => {
-        //   toast.success('Thay đổi thành công!', toastOptions);
-        //   axios.post(urlfilm, films[i])
-        //     .then(response => {
-        //       console.log('Post thành công dữ liệu: ', response.data);
-        //       })
-        //     .catch(error => {
-        //       toast.success('ERROR POST!', toastOptionsError);
-        //       return
-        //     });
-        //   // Xử lý khi xóa thành công
-        // })
-        // .catch(error => {
-        //   // Xử lý khi xóa thất bại hoặc có lỗi
-        //   toast.success('ERROR DELETE!', toastOptionsError);
-        //   return
-        // }); 
+        console.log('movie data ', moviedata)
+        try {
+          const respond = await movieAPI.patchMovie(id, moviedata, token);
+          toast.success('Cập nhật thông tin thành công!', toastOptions);
+        } catch (error) {
+          toast.success('Lỗi!', toastOptionsError);
+        }
       };
    
       //PART 2
-
       const [allsche, setAllSche] = useState<Schedule[]>([]);
       const [sche, setSche] = useState<Schedule[]>([]);
        
-      
         // NúT TRƯỚC
         const handleBefore = () => {
           let page=((allsche.indexOf(sche[0])+1-1)/5)-1
@@ -230,11 +196,43 @@ export default function Film_manager ({params, searchParams}: Props) {
         };
         
 
-
-
-        
-
         //PART 3
+        const availableTimes = [
+          "08:00",
+          "08:30",
+          "09:00",
+          "09:30",
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30",
+          "18:00",
+          "18:30",
+          "19:00",
+          "19:30",
+          "20:00",
+          "20:30",
+          "21:00",
+          "21:30",
+          "22:00",
+          "22:30",
+          "23:00",
+          "23:30",
+          "00:00",
+          
+        ];
         const [data, setData] = useState<addSchedule[]>([]);
         const handleDeleteRow = (No: number) => {
           setData(prevData => prevData.filter(row => row.No !== No));
@@ -257,11 +255,23 @@ export default function Film_manager ({params, searchParams}: Props) {
         };
 
         //Nút SAVE
-        const handleSaveSche = () => {       
-          toast.success('Đã thêm thành công!', toastOptions);
+        const handleSaveSche = async (No: number) => {   
+          const i = data.findIndex(item => item.No === No);    
+          const schedata= {
+            date: data[i].date.replace(/-/g, "/"),
+            showtimeId: id,
+            theatre: data[i].theatre,
+            time:  data[i].time}           
+          try {
+            const respond = await showtimeAPI.postSchedule(schedata);
+            toast.success('Thêm thành công!', toastOptions);
+            const old=data.filter((element, index) => index !== i);
+            setData(old)
+          } catch (error) {
+            toast.success('Lỗi!', toastOptionsError);
+          }
         };
-      
-    
+
     return (
     <div className={s.body}>
 
@@ -279,8 +289,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
-
       <div className={s.flex}>
         <div className={s.info}> Title: </div>
         <div>
@@ -296,7 +304,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
       <div className={s.flex}>
         <div className={s.info}> Genre: </div>
         <div>
@@ -312,7 +319,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
       <div className={s.flex}>
         <div className={s.info}> Director: </div>
         <div>
@@ -328,7 +334,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
       <div className={s.flex}>
         <div className={s.info}> Cast: </div>
         <div>
@@ -344,7 +349,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
       <div className={s.flex}>
         <div className={s.info}> Duration: </div>
         <div>
@@ -360,7 +364,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
       <div className={s.flex}>
         <div className={s.info}> Language: </div>
         <div>
@@ -376,7 +379,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
       <div className={s.flex}>
         <div className={s.info}> Rating: </div>
         <div>
@@ -392,7 +394,6 @@ export default function Film_manager ({params, searchParams}: Props) {
           )}
         </div>
       </div>
-
       <div className={s.flex}>
         <div className={s.info}> Description: </div>
         <div>
@@ -469,25 +470,51 @@ export default function Film_manager ({params, searchParams}: Props) {
               <TableCell style={{textAlign: 'center'}}>{row.No}</TableCell>
 
               <TableCell>
-                <TextField 
-                  value={row.date}
+                  <input
+                  className={s.input}
+                  type="date"
+                  min="2023-06-01" // Ngày tối thiểu cho phép chọn
+                  max="2024-06-30" // Ngày tối đa cho phép 
                   onChange={e => handleChangeField(row.No, 'date', e.target.value)}
-                />
+                    />
               </TableCell>
               
               <TableCell>
-              <TextField
-                  value={row.theatre}
+                <Select
+                  value={row.theatre || "Chọn rạp"}
                   onChange={e => handleChangeField(row.No, 'theatre', e.target.value)}
-                />
+                >
+                  <MenuItem value="Chọn rạp" disabled>
+                    Chọn rạp
+                  </MenuItem>
+                  <MenuItem value="Happy Us Theatre Quận 1">Happy Us Theatre Quận 1</MenuItem>
+                  <MenuItem value="Happy Us Theatre Quận 2">Happy Us Theatre Quận 2</MenuItem>
+                  <MenuItem value="Happy Us Theatre Quận 3">Happy Us Theatre Quận 3</MenuItem>
+                  <MenuItem value="Happy Us Theatre Quận 4">Happy Us Theatre Quận 4</MenuItem>
+                  <MenuItem value="Happy Us Theatre Quận 5">Happy Us Theatre Quận 5</MenuItem>
+              </Select>
               </TableCell>
                 
                 <TableCell>
-                <TextField
-                  value={row.time}
-                  onChange={e => handleChangeField(row.No, 'time', e.target.value)}
-                />
-                </TableCell>
+                <Select
+                      multiple
+                      value={row.time || ["a"]}
+                      onChange={e => handleChangeField(row.No, 'time', e.target.value)}
+                    >
+                       <MenuItem disabled value={["a"]} >
+                        Chọn giờ
+                      </MenuItem>
+                      {availableTimes.map(time => (
+                        <MenuItem key={time} value={time}>{time}</MenuItem>
+                      ))}
+                    </Select>
+
+                  </TableCell>
+                  <TableCell>
+                  <Button variant="contained" color="primary" startIcon={<SaveIcon />} onClick={() => handleSaveSche(row.No)}>
+                            Save
+                          </Button>
+              </TableCell>
 
               <TableCell>
                 <IconButton onClick={() => handleDeleteRow(row.No)} aria-label="delete">
@@ -500,10 +527,6 @@ export default function Film_manager ({params, searchParams}: Props) {
       </Table>
       <Button variant="contained" color="primary" startIcon={<AddIcon />} onClick={handleAddRow}>
         Add Row
-      </Button>
-
-      <Button variant="contained" color="primary" startIcon={<SaveIcon />} onClick={handleSaveSche}>
-        Save
       </Button>
     </TableContainer>
       <ToastContainer />
