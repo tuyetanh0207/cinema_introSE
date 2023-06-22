@@ -12,7 +12,7 @@ import { loginUser } from '@/redux/apiRequests'
 import authSlice from '@/redux/authSlice'
 import { useRouter } from 'next/navigation'
 import { useNavigate } from 'react-router-dom'
-import PopupResult from '@/components/popup_result/popup_result'
+import PopupResult from '@/components/popup_resultAuth/popup_result'
 
 
 
@@ -26,14 +26,31 @@ export default function Login_Form () {
   const [modalOpen,setModalOpen]=useState(false);
   // const navigate = useNavigate();
   const router=useRouter();
-  const handleSubmit =  (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const newUser = {
       username: username,
       password: password,
     };
-    // console.log(newUser)
-loginUser(newUser, dispatch,router);
+     console.log(newUser)
+
+//console.log("res",res)
+
+
+    try {
+      //const res = await UserAPI.login(newUser)
+      const  res1= await loginUser(newUser, dispatch,router);
+      //console.log("res",res.data)
+      //router.push("/")
+    } catch (error:any) {
+      console.log("err::");
+      console.log("err:", error);
+      setnoti("Tên đăng nhập hoặc mật khẩu không đúng.")
+      setModalOpen(true)
+      setTimeout(() => {
+        setModalOpen(false)
+      }, 4000);
+    }
   }
 
 
@@ -56,8 +73,15 @@ loginUser(newUser, dispatch,router);
                     <button className={styles.btn}>Đăng nhập</button>
                 </div> 
             </form>
-            <PopupResult message={noti} button={["Về trang chủ", "Xem lại vé"]} urls={["/", `/user/reservation/`]}
+            <div className={styles.modal}>{
+              noti===""?(<></>):(
+                <PopupResult message={noti} button={[]} urls={["/", `/user/reservation/`] }
       modalOpen={modalOpen} setModalOpen={setModalOpen}  />
+              )
+            }
+            
+            </div>
+        
             </>
         
   )

@@ -37,13 +37,13 @@ export default function Schedule_Admin (){
       console.log("theatres : ", res.data);
     }
     const fetchMovieList = async() => {
-      const res =await movieAPI.getAllMovies();
-      setMovieList(res.data);
-      console.log("Movies : ", res.data);
+      //const res =await movieAPI.getAllMovies();
+      // setMovieList(res.data);
+      // console.log("Movies : ", res.data);
     }
     
     // SchById();
-    fetchMovieList();
+    //fetchMovieList();
     fetchTheatreList();
   },[])
   /// new schedule

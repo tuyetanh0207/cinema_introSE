@@ -5,7 +5,7 @@
     width: 50%;
    top: 50%;
    left: 50%;
-   transform: translate(-50%,-80%);
+   transform: translate(-50%,-100%);
     width: fit-content;
     padding: 50px;
     align-items: center;
@@ -15,7 +15,7 @@
     animation-name: slide-in-up;
     animation-duration: 2s;
     animation-delay: 0s;
-    animation-iteration-count: 2;
+    animation-iteration-count: 1;
     animation-direction:normal;
     animation-timing-function:easy-in-out;
    
@@ -36,16 +36,16 @@
 
 @keyframes slide-in-up {
     from {
-      top: 50%;
+      top: 20%;
       left: 50%;
-      transform: translate(-50%,-80%);
+      transform: translate(-50%,-100%);
     }
   
     to {
     /* height: 200px; */
-    top: 50%;
+    top: 100%;
     left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translate(-50%, 50%);
     }
   }
 

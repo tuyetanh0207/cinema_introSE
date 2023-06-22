@@ -74,7 +74,7 @@ export default function Header () {
           
                 {user? 
                 (
-                <div className={styles.login_done}>Hi, {user.user.name}
+                <div className={styles.login_done} onClick={()=>router.push("/User")}>Hi, {user.user.name}
                  <Link onClick={handleLogout} href={''}>
                     <Image src={logoutIcon} className={styles.loginIcon_done} alt=''></Image>
                     </Link>

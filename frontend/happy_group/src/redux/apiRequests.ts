@@ -66,10 +66,14 @@ export const loginUser = async (user: any, dispatch: (arg0: { payload: any; type
     } else
     router.push("/")
     return 1
-  } catch (err) {
-    dispatch(loginFailed());
-    console.log(err)
-    return err;
+  } catch (err:any)
+   {
+    //console.error()
+    //dispatch(loginFailed());
+    console.log("err",err)
+    return err.error
+    if (!err.response) return (err.message);
+        return (err.response.data.message);
   }
 };
 
@@ -77,16 +81,18 @@ export const registerUser = async (user: any, dispatch: (arg0: { payload: undefi
   dispatch(registerStart());
   try {
    const res= await UserAPI.register(user)
-    console.log ("res api", res)
+    //console.log ("res api", res)
     //await axios.post("/v1/auth/register", user);
     dispatch(registerSuccess());
-    // router.push("/")
-    return res.data.message
+     router.push("/")
+    return res.data
+    return "1";
   } catch (err:any) {
-    return err.error
-    if (!err.response) return (err.message);
-        return (err.response.data.message);
-    dispatch(registerFailed());
+    //return "0";
+     return err.error
+     if (!err.response) return (err.message);
+         return (err.response.data.message);
+     dispatch(registerFailed());
   }
 };
 
