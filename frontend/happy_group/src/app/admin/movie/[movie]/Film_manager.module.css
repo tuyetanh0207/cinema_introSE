@@ -39,7 +39,7 @@
 
 .data{
     font-size: 25px;
-    color:darkred;
+    color:#800080;
     margin-top: 5%;
     margin-left: 3%;
     font-weight: 700;
@@ -48,3 +48,4 @@
 .flex{
     display: flex;;
 }
+

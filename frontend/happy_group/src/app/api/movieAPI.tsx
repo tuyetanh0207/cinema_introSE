@@ -30,11 +30,11 @@ const movieAPI = {
     const url = `${apiV1}/quick-buy/date/${id}`;
     return get(url, "");
   },
-  postMovie: function (data:any, token:string){
-    const url = '${apiV1}/movies/upload}'
-    return post(url, data, token);
+ 
+  patchMovie: function(id:string, data:any, token:string){
+    const url = `${apiV1}/movies/${id}`;
+    return patch(url, data, token)
   },
-
 
   getTheatreOfShowtime: function (id:string,date:string) {
     const url = `${apiV1}/quick-buy/theatre/${id}/${date}`;
@@ -45,8 +45,6 @@ const movieAPI = {
     const url = `${apiV1}/quick-buy/time/${id}/${date}/${theatre}`;
     return get(url, "");
   },
-
-
 
   getUpComingMovies: function () {
     const url = `${apiV1}/showtimes/upcoming`;

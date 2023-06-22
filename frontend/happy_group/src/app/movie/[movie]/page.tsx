@@ -1,15 +1,9 @@
 "use client"
 import movieAPI from "../../api/movieAPI";
-import axios from "axios";
 import s from './idfilm.module.css'
 import { Metadata, ResolvingMetadata } from 'next';
-import Image from "next/image";
-import { ChangeEvent, MouseEventHandler, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import showtimeAPI from "@/app/api/showtimeAPI";
-import { ClassNames } from "@emotion/react";
-import Slider from 'react-slick';
-import PerfectScrollbar from "react-perfect-scrollbar";
-import { useSelector } from "react-redux";
 
 type movieInterface = {
     _id: string;
@@ -25,17 +19,13 @@ type movieInterface = {
     __v: number;
   };
   
-  
 type Props = {
     params: { movie: string };
     searchParams: { [key: string]: string | string[] | undefined };
   };
 
-
-
 export default function MoviesPage( {params, searchParams}: Props) {
     const id=params.movie
-  
     const [movie, setMovie]= useState<movieInterface>()
     const fetchMovie = async () => {
       const res= await showtimeAPI.getShowtime(id);
@@ -46,17 +36,28 @@ export default function MoviesPage( {params, searchParams}: Props) {
       fetchMovie();
   },[])
 
-  const user=useSelector((state:any)=> state.auth.login.currentUser)
-  const token=user?.token
-  const [films, setfilms] = useState<movieInterface[]>([]);
+  const [image, setimage] = useState<string[]>([]);
+  const [showtime, setshowtime] = useState<string[]>([]);
 
-  const stt = async () => {
-    const res11 = await movieAPI.getAllMovies(token)
-    setfilms(res11.data)
-    console.log(res11.data)
-  }    
+  const transformId = async (id: string) => {
+    return showtimeAPI.getShowtime(id)
+    .then(data => String(data.data.movie.image));
+  };
+
+  const stt1 = async () => {
+    const res11 = await showtimeAPI.getAllShowtimes()
+
+    const ids1 = Object.values(res11.data).map(obj => obj.id);
+    const results1 = await Promise.all(ids1);
+    setshowtime(results1)
+
+    const ids2 = Object.values(res11.data).map(obj => transformId(obj.id));
+    const results2 = await Promise.all(ids2);
+    setimage(results2)
+    
+  }     
   useEffect(()=>{
-      stt();
+      stt1();
   },[])
 
   const [selectedDate, setSelectedDate] = useState('2023-06-13');
@@ -75,6 +76,12 @@ export default function MoviesPage( {params, searchParams}: Props) {
      //showtime
      const fetchSche = async () => {
        const res= await showtimeAPI.quickbuy1(id,'',useDate);
+       setQ1([])
+       setQ2([])
+       setQ3([])
+       setQ4([])
+       setQ5([])
+
        res.data.forEach(item => {
              for (let i = 0; i < res.data.length; i++) {
                      if(item.theatre==='Happy Us Theatre Quận 1'){
@@ -116,7 +123,7 @@ export default function MoviesPage( {params, searchParams}: Props) {
    
   
   const clickbutton = () => {
-    const scrollOptions: ScrollToOptions = { top: 1400, behavior: 'smooth' }; 
+    const scrollOptions: ScrollToOptions = { top: 1350, behavior: 'smooth' }; 
     window.scrollTo(scrollOptions); 
   };
   const containerRef = useRef<HTMLDivElement>(null);
@@ -209,7 +216,6 @@ export default function MoviesPage( {params, searchParams}: Props) {
 
                         </div>
 
-                        
                         <div>
                             <div className={s.j1}> DESCRIPTION</div>
                             {
@@ -225,23 +231,22 @@ export default function MoviesPage( {params, searchParams}: Props) {
        <div className={s.newmoviewrap}>
        <div className={s.newmovie}> PHIM HAY TRONG TUẦN</div>
        </div>
-
        <div className={s.slider}>
         <div className={s.slidercontainer} ref={containerRef}>
-          <a href={"http://localhost:3000/movie/"+films[2]?.showtimeId}> <img src={films[2]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[3]?.showtimeId}> <img src={films[3]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[4]?.showtimeId}> <img src={films[4]?.image} /> </a>
-          <a href={"http://localhost:3000/movie/"+films[5]?.showtimeId}> <img src={films[5]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[7]?.showtimeId}> <img src={films[7]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[8]?.showtimeId}> <img src={films[8]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[9]?.showtimeId}> <img src={films[9]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[10]?.showtimeId}> <img src={films[10]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[11]?.showtimeId}> <img src={films[11]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[13]?.showtimeId}> <img src={films[13]?.image} /> </a>   
-          <a href={"http://localhost:3000/movie/"+films[14]?.showtimeId}> <img src={films[14]?.image} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[0]}> <img src={image[0]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[1]}> <img src={image[1]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[2]}> <img src={image[2]} /> </a>
+          <a href={"http://localhost:3000/movie/"+showtime[3]}> <img src={image[3]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[4]}> <img src={image[4]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[5]}> <img src={image[5]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[6]}> <img src={image[6]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[7]}> <img src={image[7]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[8]}> <img src={image[8]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[9]}> <img src={image[9]} /> </a>   
+          <a href={"http://localhost:3000/movie/"+showtime[10]}> <img src={image[10]} /> </a>   
+        </div>
+       </div>
        
-            </div>
-     </div>
        <div className={s.mschedule}>
              <div className={s.schewrap}>
                 <div className={s.sche}> LỊCH CHIẾU</div>
@@ -354,7 +359,6 @@ export default function MoviesPage( {params, searchParams}: Props) {
 };
 
 
-
 export async function generateMetadata(
     { params, searchParams }: Props,
     parent?: ResolvingMetadata,
@@ -369,7 +373,6 @@ console.log("Movie: ", movie)
     title: movie.title
     };
   }
-
 export async function generateStaticParams() {
   const res= await showtimeAPI.getAllShowtimes();
   const movies=res.data
