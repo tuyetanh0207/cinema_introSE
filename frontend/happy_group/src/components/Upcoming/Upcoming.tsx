@@ -2,8 +2,7 @@ import movieAPI from '@/app/api/movieAPI';
 import { useEffect, useState } from 'react';
 
 import styles from './Upcoming.module.css';
-import { fbIcon, searchIcon } from '@/assets/svgs';
-import Image from 'next/image';
+import { psc,blp } from '@/assets/imgs'
 
 export default function ListFilm() {
   const [movies, pickMovies] = useState<any[]>([]);
@@ -25,11 +24,9 @@ export default function ListFilm() {
   return (
     <>
       <div className={styles.body}>
-        <div className={styles.body_head_tag}>
-          <div className={styles.head_tag}>
-            <div className={styles.text_tag}>phim sắp chiếu</div>
-          </div>
-        </div>
+            <div className={styles.dragon}>
+                <img src={psc.src} alt="Movie" />
+            </div>
 
         <div className={styles.listfilm}>
           {movies.slice(0, 8).map((movie, index) => (
@@ -51,6 +48,10 @@ export default function ListFilm() {
             </div>
           ))}
         </div>
+
+        <div className={styles.dragon}>
+                <img src={blp.src} alt="Movie" />
+            </div>
       </div>
     </>
   );

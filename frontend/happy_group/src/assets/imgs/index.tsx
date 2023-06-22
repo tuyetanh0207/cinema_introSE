@@ -11,6 +11,9 @@ import picS1 from './picS1.jpg'
 import movie_img from "./movie.jpg"
 import avt_ad from "./avt.png"
 import ava from "./ava.jpg"
+import pdc from "./phimdangchieu.png"
+import psc from "./phimsapchieu.png"
+import blp from "./binhluanphim.png"
 
 export {
     test,
@@ -25,5 +28,8 @@ export {
     picS1,
     movie_img,
     avt_ad,
+    pdc,
+    blp,
+    psc,
     ava
 }

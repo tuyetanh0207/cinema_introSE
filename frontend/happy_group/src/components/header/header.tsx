@@ -1,5 +1,5 @@
 import styles from './header.module.css'
-import { fbIcon,searchIcon, twitterIcon, instaIcon, logoIcon, logoutIcon } from '@/assets/svgs'
+import { fbIcon,searchIcon, twitterIcon, instaIcon, logoIcon,logo_black, logoutIcon } from '@/assets/svgs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useDispatch, useSelector } from 'react-redux';
@@ -66,8 +66,7 @@ export default function Header () {
         <div className={`${styles.header}`}>
             <div className={`${styles.subheader}`}>
                 <div className={styles.logo} onClick={()=>router.push("/")}>
-                    <Image src={logoIcon} alt=''></Image>     
-                     Happy Group         
+                    <Image src={logo_black} alt='' className={styles.logo} width={60} height={60}/>   
                 </div>
                 <div className={styles.img}></div>
                 <SearchComp/>

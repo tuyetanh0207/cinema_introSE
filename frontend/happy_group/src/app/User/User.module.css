@@ -5,6 +5,25 @@
     height: 200vh;
 }
 
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide the row into two equal columns */
+    grid-gap: 200px; /* Add some spacing between columns */
+    align-items: center;
+  }
+  
+  .label {
+    font-weight: bold;
+    margin-right: 10px;
+    margin-left: 50px;
+  }
+
+
+.column {
+    display: flex;
+    flex-direction: column;
+  }
+
 .Box1{
     width: 60%;
     height: 40%;

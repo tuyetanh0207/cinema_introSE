@@ -177,7 +177,11 @@ function isButtonDisabled() {
 
 
     return (
+      
+
+
         <div className={styles.Banner}>
+        
         {/* slides begin */}
             <div className={styles.slides} id={'pic'}>
             {/* <!--image begin */}
@@ -189,6 +193,7 @@ function isButtonDisabled() {
                     ))}
                 
             </div>
+
         {/* slides end*/}
             <div onClick={() => side_slide(1)} className={styles.change_btn} id={styles.left}>
                 <Image className={styles.left_btn} src={left_arrow} alt='' />
@@ -235,6 +240,9 @@ function isButtonDisabled() {
                 </form>
 
             </div>
+
+
+
         {/* Form end */}
         </div>
     )

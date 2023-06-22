@@ -2,8 +2,7 @@ import movieAPI from '@/app/api/movieAPI'
 import { useEffect,useState } from 'react'
 
 import styles from './Nowshowing.module.css'
-import { fbIcon, searchIcon } from '@/assets/svgs'
-import Image from 'next/image'
+import { pdc } from '@/assets/imgs'
 
 export default function ListFilm () {
     
@@ -27,13 +26,16 @@ export default function ListFilm () {
     return (
         <>
         
-        
+        <div className={styles.container}>
+            <div className={styles.animation_container}>
+                <div className={styles.text_animation}>🎉✨️ UsHappy - Thế giới phim trực tuyến cho bạn! 🎬🌍 Với hàng ngàn bộ phim 🎭🍿📺đa dạng từ mọi thể loại🌟🌈📽️🎭🎞️🍿📺💫 và quốc gia trên thế giới🎭 🌟🎉🎈🎥 Với giao diện thân thiện và dễ sử dụng  🌈🎬🎉 UsHappy - nơi tạo nên những kỷ niệm vui vẻ và đáng nhớ trong cuộc sống của bạn! 🧡🎥✨ 🎞️🍿
+ </div>
+            </div>
+        </div>
 
         <div className={styles.body}>
-            <div className={styles.body_head_tag}>
-                <div className={styles.head_tag}>
-                    <div className={styles.text_tag}>phim đang chiếu</div>
-                </div>
+            <div className={styles.dragon}>
+                <img src={pdc.src} alt="Movie" />
             </div>
 
 

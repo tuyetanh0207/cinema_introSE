@@ -1,25 +1,62 @@
 "use client"
+import { useEffect,useState } from 'react'
 import styles from './User.module.css'
 import {movie_img} from '@/assets/imgs'
 import Image from 'next/image'
-
+import movieAPI from "@/app/api/movieAPI";
+import { movieInterface } from "@/app/api/apiResponse";
+import { useSelector } from "react-redux";
 
 export default function User (){
+
+  const user = useSelector((state: any) => state.auth.login.currentUser);
+  console.log(user); // Kiểm tra thông tin người dùng trong console log
+    
 
     return(
         <div className={styles.body}>
             <div className={styles.Box1}>
                 <div className={styles.ibox}>
-                    <div className={styles.name}> Bùi Quang Tùng</div>
-                    <div className={styles.info}>
-                        <ul className={styles.infoList}>
-                            <li>Giới Tính: </li>
-                            <li>SĐT: </li>
-                            <li>Ngày Sinh: </li>
-                            <li>Email: </li>
-                            <li>Địa chỉ: </li>
-                        </ul>
-                    </div>
+
+
+                    <div className={styles.name}> {user.user?.name}</div>
+
+                    <div className={styles.infoList}>
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>Số điện thoại:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.phone}</span>
+                            </div>
+                        </div>
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>Email:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.email}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>Vai trò:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.role}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.row}>
+                            <div>
+                            <span className={styles.label}>User Name:</span>
+                            </div>
+                            <div>
+                            <span>{user.user?.username}</span>
+                            </div>
+                        </div>
+                        </div>
                 </div>
                 <Image className={styles.pic} src={movie_img} alt='er'></Image>
             </div>

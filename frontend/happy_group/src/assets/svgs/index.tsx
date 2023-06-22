@@ -12,6 +12,8 @@ import androidIcon from './android_foot.svg'
 import bg_foot from './bg_footer.svg'
 import un_foot from './underline_footer.svg'
 import logo_white from './logo_white.png'
+import logo_black from './logo_black.png'
+import logo_blue from './logo_blue.png'
 import right_arrow from './changed_right.svg'
 import left_arrow from './changed_left.svg'
 import help_ad from "./help_ad.svg"
@@ -44,6 +46,8 @@ export {
     bg_foot,
     un_foot,
     logo_white,
+    logo_black,
+    logo_blue,
     right_arrow,
     left_arrow,
 
