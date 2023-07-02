@@ -1,18 +1,13 @@
  "use client"
 
-import Image from 'next/image'
- import styles from './login.module.css'
-import React,  { FC, useEffect, useState } from 'react'
 import Link from 'next/link'
-import axios from 'axios'
-import UserAPI from '../../api/userAPI'
-import { useSelector,useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import styles from './login.module.css'
 // import { getUsersData } rom '../state/actions/userActions'
-import { loginUser } from '@/redux/apiRequests'
-import authSlice from '@/redux/authSlice'
-import { useRouter } from 'next/navigation'
-import { useNavigate } from 'react-router-dom'
 import PopupResult from '@/components/popup_resultAuth/popup_result'
+import { loginUser } from '@/redux/apiRequests'
+import { useRouter } from 'next/navigation'
 
 
 

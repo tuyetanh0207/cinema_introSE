@@ -1,14 +1,6 @@
 "use client"
-import { useState } from 'react';
-import styles from './layout.module.css'
-import Link from 'next/link'
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
-import { registerUser } from '@/redux/apiRequests';
-import { useNavigate } from 'react-router';
-import { usePathname } from "next/navigation"
-import Login_Form from './login/page';
-import Signup_Form from './signup/page';
+import { usePathname, useRouter } from 'next/navigation';
+import styles from './layout.module.css';
 
 
 export default function Auth_Layout({children}:any) {

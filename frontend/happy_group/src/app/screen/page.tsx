@@ -1,18 +1,14 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import styles from './seat.module.css';
-import movieAPI from '@/app/api/movieAPI';
-import screenAPI from '../api/screenAPI';
-import {food1,food2,food3,food4,picS1} from '@/assets/imgs'
-import Image from 'next/image'
-import Link from 'next/link';
-import { useSelector } from 'react-redux';
-import showtimeAPI from '../api/showtimeAPI';
-import { showtimeInterface } from '../api/apiResponse';
-import { toASCII } from 'punycode';
-import { Sree_Krushnadevaraya } from 'next/font/google';
+import { food1, food2, food3, food4 } from '@/assets/imgs';
 import PopupResult from '@/components/popup_result/popup_result';
 import axios from 'axios';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { showtimeInterface } from '../api/apiResponse';
+import screenAPI from '../api/screenAPI';
+import showtimeAPI from '../api/showtimeAPI';
+import styles from './seat.module.css';
 
 export default function Seat () {
   var currentURL = window.location.href;

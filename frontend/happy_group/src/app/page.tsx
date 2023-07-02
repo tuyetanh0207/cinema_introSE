@@ -7,8 +7,8 @@ import { useEffect } from 'react'
 
 
 
-import Filmcomment from '@/components/filmcomment/filmcomment';
-import AdminAPI from "@/app/api/adminAPI";
+import AdminAPI from "@/app/api/test"
+import Filmcomment from '@/components/filmcomment/filmcomment'
 import { useState } from 'react'
 
 type movieInterface = {

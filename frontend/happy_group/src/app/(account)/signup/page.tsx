@@ -1,12 +1,11 @@
 "use client"
-import { useState } from 'react';
-import styles from './signup.module.css'
-import Link from 'next/link'
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
-import { loginUser, registerUser } from '@/redux/apiRequests';
-import { useNavigate } from 'react-router';
 import PopupResult from '@/components/popup_resultAuth/popup_result';
+import { loginUser, registerUser } from '@/redux/apiRequests';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import styles from './signup.module.css';
 export default function Signup_Form() {
     const [username_regis,setusername_regis]=useState("");
     const [password_regis,setpassword_regis]=useState("");

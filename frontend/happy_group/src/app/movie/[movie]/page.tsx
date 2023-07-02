@@ -1,10 +1,7 @@
 "use client"
-import movieAPI from "../../api/movieAPI";
-import s from './idfilm.module.css'
-import { Metadata, ResolvingMetadata } from 'next';
-import { ChangeEvent, useEffect, useRef, useState } from "react";
 import showtimeAPI from "@/app/api/showtimeAPI";
-import { showtimeInterface } from "@/app/api/apiResponse";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
+import s from './idfilm.module.css';
 
 type movieInterface = {
     _id: string;

@@ -1,11 +1,10 @@
 "use client"
-import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect,useState } from 'react'
-import styles from './User.module.css'
-import {movie_img} from '@/assets/imgs'
+import movieAPI from "@/app/api/movieAPI"
+import { movie_img } from '@/assets/imgs'
 import Image from 'next/image'
-import movieAPI from "@/app/api/movieAPI";
-import { movieInterface } from "@/app/api/apiResponse";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from 'react'
+import { useSelector } from "react-redux"
+import styles from './User.module.css'
 
 export default function User (){
 

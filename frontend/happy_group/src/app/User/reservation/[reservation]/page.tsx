@@ -1,12 +1,9 @@
 "use client"
+import { reservationInterface } from '@/app/api/apiResponse'
 import UserAPI from '@/app/api/userAPI'
-import styles from './page.module.css'
-import {movie_img} from '@/assets/imgs'
-import { Metadata, ResolvingMetadata } from 'next'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { reservationInterface } from '@/app/api/apiResponse'
+import styles from './page.module.css'
 
 type Props = {
     params: { reservation: string };

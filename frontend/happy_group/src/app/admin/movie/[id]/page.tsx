@@ -1,25 +1,20 @@
 "use client"
-import s from './Film_manager.module.css'
-import React, { useState, useEffect } from 'react'
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button, IconButton, TextField, MenuItem, Select } from '@mui/material'
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import BeforeIcon from '@mui/icons-material/KeyboardArrowLeft';
+import NextIcon from '@mui/icons-material/KeyboardArrowRight';
 import SaveIcon from '@mui/icons-material/Save';
-import NextIcon from '@mui/icons-material/KeyboardArrowRight'
-import BeforeIcon from '@mui/icons-material/KeyboardArrowLeft'
-import axios, { AxiosRequestConfig } from 'axios';
+import { Button, IconButton, MenuItem, Paper, Select, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { useEffect, useState } from 'react';
+import s from './Film_manager.module.css';
 
+import movieAPI from '@/app/api/movieAPI';
+import showtimeAPI from '@/app/api/showtimeAPI';
+import { FaTimes } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { ToastContainer, ToastPosition, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {FaTimes} from 'react-icons/fa';
-import movieAPI from '@/app/api/movieAPI';
-import { ResolvingMetadata, Metadata } from 'next';
-import { useDispatch, useSelector } from 'react-redux';
-import showtimeAPI from '@/app/api/showtimeAPI';
-import DatePicker from '@mui/lab/DatePicker';
-import { format } from 'date-fns'; // Import thư viện date-fns để định dạng ngày tháng
-import { showtimeInterface } from '@/app/api/apiResponse';
 
 
 type Props = {

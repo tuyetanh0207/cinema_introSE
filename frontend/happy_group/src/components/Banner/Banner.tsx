@@ -130,21 +130,27 @@ export default function Banner () {
 }
 
 function isButtonDisabled() {
-  const movieId = (document.getElementsByName('showtimeId')[0] as HTMLInputElement).value;
-  const date = (document.getElementsByName('date')[0] as HTMLInputElement).value;
-  const theatreId = (document.getElementsByName('theatreName')[0] as HTMLInputElement).value;
-  const time =   (document.getElementsByName('time')[0] as HTMLInputElement).value;
-  console.log(movieId);
-  console.log(date);
-  console.log(theatreId);
-  console.log(time);
+  if (document.getElementsByName('showtimeId')[0] && 
+  document.getElementsByName('date')[0] &&
+  document.getElementsByName('theatreName')[0] &&
+  document.getElementsByName('time')[0] 
+  ){
+    const movieId = (document.getElementsByName('showtimeId')[0] as HTMLInputElement).value;
+    const date = (document.getElementsByName('date')[0] as HTMLInputElement).value;
+    const theatreId = (document.getElementsByName('theatreName')[0] as HTMLInputElement).value;
+    const time =   (document.getElementsByName('time')[0] as HTMLInputElement).value;
+    if (!movieId || !date || !theatreId || !time) {
+      return true; // Vô hiệu hóa nút "Mua vé"
+    }
+  
+    return false; 
+  }
+  return false; 
+ 
+
 
   // Kiểm tra nếu một trong các select không được chọn
-  if (!movieId || !date || !theatreId || !time) {
-    return true; // Vô hiệu hóa nút "Mua vé"
-  }
-
-  return false; // Kích hoạt nút "Mua vé"
+// Kích hoạt nút "Mua vé"
 }
 
 

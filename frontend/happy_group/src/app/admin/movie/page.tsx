@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-key */
 "use client"
-import React, { useEffect, useState } from "react";
-import styles from "./Movies.module.css"
-import { add_ad, create, edit, help_ad, home_ad, logo_ad, movie_ad, msg_ad, person_ad, pwd_ad, search_ad, setting_ad, signout_ad } from "@/assets/svgs";
-import Image from "next/image";
-import Header_admin from "@/components/Admin_page/Header_admin/Header_admin";
 import { movieInterface } from "@/app/api/apiResponse";
 import movieAPI from "@/app/api/movieAPI";
+import { add_ad, create, edit, search_ad } from "@/assets/svgs";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import  Link  from "next/link";
+import styles from "./Movies.module.css";
 
 
 export default function Movies_Admin (){
