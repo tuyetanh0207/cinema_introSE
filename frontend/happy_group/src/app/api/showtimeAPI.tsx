@@ -30,6 +30,9 @@ const showtimeAPI = {
   },
   postSchedule: function(data:any){
     return post("http://localhost:8000/v1/schedules/", data, "")
+  },
+  postScheduleNew: function(data:any, token:string){
+    return post("http://localhost:8000/v1/schedules/", data, token)
   }
  
  

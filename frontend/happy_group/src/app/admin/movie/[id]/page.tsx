@@ -259,9 +259,14 @@ export default function Film_manager ({params, searchParams}: Props) {
             date: data[i].date.replace(/-/g, "/"),
             showtimeId: id,
             theatre: data[i].theatre,
-            time:  data[i].time}           
+            time:  data[i].time}
+            console.log("data ne: ", schedata)
+            if (Array.isArray(schedata.time) && schedata.time.length === 0) {
+              toast.success('Lỗi!', toastOptionsError);
+              return
+            }           
           try {
-            const respond = await showtimeAPI.postSchedule(schedata);
+            const respond = await showtimeAPI.postScheduleNew(schedata,token);
             toast.success('Thêm thành công!', toastOptions);
             const old=data.filter((element, index) => index !== i);
             setData(old)
