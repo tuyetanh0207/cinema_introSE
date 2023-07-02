@@ -2,7 +2,7 @@
 "use client"
 import styles from "./schedule.module.css";
 // import AdminAPI from 
- import AdminAPI from "@/app/api/adminAPI";
+ import AdminAPI from "@/app/api/tem";
 import theatreAPI from "@/app/api/theatreAPI";
 import { add_ad } from "@/assets/svgs";
 import Image from 'next/image';

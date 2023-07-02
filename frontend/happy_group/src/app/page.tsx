@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 
 
 import Filmcomment from '@/components/filmcomment/filmcomment';
-import AdminAPI from "@/app/api/adminAPI";
+import AdminAPI from "@/app/api/tem";
 import { useState } from 'react'
 
 type movieInterface = {
