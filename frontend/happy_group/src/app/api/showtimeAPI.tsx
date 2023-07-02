@@ -28,8 +28,8 @@ const showtimeAPI = {
     const url =`${apiV1}/showtimes/search?q=${query}`
     return get(url, "")
   },
-  postSchedule: function(data:any){
-    return post("http://localhost:8000/v1/schedules/", data, "")
+  postSchedule: function(data:any, token:string){
+    return post("http://localhost:8000/v1/schedules/", data, token)
   }
  
  
