@@ -5,7 +5,7 @@ import styles from "./schedule.module.css";
  import { useCallback, useEffect, useState } from 'react';//
  import React from 'react';
  import Image from 'next/image'
-import AdminAPI from "@/app/api/adminAPI";
+import AdminAPI from "@/app/api/AdminAPI";
 import { add_ad } from "@/assets/svgs";
 import theatreAPI from "@/app/api/theatreAPI";
 import movieAPI from "@/app/api/movieAPI";
@@ -52,7 +52,7 @@ export default function Schedule_Admin (){
   const [newsch_movieName, setNewsch_movieName] = useState("")
   const [newsch_startDate, setNewsch_startDate]= useState("");
   const [newsch_endDate, setNewsch_endDate]= useState("");
-  const [newsch_times, setNewsch_times]= useState([]);
+  const [newsch_times, setNewsch_times]= useState<any[]>([]);
   const [newnumtimes, setNewNumTimes] = useState(1)
   const [newtimes, setNewTimes] = useState([""])
   const [newTheatre, setNewTheatre] = useState([""])
@@ -100,38 +100,38 @@ export default function Schedule_Admin (){
 
 
 
-  const handleMovieChange = (event) => {
+  const handleMovieChange = (event:any) => {
     const selectedMovieTitle = event.target.value;
     setNewsch_movieName(selectedMovieTitle);
   };
 
 
-  const handleStartDateChange = (value) => {
+  const handleStartDateChange = (value:any) => {
     setNewsch_startDate(value);
   };
 
-  const handleEndDateChange = (value) => {
+  const handleEndDateChange = (value:any) => {
     setNewsch_endDate(value);
   };
 
-  const handleDayRowChange = (idxtimes, event) => {
+  const handleDayRowChange = (idxtimes:number, event:any) => {
     const value = event.target.value;
     const formattedDate = value.replaceAll("-", "/");
-    const newTimesCopy = [...newsch_times];
+    let newTimesCopy = [...newsch_times];
     newTimesCopy[idxtimes] = formattedDate;
     setNewsch_times(newTimesCopy);
   };
 
-  const handleTheatreChange = (event) => {
+  const handleTheatreChange = (event:any) => {
     const selectedTheatreName = event.target.value;
     setNewTheatre(selectedTheatreName);
   };
 
-  const handleTimeChange = (idxtimes, idxtime, value) => {
+  const handleTimeChange = (idxtimes:number, idxtime:number, value:any) => {
     const newTimeCopy = [...newTime[idxtimes]];
     newTimeCopy[idxtime] = value;
   
-    const newTimeCopyArray = [...newTime];
+    let newTimeCopyArray = [...newTime];
     newTimeCopyArray[idxtimes] = newTimeCopy;
     setNewTime(newTimeCopyArray);
   };
@@ -239,15 +239,15 @@ export default function Schedule_Admin (){
      
     {/* ))
   ))} */}
-  {Schedules.map((schedule, index) => (schedule.schedules.length >0)?( 
-    schedule.schedules.map((timeSlot:any, timeIndex:any) => (
+  {Schedules.map((schedule, index) => (schedule?.schedules.length >0)?( 
+    schedule?.schedules.map((timeSlot:any, timeIndex:any) => (
       <tr key={`${index}-${timeIndex}`}>
         {timeIndex === 0 ? (
           <>
-            <td rowSpan={schedule.schedules.length}>{count++}</td>
-            <td rowSpan={schedule.schedules.length}>{schedule.movieName}</td>
-            <td rowSpan={schedule.schedules.length}>{schedule.dateRange.start.substring(0,10)}</td>
-            <td rowSpan={schedule.schedules.length}>{schedule.dateRange.end.substring(0,10)}</td>
+            <td rowSpan={schedule?.schedules.length}>{count++}</td>
+            <td rowSpan={schedule?.schedules.length}>{schedule?.movieName}</td>
+            <td rowSpan={schedule?.schedules.length}>{schedule?.dateRange?.start?.substring(0,10)}</td>
+            <td rowSpan={schedule?.schedules.length}>{schedule?.dateRange?.end?.substring(0,10)}</td>
           </>
         ) : null}
        <td>{timeSlot.date.substring(0,10)}</td>
@@ -255,7 +255,7 @@ export default function Schedule_Admin (){
        
         <td>
           <ul>
-            {timeSlot.time.map((time, index) => (
+            {timeSlot.time.map((time:any, index:number) => (
               <li key={index}>
                 <span key={index}>{time} </span>
               </li>

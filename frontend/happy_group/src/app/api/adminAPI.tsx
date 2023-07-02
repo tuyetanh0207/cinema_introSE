@@ -13,4 +13,4 @@ const AdminAPI = {
 
 
 }
-export default AdminAPI
+export default AdminAPI;

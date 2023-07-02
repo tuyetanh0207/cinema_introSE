@@ -34,7 +34,7 @@ export default function Seat () {
   const [bookedseats, setBookedSeats] = useState<any[]>([])
   const [screenInfo, setScreenInfo] = useState<any>()
   const showtimeId=searchParams.get('showtimeId')||""
-  const [showtime, setShowtime]=useState<showtimeInterface>()
+  const [showtime, setShowtime]=useState<showtimeInterface|any>()
   const [banks, setBanks] = useState<any[]>([])
 
   useEffect(() => {
@@ -402,8 +402,8 @@ export default function Seat () {
        
                 <input type="text" id ='password' onChange={(e)=>setBankAccount(e.target.value)} placeholder='Số tài khoản' className={styles.username} />
                 {vietnamBankAccountPattern.test(bankAccountNumber)?(<p>
-                Số tài khoản hợp lệ!</p>):(<h8>Số tài khoản không hơp lệ!
-                </h8>)}
+                Số tài khoản hợp lệ!</p>):(<h6>Số tài khoản không hơp lệ!
+                </h6>)}
             </div>
                
                 <button className={styles.ripple} onClick={()=> handleBackBtn()}>QUAY LẠI</button>

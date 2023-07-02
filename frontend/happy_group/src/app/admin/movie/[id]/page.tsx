@@ -10,7 +10,7 @@ import NextIcon from '@mui/icons-material/KeyboardArrowRight'
 import BeforeIcon from '@mui/icons-material/KeyboardArrowLeft'
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, ToastPosition, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {FaTimes} from 'react-icons/fa';
 import movieAPI from '@/app/api/movieAPI';
@@ -19,10 +19,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import showtimeAPI from '@/app/api/showtimeAPI';
 import DatePicker from '@mui/lab/DatePicker';
 import { format } from 'date-fns'; // Import thư viện date-fns để định dạng ngày tháng
+import { showtimeInterface } from '@/app/api/apiResponse';
 
 
 type Props = {
-  params: { movie: string };
+  params: { id: string };
   searchParams: { [key: string]: string | string[] | undefined };
 };
 type Schedule ={
@@ -59,11 +60,11 @@ type films = {
 export default function Film_manager ({params, searchParams}: Props) {
 
   // id của phim
-      const id=params.movie
+      const id=params.id
       const user=useSelector((state:any)=> state.auth.login.currentUser)
       const token=user?.token
       console.log('token ne ', token)
-      const [films, setfilms] = useState<films>();
+      const [films, setfilms] = useState<any>();
 
       const stt = async () => {
         const res11= await showtimeAPI.getShowtime(id)
@@ -78,7 +79,7 @@ export default function Film_manager ({params, searchParams}: Props) {
         
 
       const toastOptionsError = {
-        position: 'top-center',
+        position: toast.POSITION.TOP_CENTER as ToastPosition,
         autoClose: 2000, // Thời gian tự động đóng thông báo (ms)
         hideProgressBar: true, // Ẩn thanh tiến trình
         closeOnClick: true, // Đóng thông báo khi nhấp chuột vào nó
@@ -93,10 +94,12 @@ export default function Film_manager ({params, searchParams}: Props) {
         icon: <FaTimes style={{color:'red'}}/>
         
       };
+     
       const toastOptions = {
-        position: 'top-center',
+        position:  toast.POSITION.TOP_CENTER as ToastPosition,
         style: {
           color: 'black',
+
           backgroundColor: '#8BFF92',
         },
         autoClose: 2000, 
@@ -109,41 +112,41 @@ export default function Film_manager ({params, searchParams}: Props) {
 
       //PART 1
       const [isEditing, setIsEditing] = useState(false);
-      const [text, setText] = useState<films>();;
+      const [text, setText] = useState<films>();
 
       const handleEditClick = () => {
         setText(films);
         setIsEditing(true);
       };
-      const handleInputChange1 = (e) => {
+      const handleInputChange1 = (e:any) => {
         setText(e.target.value);
         films.title=e.target.value;
       };
-      const handleInputChange2 = (e) => {
+      const handleInputChange2 = (e:any) => {
         setText(e.target.value.split(", "));
         films.genre=e.target.value.split(", ");
       };
-      const handleInputChange3 = (e) => {
+      const handleInputChange3 = (e:any) => {
         setText(e.target.value);
         films.director=e.target.value;
       };
-      const handleInputChange4 = (e) => {
+      const handleInputChange4 = (e:any) => {
         setText(e.target.value.split(", "));
         films.cast=e.target.value.split(", ");
       };
-      const handleInputChange5 = (e) => {
+      const handleInputChange5 = (e:any) => {
         setText(e.target.value);
         films.duration=e.target.value;
       };
-      const handleInputChange6 = (e) => {
+      const handleInputChange6 = (e:any) => {
         setText(e.target.value.split(", "));
         films.language=e.target.value.split(", ");
       };
-      const handleInputChange7 = (e) => {
+      const handleInputChange7 = (e:any) => {
         setText(e.target.value);
         films.rating=e.target.value;
       };
-      const handleInputChange8 = (e) => {
+      const handleInputChange8 = (e:any) => {
         setText(e.target.value);
         films.description=e.target.value;
       };
@@ -238,7 +241,7 @@ export default function Film_manager ({params, searchParams}: Props) {
           setData(prevData => prevData.filter(row => row.No !== No));
         };
       
-        const handleChangeField = (id: number, field: keyof addSchedule, value: string) => {
+        const handleChangeField = (id: number, field: keyof addSchedule, value: any) => {
           setData(prevData =>
             prevData.map(row => (row.No === id ? { ...row, [field]: value } : row))
           );
@@ -535,26 +538,3 @@ export default function Film_manager ({params, searchParams}: Props) {
 }
 
 
-
-export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent?: ResolvingMetadata,
-): Promise<Metadata> {
-  // read route params
-  const id = params.movie;
- 
-  const res= await movieAPI.getMovie(id) ;
-  const movie=res.data  
-  return {
-  title: movie.title
-
-  };
-}
-
-export async function generateStaticParams() {
-  const res= await movieAPI.getAllMovies();
-  const movies=res.data
-  return movies.map((movie:any) => ({
-    slug: movie._id,
-  }));
-}

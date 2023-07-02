@@ -4,6 +4,7 @@ import s from './idfilm.module.css'
 import { Metadata, ResolvingMetadata } from 'next';
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import showtimeAPI from "@/app/api/showtimeAPI";
+import { showtimeInterface } from "@/app/api/apiResponse";
 
 type movieInterface = {
     _id: string;
@@ -24,8 +25,9 @@ type Props = {
     searchParams: { [key: string]: string | string[] | undefined };
   };
 
-export default function MoviesPage( {params, searchParams}: Props) {
+export default  function MoviesPage( {params, searchParams}: Props) {
     const id=params.movie
+
     const [movie, setMovie]= useState<movieInterface>()
     const fetchMovie = async () => {
       const res= await showtimeAPI.getShowtime(id);
@@ -47,11 +49,11 @@ export default function MoviesPage( {params, searchParams}: Props) {
   const stt1 = async () => {
     const res11 = await showtimeAPI.getAllShowtimes()
 
-    const ids1 = Object.values(res11.data).map(obj => obj.id);
+    const ids1 = Object.values(res11.data).map((obj :any)=> obj.id);
     const results1 = await Promise.all(ids1);
     setshowtime(results1)
 
-    const ids2 = Object.values(res11.data).map(obj => transformId(obj.id));
+    const ids2 = Object.values(res11.data).map((obj:any) => transformId(obj.id));
     const results2 = await Promise.all(ids2);
     setimage(results2)
     
@@ -69,7 +71,7 @@ export default function MoviesPage( {params, searchParams}: Props) {
 
     const [selectedTheater, setSelectedTheater] = useState('Tất cả các rạp');
 
-    const handleTheaterChange = (event) => {
+    const handleTheaterChange = (event:any) => {
         setSelectedTheater(event.target.value);
       };
 
@@ -82,7 +84,7 @@ export default function MoviesPage( {params, searchParams}: Props) {
        setQ4([])
        setQ5([])
 
-       res.data.forEach(item => {
+       res.data.forEach((item:any)=> {
              for (let i = 0; i < res.data.length; i++) {
                      if(item.theatre==='Happy Us Theatre Quận 1'){
                          setQ1(item.time)
@@ -359,25 +361,25 @@ export default function MoviesPage( {params, searchParams}: Props) {
 };
 
 
-export async function generateMetadata(
-    { params, searchParams }: Props,
-    parent?: ResolvingMetadata,
-  ): Promise<Metadata> {
-    // read route params
-    const id = params.movie;
+// export async function generateMetadata(
+//     { params, searchParams }: Props,
+//     parent?: ResolvingMetadata,
+//   ): Promise<Metadata> {
+//     // read route params
+//     const id = params.movie;
    
-    const res= await movieAPI.getMovie(id) ;
-    const movie=res.data  
-console.log("Movie: ", movie)
-    return {
-    title: movie.title
-    };
-  }
-export async function generateStaticParams() {
-  const res= await showtimeAPI.getAllShowtimes();
-  const movies=res.data
-  // console.log("Movies path: ", movies)
-  return movies.map((movie:any) => ({
-    slug: movie._id,
-  }));
-}
+//     const res= await showtimeAPI.getShowtime(id);
+//     const movie=res.data  
+// console.log("Movie: ", movie)
+//     return {
+//     title: movie.movie.title
+//     };
+//   }
+// export async function generateStaticParams() {
+//   const res= await showtimeAPI.getAllShowtimes();
+//   const movies=res.data
+//   // console.log("Movies path: ", movies)
+//   return movies.map((movie:showtimeInterface) => ({
+//     movie: movie.id,
+//   }));
+// }

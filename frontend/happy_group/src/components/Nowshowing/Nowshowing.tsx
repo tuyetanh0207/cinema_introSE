@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import movieAPI from '@/app/api/movieAPI'
 import { useEffect,useState } from 'react'
 

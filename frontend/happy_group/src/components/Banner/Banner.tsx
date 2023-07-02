@@ -130,11 +130,10 @@ export default function Banner () {
 }
 
 function isButtonDisabled() {
-  const movieId = document.getElementsByName('showtimeId')[0]?.value;
-  const date = document.getElementsByName('date')[0]?.value;
-  const theatreId = document.getElementsByName('theatreName')[0]?.value;
-  const time = document.getElementsByName('time')[0]?.value;
-
+  const movieId = (document.getElementsByName('showtimeId')[0] as HTMLInputElement).value;
+  const date = (document.getElementsByName('date')[0] as HTMLInputElement).value;
+  const theatreId = (document.getElementsByName('theatreName')[0] as HTMLInputElement).value;
+  const time =   (document.getElementsByName('time')[0] as HTMLInputElement).value;
   console.log(movieId);
   console.log(date);
   console.log(theatreId);

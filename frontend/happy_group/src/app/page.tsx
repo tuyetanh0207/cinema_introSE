@@ -1,27 +1,14 @@
 "use client"
-import Image from 'next/image'
-import { Amiri_Quran, Inter } from 'next/font/google'
-import styles from './page.module.css'
-import NewMovies from '@/components/newmovies'
-import Loader from '@/components/loader'
-import axios from 'axios'
-import { useEffect } from 'react'
-import BannerAPI from './api/BannerAPI'
 import Banner from '@/components/Banner/Banner'
 import Nowshowing from '@/components/Nowshowing/Nowshowing'
 import Upcoming from '@/components/Upcoming/Upcoming'
-import movieAPI from './api/movieAPI'
+import { useEffect } from 'react'
 // import { useRouter } from 'next/router'
-import { useRouter } from 'next/navigation'
 
-import buy_ticket from '@/components/buy_ticket/buy_ticket'
 
-import { useState } from 'react'
+import AdminAPI from "@/app/api/AdminAPI"
 import Filmcomment from '@/components/filmcomment/filmcomment'
-import { ClassificationTypeNames } from 'typescript'
-import { useSelector } from 'react-redux'
-import AdminAPI from './api/adminAPI'
-import Link from 'next/link'
+import { useState } from 'react'
 type movieInterface = {
     _id: string,
     duration: number,
@@ -38,17 +25,17 @@ type movieInterface = {
 
 export default function Home() {
 
-   const [movies, setMovies] =useState([]);
-    const fetchMovies = async  () => {
-        const res=await movieAPI.getAllMovies();
-        setMovies(res.data);
+//    const [movies, setMovies] =useState([]);
+//     const fetchMovies = async  () => {
+//         const res=await movieAPI.getAllMovies();
+//         setMovies(res.data);
         
  
-    }
-    useEffect(()=> {
-        fetchMovies();
-    },[])
-    console.log("moviesss: ",movies)
+//     }
+//     useEffect(()=> {
+//         fetchMovies();
+//     },[])
+//     console.log("moviesss: ",movies)
     const [movie, setMovie] =useState([]);
     const fetchMovie = async  () => {
         const res=await AdminAPI.getAllShowtime();

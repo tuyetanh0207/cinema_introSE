@@ -8,14 +8,18 @@ import Link from "next/link";
 import showtimeAPI from "@/app/api/showtimeAPI";
 import { useRouter } from "next/navigation";
 export default function SearchComp() {
-  const inputEl = useRef(null);
+  const inputEl = useRef<HTMLInputElement>(null);
       const [searchInput, setSearchInput]=useState("");
       const [movies, setMovies]=useState([])
       const [isHoverBar, setIsHoverBar]=useState(false)
       const [isHoverList, setIsHoverList]=useState(false)
       const HandleSearch = function (e: { target: { value: string }; }) {
         const fetchSearchMovie= async(query: string) => {
-          const str=inputEl.current.value;
+          let str=""
+          if(inputEl.current){
+             str=inputEl.current.value;
+          }
+    
           const res = await showtimeAPI.searchShowtimes(str)
           setMovies(res.data);
           // console.log("search", res.data)

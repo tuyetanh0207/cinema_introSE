@@ -22,7 +22,7 @@ export default function User (){
   };
 
     // const reser = async () => {
-    // const Reservation = await movieAPI.getAllTicketsByReservation(`${user.user?._id}`);
+    // const Reservation = await movieAPI.getAllTicketsByReservation(`${user?.user?._id}`);
     // const Reservation = await movieAPI.getIdTest();
     // console.log("res: ", Reservation);
     // pickMovies(Reservation.data);
@@ -39,7 +39,7 @@ export default function User (){
                 <div className={styles.ibox}>
 
 
-                    <div className={styles.name}> {user.user?.name}</div>
+                    <div className={styles.name}> {user?.user?.name}</div>
 
                     <div className={styles.infoList}>
                         <div className={styles.row}>
@@ -47,7 +47,7 @@ export default function User (){
                             <span className={styles.label}>Số điện thoại:</span>
                             </div>
                             <div>
-                            <span>{user.user?.phone}</span>
+                            <span>{user?.user?.phone}</span>
                             </div>
                         </div>
                         <div className={styles.row}>
@@ -55,7 +55,7 @@ export default function User (){
                             <span className={styles.label}>Email:</span>
                             </div>
                             <div>
-                            <span>{user.user?.email}</span>
+                            <span>{user?.user?.email}</span>
                             </div>
                         </div>
 
@@ -64,7 +64,7 @@ export default function User (){
                             <span className={styles.label}>Vai trò:</span>
                             </div>
                             <div>
-                            <span>{user.user?.role}</span>
+                            <span>{user?.user?.role}</span>
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@ export default function User (){
                             <span className={styles.label}>User Name:</span>
                             </div>
                             <div>
-                            <span>{user.user?.username}</span>
+                            <span>{user?.user?.username}</span>
                             </div>
                         </div>
                         </div>
@@ -81,7 +81,7 @@ export default function User (){
                 <Image className={styles.pic} src={movie_img} alt='er'></Image>
             </div>
 
-            {user.user?.role === "user" && <div className={styles.body}>
+            {user?.user?.role === "user" && <div className={styles.body}>
                 
                     <div className={styles.Box2}>
                     <div className={styles.hbox}>

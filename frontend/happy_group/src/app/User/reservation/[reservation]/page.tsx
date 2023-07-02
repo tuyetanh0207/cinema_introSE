@@ -76,25 +76,25 @@ export default function User ({params, searchParams}:Props){
 
 
 
-export async function generateMetadata(
-    { params, searchParams }: Props,
-    parent?: ResolvingMetadata,
-  ): Promise<Metadata> {
-    // read route params
-    const id = params.reservation;
+// export async function generateMetadata(
+//     { params, searchParams }: Props,
+//     parent?: ResolvingMetadata,
+//   ): Promise<Metadata> {
+//     // read route params
+//     const id = params.reservation;
    
-    const res= await UserAPI.getReservation("",id)
-    const reservation=res.data  
-    return {
-    title: reservation.title
+//     const res= await UserAPI.getReservation("",id)
+//     const reservation=res.data  
+//     return {
+//     title: reservation.title
   
-    };
-  }
+//     };
+//   }
   
-  export async function generateStaticParams() {
-    const res= await UserAPI.getAllReservations("")
-    const reservations=res.data
-    return reservations.map((reservation:any) => ({
-      slug: reservation._id,
-    }));
-  }
+//   export async function generateStaticParams() {
+//     const res= await UserAPI.getAllReservations("")
+//     const reservations=res.data
+//     return reservations.map((reservation:any) => ({
+//       slug: reservation._id,
+//     }));
+//   }
