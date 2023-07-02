@@ -6,5 +6,9 @@ const BannerAPI = {
     const url = `${apiV1}/slides/`;
     return get(url, "");
   },
+
+
+
+  
 }
 export default BannerAPI

@@ -11,6 +11,11 @@ const AdminAPI = {
     return get (url,"");
   },
 
+  addSchedule: function ( data: any,manager : string,) {
+    const url = `${apiV1}/schedules/`;
+    return post(url, data,manager);
+  }
+
 
 }
 export default AdminAPI;

@@ -7,6 +7,9 @@ import theatreAPI from "@/app/api/theatreAPI";
 import { add_ad } from "@/assets/svgs";
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react'; //
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -68,24 +71,31 @@ export default function Schedule_Admin (){
     setIsAddingSchedule(1);
    
   }
-  const handleSaveAddingButton = () => {
+
+  const manager = useSelector((state: any ) => state.auth.login.currentUser)
+  console.log(manager)
+
+  const PSche = async(Sche :any, token: string) => {
+    const res = await AdminAPI.addSchedule(Sche,token)
+    console.log('res',res)
+  }
+
+  const handleSaveAddingButton = async () => {
     const data = {
-      movieName: newsch_movieName,
-      startDate: newsch_startDate,
-      endDate: newsch_endDate,
-      isActive: true,
-      times: newsch_times.map((date, idxtimes) => {
-        return {
-          _id: `648a020e27d32dfd9816931${idxtimes}`,
-        showtimeId: "6489ec98ba4769263484ac62",
-        date: date,
-        theatreName: newTheatre,
-        time: newTime[idxtimes],
-        };
-      }),
+      showtimeId: newsch_movieID,
+      date: newsch_times,
+      theatre: newTheatre,
+      time: newTime[0],
     };
-    console.log(data);
+  
+    try {
+      await PSche(data, manager.token);
+      toast.success('Thành công');
+    } catch (error) {
+      toast.error('Thất bại');
+    }
   };
+  
   const handleIncreaseDays=useCallback(()=>{
   
     setNewNumTimes((t) => newnumtimes+1);
@@ -146,8 +156,20 @@ export default function Schedule_Admin (){
   },[newNumTime,newTime])
 
 
+  const [selectedDate, setSelectedDate] = useState("");
+  const [isDateSelected, setIsDateSelected] = useState(false);
+  const handleDateFilterChange = (e) => {
+    setSelectedDate(e.target.value);
+    setIsDateSelected(true);
+  };
+
+
     return(
       <div  className={styles.lay1}>
+        <div className={styles.filter}>
+          Tìm Kiếm Theo ngày: 
+          <input type="date" onChange={handleDateFilterChange} />
+        </div>
         <table className={styles.table}>
   <thead>
     <tr>
@@ -178,9 +200,9 @@ export default function Schedule_Admin (){
                 {/* <label htmlFor="">Choose movie</label> */}
                 <select name="movies" id="movies" onChange={handleMovieChange}>
                 <option value="" hidden>Chọn phim</option> 
-                  {Schedules.map((movie: any)=> (
-                    <option key = {movie}>{ movie.movieName}</option>
-                  ))}
+                {Schedules.map((movie: any) => (
+                  <option value={movie.schedules[0]?.showtimeId} key={movie}>{movie.movieName}</option>
+                ))}
                 </select>
               </td>
               {/* start date */}
@@ -237,38 +259,49 @@ export default function Schedule_Admin (){
      
     {/* ))
   ))} */}
-  {Schedules.map((schedule, index) => (schedule?.schedules.length >0)?( 
-    schedule?.schedules.map((timeSlot:any, timeIndex:any) => (
-      <tr key={`${index}-${timeIndex}`}>
-        {timeIndex === 0 ? (
-          <>
-            <td rowSpan={schedule?.schedules.length}>{count++}</td>
-            <td rowSpan={schedule?.schedules.length}>{schedule?.movieName}</td>
-            <td rowSpan={schedule?.schedules.length}>{schedule?.dateRange?.start?.substring(0,10)}</td>
-            <td rowSpan={schedule?.schedules.length}>{schedule?.dateRange?.end?.substring(0,10)}</td>
-          </>
-        ) : null}
-       <td>{timeSlot.date.substring(0,10)}</td>
-        <td>{timeSlot.theatre}</td>
-       
-        <td>
-          <ul>
-            {timeSlot.time.map((time:any, index:number) => (
-              <li key={index}>
-                <span key={index}>{time} </span>
-              </li>
-            ))}
-          </ul>
-        </td>
-        <td>opt</td>
-      </tr>
-    ))
-  ):(<></>))
-  }
+{Schedules.map((schedule, index) => {
+  return schedule.schedules.length > 0 ? (
+    schedule.schedules.map((timeSlot, timeIndex) => {
+      const showRow = !isDateSelected || timeSlot.date.substring(0, 10) === selectedDate;
+      const isFirstTimeSlot = timeIndex === 0;
+      
+      return (
+        <tr key={`${index}-${timeIndex}`}>
+          {isFirstTimeSlot && (
+            <>
+              <td rowSpan={schedule.schedules.length}>{count++}</td>
+              <td rowSpan={schedule.schedules.length}>{schedule.movieName}</td>
+              <td rowSpan={schedule.schedules.length}>{schedule.dateRange?.start?.substring(0, 10)}</td>
+              <td rowSpan={schedule.schedules.length}>{schedule.dateRange?.end?.substring(0, 10)}</td>
+            </>
+          )}
+          {showRow && (
+            <>
+              <td>{timeSlot.date.substring(0, 10)}</td>
+              <td>{timeSlot.theatre}</td>
+              <td>
+                <ul>
+                  {timeSlot.time.map((time, index) => (
+                    <li key={index}>
+                      <span key={index}>{time} </span>
+                    </li>
+                  ))}
+                </ul>
+              </td>
+              <td>opt</td>
+            </>
+          )}
+        </tr>
+      );
+    })
+  ) : (
+    <></>
+  );
+})}
+
 </tbody>
 </table>
-
-
+<ToastContainer />
 
       </div> 
     )
