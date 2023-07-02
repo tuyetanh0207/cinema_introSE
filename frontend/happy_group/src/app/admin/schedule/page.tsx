@@ -2,13 +2,11 @@
 "use client"
 import styles from "./schedule.module.css";
 // import AdminAPI from 
- import { useCallback, useEffect, useState } from 'react';//
- import React from 'react';
- import Image from 'next/image'
-import AdminAPI from "@/app/api/AdminAPI";
-import { add_ad } from "@/assets/svgs";
+ import AdminAPI from "@/app/api/adminAPI";
 import theatreAPI from "@/app/api/theatreAPI";
-import movieAPI from "@/app/api/movieAPI";
+import { add_ad } from "@/assets/svgs";
+import Image from 'next/image';
+import { useCallback, useEffect, useState } from 'react'; //
 
 
 

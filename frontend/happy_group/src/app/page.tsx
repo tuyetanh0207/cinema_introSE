@@ -6,9 +6,11 @@ import { useEffect } from 'react'
 // import { useRouter } from 'next/router'
 
 
-import AdminAPI from "@/app/api/AdminAPI"
-import Filmcomment from '@/components/filmcomment/filmcomment'
+
+import Filmcomment from '@/components/filmcomment/filmcomment';
+import AdminAPI from "@/app/api/adminAPI";
 import { useState } from 'react'
+
 type movieInterface = {
     _id: string,
     duration: number,
