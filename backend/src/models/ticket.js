@@ -3,35 +3,30 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ticketSchema = new Schema({
-  seatId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Seat',
-    required: true,
-  },
-  showtimeId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Showtime',
-    required: true,
-  },
   reservationId: {
     type: Schema.Types.ObjectId,
     ref: 'Reservation',
     required: true,
   },
+  bookedSeatId: {
+    type: Schema.Types.ObjectId,
+    ref: 'BookedSeat',
+    required: true,
+  },
   room: {
     type: Number,
+    default: 1,
     required: true,
   },
   price: {
     type: Number,
     required: true,
   },
-  status: {
-    type: String,
-    default: 'Pending',
-    enum: ['Pending', 'Booked', 'Canceled']
+},
+  {
+    timestamps: true,
   }
-});
+)
 
 const Ticket = mongoose.model('Ticket', ticketSchema);
 

@@ -1,11 +1,11 @@
 const Showtime = require('../models/showtime');
 const Movie = require('../models/movie');
-const Theatre = require('../models/theatre');
+const Schedule = require('../models/schedule');
 const getFormattedMovieTitle = require('../utils/getFormattedMovieTitle');
 const fs = require('fs');
 
-
 const showtimeController = {
+  // done and checked
   createShowtime: async (req, res) => {
     const showtime = new Showtime(req.body);
 
@@ -14,6 +14,8 @@ const showtimeController = {
       return res.status(409).json({ error: 'Showtime already exists' });
 
     try {
+      const formattedTitle = await getFormattedMovieTitle(showtime.movieId);
+      showtime.url = formattedTitle;
       await showtime.save();
       res.status(201).json(showtime);
     } catch (e) {
@@ -21,57 +23,50 @@ const showtimeController = {
     }
   },
 
+  // done and checked
   getAllShowtimes: async (req, res) => {
     try {
       const showtimes = await Showtime.find({}).populate('movieId');
-
       const showtimeDetails = [];
-
+      const notFoundList = [];
       for (const showtime of showtimes) {
-        const movie = await Movie.findById(showtime.movieId);
+        const movie = showtime.movieId; // Access the populated movie directly from showtime
+  
         if (!movie) {
-          return res.status(404).json({ error: 'Movie not found' });
+          notFoundList.push(showtime.url);
         }
 
-        const theatreIds = showtime.times.flatMap(timeSlot => timeSlot.map(t => t.theatreId));
-        const theatres = await Theatre.find({ _id: { $in: theatreIds } });
-
-        const getTheatreName = (theatreId) => {
-          const theatre = theatres.find(t => t._id.toString() === theatreId.toString());
-          return theatre ? theatre.name : '';
-        };
-
+        if(!notFoundList) {
+          res.status(404).json({ error: "Movies not found!", movies: notFoundList })
+        }
+  
+        const schedules = await Schedule.find({ showtimeId: showtime._id });
+  
         const showtimeDetail = {
           id: showtime._id,
           movieId: movie._id,
           movieName: movie.title,
-          startDate: showtime.startDate,
-          endDate: showtime.endDate,
+          dateRange: showtime.dateRange,
           isActive: showtime.isActive,
-          times: showtime.times.flatMap(timeSlot => timeSlot.map(t => ({
-            theatreId: t.theatreId,
-            theatreName: getTheatreName(t.theatreId),
-            date: t.date,
-            time: t.time,
-          }))),
+          schedules,
         };
-
+  
         showtimeDetails.push(showtimeDetail);
       }
-
+  
       res.status(200).json(showtimeDetails);
     } catch (e) {
       res.status(400).json({ error: e.message });
     }
-  },
+  },  
 
-
+  // done and checked
   getNowShowing: async (req, res) => {
     try {
       const now = new Date();
       const showtimes = await Showtime.find({
-        startDate: { $lte: now },
-        endDate: { $gte: now },
+        'dateRange.start': { $lte: now },
+        'dateRange.end': { $gte: now },
         isActive: true,
       }).populate('movieId');
 
@@ -82,22 +77,21 @@ const showtimeController = {
       }));
 
       res.status(200).json(movies);
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error);
       res.status(500).json({ message: 'Server error' });
     }
   },
 
+  // done and checked
   getUpcoming: async (req, res) => {
     try {
       const now = new Date();
       const upcomingShowtimes = await Showtime.find({
-        $or: [
-          { startDate: { $eq: null } },
-          { startDate: { $gt: now } }
-        ]
-      })
-        .populate('movieId');
+        'dateRange.end': { $gte: now },
+        isActive: true,
+      }).populate('movieId');
+
       const upcomingMovies = upcomingShowtimes.map(showtime => ({
         movieTitle: showtime.movieId.title,
         movieImage: showtime.movieId.image,
@@ -110,6 +104,7 @@ const showtimeController = {
     }
   },
 
+  // done and checked
   getShowtimeById: async (req, res) => {
     const showtimeId = req.params.id;
 
@@ -124,25 +119,18 @@ const showtimeController = {
         return res.status(404).json({ error: 'Movie not found' });
       }
 
-      const theatreIds = showtime.times.flatMap(timeSlot => timeSlot.map(t => t.theatreId));
-      const theatres = await Theatre.find({ _id: { $in: theatreIds } });
+      // const currentDate = new Date();
+      // currentDate.setHours(0, 0, 0, 0); // Set time to midnight (00:00:00)
+      // currentDate.setHours(currentDate.getHours() + 7); // Add GMT+7 offset
 
-      const getTheatreName = (theatreId) => {
-        const theatre = theatres.find(t => t._id.toString() === theatreId.toString());
-        return theatre ? theatre.name : '';
-      };
+      // const schedules = await Schedule.find({ showtimeId: showtimeId, date: { $gte: currentDate } });
 
       const showtimeDetails = {
         id: showtime._id,
         movie: movie,
-        startDate: showtime.startDate,
-        endDate: showtime.endDate,
+        dateRange: showtime.dateRange,
         isActive: showtime.isActive,
-        times: showtime.times.flatMap(timeSlot => timeSlot.map(t => ({
-          theatreId: t.theatreId,
-          theatreName: getTheatreName(t.theatreId),
-          time: t.time,
-        }))),
+        // schedules
       };
 
       res.status(200).json(showtimeDetails);
@@ -152,6 +140,7 @@ const showtimeController = {
     }
   },
 
+  // done and checked
   getShowtimeByUrl: async (req, res) => {
     const showtimeUrl = req.params.url;
 
@@ -166,37 +155,18 @@ const showtimeController = {
         return res.status(404).json({ error: 'Movie not found' });
       }
 
-      const theatreIds = showtime.times.flatMap(timeSlot => timeSlot.map(t => t.theatreId));
-      const theatres = await Theatre.find({ _id: { $in: theatreIds } });
+      // const currentDate = new Date();
+      // currentDate.setHours(0, 0, 0, 0); // Set time to midnight (00:00:00)
+      // currentDate.setHours(currentDate.getHours() + 7); // Add GMT+7 offset
 
-      const getTheatreName = (theatreId) => {
-        const theatre = theatres.find(t => t._id.toString() === theatreId.toString());
-        return theatre ? theatre.name : '';
-      };
-
-      const currentDate = new Date();
-      currentDate.setHours(0, 0, 0, 0);
-
+      // const schedules = await Schedule.find({ showtimeId: showtime._id, date: { $gte: currentDate } });
 
       const showtimeDetails = {
         id: showtime._id,
         movie: movie,
-        startDate: showtime.startDate,
-        endDate: showtime.endDate,
+        dateRange: showtime.dateRange,
         isActive: showtime.isActive,
-        times: showtime.times.flatMap(timeSlot => timeSlot.map(t => {
-          const showtimeDate = new Date(t.date);
-          if (showtimeDate >= currentDate) {
-            return {
-              date: t.date,
-              theatreId: t.theatreId,
-              theatreName: getTheatreName(t.theatreId),
-              time: t.time,
-            };
-          }
-
-          return null;
-        })).filter(Boolean),
+        // schedules
       };
 
       res.status(200).json(showtimeDetails);
@@ -206,10 +176,11 @@ const showtimeController = {
     }
   },
 
+
   updateShowtimeById: async (req, res) => {
     const _id = req.params.id;
     const updates = Object.keys(req.body);
-    const allowedUpdates = ['movieId', 'theatreId', 'startDate', 'endDate', 'times', 'isActive'];
+    const allowedUpdates = ['movieId', 'theatreId', 'dateRange', 'isActive'];
     const isValidOperation = updates.every((update) => allowedUpdates.includes(update));
 
     if (!isValidOperation) return res.status(400).json({ error: 'Invalid updates' });
@@ -265,8 +236,7 @@ const showtimeController = {
           url: showtime.url,
           movieId: showtime.movieId,
           theatreId: showtime.theatreId,
-          startDate: showtime.startDate,
-          endDate: showtime.endDate
+          dateRange: showtime.dateRange
         }))
       });
 
@@ -294,6 +264,43 @@ const showtimeController = {
       res.status(200).json({ message: 'All showtimes have been deleted.' });
     } catch (err) {
       res.status(500).json({ error: err });
+    }
+  },
+
+  search: async (req, res) => {
+    try {
+      const searchTerm = req.query.q;
+      const searchResult = await Showtime.aggregate([
+        {
+          $lookup: {
+            from: 'movies',
+            localField: 'movieId',
+            foreignField: '_id',
+            as: 'movie'
+          }
+        },
+        {
+          $match: {
+            'movie.title': { $regex: searchTerm, $options: 'i' }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            showtimeId: '$_id',
+            movieTitle: { $arrayElemAt: ['$movie.title', 0] },
+            movieImage: { $arrayElemAt: ['$movie.image', 0] }
+          }
+        },
+        {
+          $limit: 5
+        }
+      ]);
+  
+      res.status(200).json(searchResult);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: 'Internal server error' });
     }
   }
 }

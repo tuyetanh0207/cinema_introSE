@@ -7,40 +7,17 @@ const reservationSchema = new Schema({
     ref: 'User',
     required: true
   },
-  name: {
-    type: String,
-    required: true,
-  },
-  phoneNumber: {
-    type: Number,
-    required: true
-  },
-  email: {
-    type: String,
-    required: true
-  },
   showtimeId: {
     type: Schema.Types.ObjectId,
     ref: 'Showtime',
     required: true
   },
-  showtime: {
-    time: {
-      type: String,
-      required: true
-    },
-    date: {
-      type: Date,
-      required: true
-    }
-  },
-  seats: [
+  seats:
     {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       ref: 'BookedSeat',
       required: true
-    }
-  ],
+    },
   totalPrice: {
     type: Number,
     required: true
@@ -50,6 +27,9 @@ const reservationSchema = new Schema({
     default: 'Pending',
     enum: ['Pending', 'Canceled', 'Booked'],
     required: true,
+  },
+  expirationTime: {
+    type: Date
   }
 }, {
   timestamps: true

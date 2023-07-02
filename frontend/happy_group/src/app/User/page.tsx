@@ -1,5 +1,5 @@
 "use client"
-import { useEffect,useState } from 'react'
+import { JSXElementConstructor, Key, ReactElement, ReactFragment, ReactPortal, useEffect,useState } from 'react'
 import styles from './User.module.css'
 import {movie_img} from '@/assets/imgs'
 import Image from 'next/image'
@@ -11,7 +11,27 @@ export default function User (){
 
   const user = useSelector((state: any) => state.auth.login.currentUser);
   console.log(user); // Kiểm tra thông tin người dùng trong console log
+
+
+  const [movies, pickMovies] = useState<any[]>([]);
+
+  const reser = async () => {
+    const Reservation = await movieAPI.getIdTest();
+    console.log("res: ", Reservation);
+    pickMovies(Reservation.data.tickets); // Update movies state with the tickets array
+  };
+
+    // const reser = async () => {
+    // const Reservation = await movieAPI.getAllTicketsByReservation(`${user.user?._id}`);
+    // const Reservation = await movieAPI.getIdTest();
+    // console.log("res: ", Reservation);
+    // pickMovies(Reservation.data);
+
+    // }
     
+    useEffect(()=>{
+        reser();
+    },[])
 
     return(
         <div className={styles.body}>
@@ -61,40 +81,50 @@ export default function User (){
                 <Image className={styles.pic} src={movie_img} alt='er'></Image>
             </div>
 
-            <div className={styles.Box2}>
-                <div className={styles.hbox}>
-                    <table className={styles.hisTable}>
-                <tr>
-                    <th>Tên phim</th>
-                    <th>Tên rạp</th>
-                    <th>Ngày xem</th>
-                    <th>Suất chiếu</th>
-                    <th>Tổng tiền</th>
-                    <th>Chi Tiết</th>
-                </tr>
-                <tr>
-                    <td>Avengers: Endgame</td>
-                    <td>Rạp A</td>
-                    <td>2023-06-10</td>
-                    <td>18:00</td>
-                    <td>$20</td>
-                    <td><a href="/user/reservation/"reservationID >chi tiết</a></td>
-                </tr>
-                <tr>
-                    <td>Jurassic Park</td>
-                    <td>Rạp B</td>
-                    <td>2023-06-12</td>
-                    <td>20:30</td>
-                    <td>$15</td>
-                    <td><a href="/user/reservation/"reservationID >chi tiết</a></td>
-                </tr>
-            </table>
-                </div>
+            {user.user?.role === "user" && <div className={styles.body}>
+                
+                    <div className={styles.Box2}>
+                    <div className={styles.hbox}>
 
-                <div className={styles.his}>
-                        Lịch sử xem phim
+                    {
+                    movies.length > 0 ? (
+                        movies.map((movie, index) => (
+                        <div key={index}>
+                            <table className={styles.hisTable}>
+                            <tr>
+                                <th>Tên phim</th>
+                                <th>Tên rạp</th>
+                                <th>Ngày xem</th>
+                                <th>Giờ chiếu</th>
+                                <th>Ghế ngồi</th>
+                                <th>Chi Tiết</th>
+                            </tr>
+                            <tr>
+                            <td>{movie.movieTitle}</td> 
+                            <td>{movie.theatre}</td> 
+                            <td>{movie.date}</td> 
+                            <td>{movie.time}</td>
+                            <td>{movie.seatPosition}</td> 
+                            <td><a href="fb.com">Chi tiết</a></td> 
+                            </tr>
+                            </table>
+                        </div>
+                        ))
+                    ) : (
+                        <div>No movies found</div>
+                    )
+                    }
+                
+                    </div>
+
+                    <div className={styles.his}>
+                            Lịch sử xem phim
+                    </div>
                 </div>
-            </div>
+                </div>}
+
+
+            
 
 
 

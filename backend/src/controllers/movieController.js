@@ -1,8 +1,8 @@
 const Movie = require('../models/movie');
+const Showtime = require('../models/showtime');
 const fs = require('fs');
 
 const movieController = {
-    // create a movie 
     createMovie: async (req, res) => {
         const movie = new Movie(req.body);
         try {
@@ -11,7 +11,7 @@ const movieController = {
                 return res.status(409).json({error: 'Movie already exists'});
             }
             await movie.save();
-            res.status(201).json(movie);
+            res.status(201).json({status: "success", movie});
         } catch (e) {
             res.status(400).json({error: e.message});
         }
@@ -38,14 +38,24 @@ const movieController = {
     },
 
     getAllMovies: async (req, res) => {
-        try {
-            const movies = await Movie.find({});
-            res.status(200).json(movies);
-        } catch (e) {
-            res.status(400).json({error: e.message});
-        }
+      try {
+        const movies = await Movie.find({});
+    
+        const moviesWithShowtimeIds = await Promise.all(
+          movies.map(async (movie) => {
+            const showtime = await Showtime.findOne({ movieId: movie._id });
+            const showtimeId = showtime ? showtime._id : null;
+            
+            return { ...movie.toObject(), showtimeId };
+          })
+        );
+    
+        res.status(200).json(moviesWithShowtimeIds);
+      } catch (error) {
+        res.status(500).json({ error: 'Error retrieving movies' });
+      }
     },
-
+    
     getMovieById: async (req, res) => {
         const _id = req.params.id;
 
@@ -125,7 +135,21 @@ const movieController = {
         console.error(error);
         res.status(500).json({ error: 'Error adding movies' });
       }
+    },
+    
+    searchMovie: async (req, res) => {
+      const { title } = req.query;
+    
+      try {
+        const movies = await Movie.find({ title: { $regex: title, $options: 'i' } }).select('title');
+        const movieTitles = movies.map(movie => movie.title);
+        res.status(200).json(movieTitles);
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
     }
+    
 }
 
 module.exports = movieController;
