@@ -42,7 +42,7 @@ export default function User ({params, searchParams}:Props){
                         
                         </tr>
                         {reservation?.tickets.map((ticket:any,index)=>
-                         <tr key={ticket}>
+                         <tr key={index}>
                          <td>{index +1}</td>
                          <td>{ticket.movieTitle}</td>
 

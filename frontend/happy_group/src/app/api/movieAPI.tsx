@@ -65,9 +65,9 @@ const movieAPI = {
     return get(url, "");
   },
 
-  getIdTest: function () {
-    const url = `${apiV1}/reservations/648a17a5dbe06d9af9b643e5/tickets`;
-    return get(url, "");
+  getIdTest: function (token: string, userid: string) {
+    const url = `${apiV1}/reservations/tickets/${userid}`;
+    return get(url, token);
   },
   
 

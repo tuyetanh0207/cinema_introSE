@@ -13,9 +13,9 @@
     border-radius: 5px;
     color: white;
     animation-name: slide-in-up;
-    animation-duration: 2s;
+    animation-duration: 4s;
     animation-delay: 0s;
-    animation-iteration-count: 2;
+    animation-iteration-count: infinite;
     animation-direction:normal;
     animation-timing-function:easy-in-out;
    

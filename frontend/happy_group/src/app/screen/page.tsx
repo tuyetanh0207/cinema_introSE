@@ -152,7 +152,7 @@ export default function Seat () {
   const [modelOpen, setModalOpen]=useState(false)
   const [totalPrice, setTotalPrice]=useState(selectedSeats.length*price[0] + selectedDoubleSeats.length*price[1])
   const handleBookingBtn = async() => {
-    setBookedSeats([])
+   // setBookedSeats([])
     console.log("dounle",bookedseats)
    
   
@@ -379,10 +379,10 @@ export default function Seat () {
                 <Image src={showtime?.movie?.image} alt='dd' width={100} height={250}></Image>
                 <h5>Tên: {showtime?.movie?.title}</h5>
                 <h5>Rạp : {theatreName}</h5>
-                <h5>Suất chiếu : {time} | {}</h5>    
+                <h5>Suất chiếu : {time}</h5>    
                 <div className={styles.cost}>
                   <h5>Tổng: {totalPrice} </h5>
-                  <div      defaultValue={0} />
+                  {/* <div      defaultValue={0} /> */}
           
                 </div>
                 {/* <button className={styles.ripple} onClick={()=> setIsChoosingSeat(1)}>QUAY LẠI</button>

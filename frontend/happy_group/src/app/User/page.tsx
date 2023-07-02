@@ -15,7 +15,7 @@ export default function User (){
   const [movies, pickMovies] = useState<any[]>([]);
 
   const reser = async () => {
-    const Reservation = await movieAPI.getIdTest();
+    const Reservation = await movieAPI.getIdTest(user?.token, user?.user?._id);//user?.user?._id
     console.log("res: ", Reservation);
     pickMovies(Reservation.data.tickets); // Update movies state with the tickets array
   };

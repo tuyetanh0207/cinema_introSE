@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "@/redux/apiRequests";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { log } from "console";
 export default function Sidebar (){
     const dispatch =useDispatch()
@@ -15,7 +15,11 @@ export default function Sidebar (){
     const handleSignoutBtn=()=>{
         logOut(dispatch,user?.user?._id,user?.token, axios,router)
     }
-
+    const pathname= usePathname()
+    console.log("pat",pathname)
+    const ele_title=["Dashboard", "Movies","Schedules","Messages","Settings", "Password","Help","Signout"]
+    const ele_image =[home_ad, movie_ad, person_ad, msg_ad, setting_ad, pwd_ad, help_ad, signout_ad]
+    const ele_url=["/admin/","/admin/movie","/admin/schedule","admin/","admin/","admin/schedule","admin/schedule"]
     return(
         <div className={styles.sidebar}>
             <div className={styles.header}>
@@ -23,30 +27,20 @@ export default function Sidebar (){
                 US Happy 
             </div>
             <div className={styles.menu}>
-                <div className={styles.menu_item}>
-                    <Image  className={styles.icon} width={30}height={30}src={home_ad} alt=""/>
-                    Dashboard</div>
-                <div className={`${styles.menu_item} ${styles.menu_item_focus_custom}`} onClick={()=>router.push("/admin/movie")}>
+               {ele_title.map((ele:string, index: number)=>(
+                ele_url[index]===pathname?( <div key ={index} className={`${styles.menu_item} ${styles.menu_item_focus_custom}`} onClick={()=>router.push(ele_url[index])}>
+                <Image  className={styles.icon} width={30}height={30}src={ele_image[index]} alt=""/>
+                {ele}</div>):(
+                     <div key ={index} className={`${styles.menu_item}`} onClick={()=>router.push(ele_url[index])}>
+                     <Image  className={styles.icon} width={30}height={30}src={ele_image[index]} alt=""/>
+                     {ele}</div>
+                )
+               
+               ))}
+                {/* <div className={`${styles.menu_item} ${styles.menu_item_focus_custom}`} onClick={()=>router.push("/admin/movie")}>
                     <Image  className={styles.icon} width={30}height={30}src={movie_ad} alt=""/>
-                    Movies</div>
-                <div className={styles.menu_item} onClick={()=>router.push("/admin/schedule")}>
-                    <Image  className={styles.icon} width={30}height={30}src={person_ad}  alt=""/>
-                    Schedules</div>
-                <div className={styles.menu_item}>
-                    <Image  className={styles.icon} width={30}height={30}src={msg_ad} alt=""/>
-                    Messages</div>
-                <div className={styles.menu_item}>
-                    <Image  className={styles.icon} width={30}height={30}src={setting_ad} alt=""/>
-                    Settings</div>
-                <div className={styles.menu_item}>
-                    <Image  className={styles.icon} width={30}height={30}src={pwd_ad} alt=""/>
-                    Password</div>
-                <div className={styles.menu_item}>
-                    <Image  className={styles.icon} width={30}height={30}src={help_ad} alt=""/>
-                    Help</div>
-                <div className={styles.menu_item} onClick={()=>handleSignoutBtn()}>
-                    <Image  className={styles.icon} width={30}height={30}src={signout_ad} alt=""/>
-                    Sign out</div>
+                    Movies</div> */}
+               
             </div>
         </div>
     )

@@ -93,23 +93,29 @@ export default function Header () {
                  <div className={styles.subheader}></div>
                  <div className={`${styles.navbar} ${styles.is_sticky}`}>
                     <ul className={styles.navbar_list}>
-                        <li className={styles.navbar_item}><Link href={''}>Trang chủ</Link></li>
-                        <li className={styles.navbar_item}><Link href={''}>Mua vé</Link></li>
-                        <li className={styles.navbar_item}><Link href={''}>Phim</Link></li>
-                        <li className={styles.navbar_item}><Link href={''}>Phim hot</Link></li>
-                        <li className={styles.navbar_item}><Link href={''}>Góc điện ảnh</Link></li>
-                        <li className={styles.navbar_item}><Link href={''}>Rạp/Giá vé</Link></li>
-                        <li className={styles.navbar_item}><Link href={''}>Hỗ trợ</Link></li>
+                        <li className={styles.navbar_item} onClick={()=>router.push("/")}><Link href="/">Trang chủ</Link></li>
+                        <li className={styles.navbar_item} onClick={()=>router.push("/")}><Link href={'/'}>Mua vé</Link></li>
+                        <li className={styles.navbar_item} onClick={()=>router.push("/")}><Link href={'/'}>Phim</Link></li>
+                        <li className={styles.navbar_item} onClick={()=>router.push("/")}><Link href={'/'}>Phim hot</Link></li>
+                        <li className={styles.navbar_item} onClick={()=>router.push("/")}><Link href={'/'}>Góc điện ảnh</Link></li>
+                        <li className={styles.navbar_item} onClick={()=>router.push("/")}><Link href={'/'}>Rạp/Giá vé</Link></li>
+                        <li className={styles.navbar_item} onClick={()=>router.push("/")}><Link href={'/'}>Hỗ trợ</Link></li>
 
                     </ul>
                     <ul className={styles.navbar_list_icon}>
-                        <li className={styles.navbar_item_icon}>
+                        <li className={styles.navbar_item_icon} >
+                            <a href="facebook.com"></a>
+                            
                             <Image src={fbIcon} alt={''}></Image>
                         </li>
-                        <li className={styles.navbar_item_icon}>
+                        <li className={styles.navbar_item_icon} >
+                            <Link href="facebook.com"></Link>
+                            
                             <Image src={twitterIcon} alt={''}></Image>
                         </li>
-                        <li className={styles.navbar_item_icon}>
+                        <li className={styles.navbar_item_icon} >
+                            <Link href="facebook.com"></Link>
+                            
                             <Image src={instaIcon} alt={''}></Image>
                         </li>
                     </ul>
