@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-
+"use client"
 import showtimeAPI from "@/app/api/showtimeAPI";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import s from './idfilm.module.css';
