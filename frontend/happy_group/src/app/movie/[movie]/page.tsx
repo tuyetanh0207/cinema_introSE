@@ -368,10 +368,11 @@ export default  function MoviesPage( {params, searchParams}: Props) {
 //   }));
 // }
 export async function generateStaticParams() {
-  const posts = await fetch('https://movie-ticket-booking-3svg.onrender.com/v1/showtimes').then((res) => res.json())
- 
-  return posts.map((post:showtimeInterface) => ({
-    movie: post.id,
+  //const posts = await fetch('https://movie-ticket-booking-3svg.onrender.com/v1/showtimes').then((res) => res.json())
+ const posts=[1,2,3]
+  return posts.map((post:any) => ({
+    //movie: post.id,
+    movie: post
   }))
 }
  
