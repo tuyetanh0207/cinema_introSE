@@ -367,24 +367,11 @@ export default  function MoviesPage( {params, searchParams}: Props) {
 //     movie: movie.id,
 //   }));
 // }
-// export async function generateMetadata(
-//   { params, searchParams }:Props
-// ) {
-
-
-//     const id = params.movie;
-   
-//     const res= await showtimeAPI.getShowtime(id);
-//     const movie=res.data  
-// console.log("Movie: ", movie)
-//     return {
-//     title: movie.movie.title
-//     };
-
-// }
-// export async function generateMetadata(
-//     { params, searchParams }: Props,
-//     parent?: ResolvingMetadata,
-//   ): Promise<Metadata> {
-//    
-//   }
+export async function generateStaticParams() {
+  const posts = await fetch('https://movie-ticket-booking-3svg.onrender.com/v1/showtimes').then((res) => res.json())
+ 
+  return posts.map((post:showtimeInterface) => ({
+    movie: post.id,
+  }))
+}
+ 
