@@ -166,9 +166,10 @@ export default  function MoviesPage( {params, searchParams}: Props) {
 //     movie: movie.id,
 //   }));
 // }
-// export async function generateStaticParams() {
-//   const posts = [{slug:"1"},{slug:"2"},{slug:"3"}]
-//   return posts.map((post) => ({
-//     slug: post.slug,
-//   }))
-// }
+export async function generateStaticParams() {
+  const posts = [{slug:"1"},{slug:"2"},{slug:"3"}]
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
