@@ -367,18 +367,24 @@ export async function generateStaticParams() {
     movie: movie.id,
   }));
 }
+export async function generateMetadata(
+  { params, searchParams }:Props
+) {
 
+
+    const id = params.movie;
+   
+    const res= await showtimeAPI.getShowtime(id);
+    const movie=res.data  
+console.log("Movie: ", movie)
+    return {
+    title: movie.movie.title
+    };
+
+}
 // export async function generateMetadata(
 //     { params, searchParams }: Props,
 //     parent?: ResolvingMetadata,
 //   ): Promise<Metadata> {
-//     // read route params
-//     const id = params.movie;
-   
-//     const res= await showtimeAPI.getShowtime(id);
-//     const movie=res.data  
-// console.log("Movie: ", movie)
-//     return {
-//     title: movie.movie.title
-//     };
+//    
 //   }

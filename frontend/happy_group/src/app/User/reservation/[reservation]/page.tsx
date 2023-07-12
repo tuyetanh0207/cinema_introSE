@@ -87,7 +87,19 @@ export default function User ({params, searchParams}:Props){
   
 //     };
 //   }
+export async function generateMetadata(
+    { params, searchParams }:Props
+  ) {
+
+    const id = params.reservation;
+   
+    const res= await UserAPI.getReservation("",id)
+    const reservation=res.data  
+    return {
+    title: reservation.title
   
+    };
+  }
   export async function generateStaticParams() {
     const res= await UserAPI.getAllReservations("")
     const reservations=res.data
