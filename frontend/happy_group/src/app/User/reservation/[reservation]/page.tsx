@@ -88,10 +88,10 @@ export default function User ({params, searchParams}:Props){
 //     };
 //   }
   
-//   export async function generateStaticParams() {
-//     const res= await UserAPI.getAllReservations("")
-//     const reservations=res.data
-//     return reservations.map((reservation:any) => ({
-//       slug: reservation._id,
-//     }));
-//   }
+  export async function generateStaticParams() {
+    const res= await UserAPI.getAllReservations("")
+    const reservations=res.data
+    return reservations.map((reservation:any) => ({
+      slug: reservation._id,
+    }));
+  }

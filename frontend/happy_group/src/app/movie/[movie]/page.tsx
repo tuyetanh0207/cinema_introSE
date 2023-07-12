@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client"
 import showtimeAPI from "@/app/api/showtimeAPI";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
@@ -358,22 +359,6 @@ export default  function MoviesPage( {params, searchParams}: Props) {
       </>
     )
 };
-
-
-export async function generateMetadata(
-    { params, searchParams }: Props,
-    parent?: ResolvingMetadata,
-  ): Promise<Metadata> {
-    // read route params
-    const id = params.movie;
-   
-    const res= await showtimeAPI.getShowtime(id);
-    const movie=res.data  
-console.log("Movie: ", movie)
-    return {
-    title: movie.movie.title
-    };
-  }
 export async function generateStaticParams() {
   const res= await showtimeAPI.getAllShowtimes();
   const movies=res.data
@@ -382,3 +367,18 @@ export async function generateStaticParams() {
     movie: movie.id,
   }));
 }
+
+// export async function generateMetadata(
+//     { params, searchParams }: Props,
+//     parent?: ResolvingMetadata,
+//   ): Promise<Metadata> {
+//     // read route params
+//     const id = params.movie;
+   
+//     const res= await showtimeAPI.getShowtime(id);
+//     const movie=res.data  
+// console.log("Movie: ", movie)
+//     return {
+//     title: movie.movie.title
+//     };
+//   }

@@ -15,6 +15,7 @@ import { FaTimes } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { ToastContainer, ToastPosition, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { showtimeInterface } from '@/app/api/apiResponse';
 
 
 type Props = {
@@ -538,3 +539,11 @@ export default function Film_manager ({params, searchParams}: Props) {
 }
 
 
+export async function generateStaticParams() {
+  const res= await showtimeAPI.getAllShowtimes();
+  const movies=res.data
+  // console.log("Movies path: ", movies)
+  return movies.map((movie:showtimeInterface) => ({
+    movie: movie.id,
+  }));
+}

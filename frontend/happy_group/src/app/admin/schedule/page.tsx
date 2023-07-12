@@ -158,7 +158,7 @@ export default function Schedule_Admin (){
 
   const [selectedDate, setSelectedDate] = useState("");
   const [isDateSelected, setIsDateSelected] = useState(false);
-  const handleDateFilterChange = (e) => {
+  const handleDateFilterChange = (e:any) => {
     setSelectedDate(e.target.value);
     setIsDateSelected(true);
   };
@@ -261,7 +261,7 @@ export default function Schedule_Admin (){
   ))} */}
 {Schedules.map((schedule, index) => {
   return schedule.schedules.length > 0 ? (
-    schedule.schedules.map((timeSlot, timeIndex) => {
+    schedule.schedules.map((timeSlot:any, timeIndex:number) => {
       const showRow = !isDateSelected || timeSlot.date.substring(0, 10) === selectedDate;
       const isFirstTimeSlot = timeIndex === 0;
       
@@ -281,7 +281,7 @@ export default function Schedule_Admin (){
               <td>{timeSlot.theatre}</td>
               <td>
                 <ul>
-                  {timeSlot.time.map((time, index) => (
+                  {timeSlot.time.map((time:string, index:number) => (
                     <li key={index}>
                       <span key={index}>{time} </span>
                     </li>
