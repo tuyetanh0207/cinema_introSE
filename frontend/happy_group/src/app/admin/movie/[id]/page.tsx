@@ -538,11 +538,11 @@ export default function Film_manager ({params, searchParams}: Props) {
 }
 
 
-export async function generateStaticParams() {
-  const res= await showtimeAPI.getAllShowtimes();
-  const movies=res.data
-  // console.log("Movies path: ", movies)
-  return movies.map((movie:showtimeInterface) => ({
-    movie: movie.id,
-  }));
-}
+// export async function generateStaticParams() {
+//   const res= await showtimeAPI.getAllShowtimes();
+//   const movies=res.data
+//   // console.log("Movies path: ", movies)
+//   return movies.map((movie:showtimeInterface) => ({
+//     movie: movie.id,
+//   }));
+// }

@@ -1,3 +1,5 @@
+
+import { Metadata, ResolvingMetadata } from "next";
 import { showtimeInterface } from "../api/apiResponse";
 import showtimeAPI from "../api/showtimeAPI";
 
@@ -6,25 +8,20 @@ type Props = {
     searchParams: { [key: string]: string | string[] | undefined };
   };
 
-export default function Layout (children:any){
+export default function Layout ({
+    children,
+  }: {
+    children: React.ReactNode
+  }) {
 return {children}
 }
 
-export async function generateMetadata(
-  { params, searchParams }:Props
-) {
 
-
-    const id = params.movie;
-   
-    const res= await showtimeAPI.getShowtime(id);
-    const movie=res.data  
-console.log("Movie: ", movie)
-    return {
-    title: movie.movie.title
-    };
-
-}
+export function generateMetadata() {
+    return new Promise((resolve) => {
+      resolve({});
+    });
+  }
 export async function generateStaticParams() {
   const res= await showtimeAPI.getAllShowtimes();
   const movies=res.data
