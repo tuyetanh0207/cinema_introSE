@@ -27,6 +27,7 @@ export async function generateStaticParams() {
   const movies=res.data
   // console.log("Movies path: ", movies)
   return movies.map((movie:showtimeInterface) => ({
-    movie: movie.id,
+    movie: "6489ec98ba4769263484ac62",
+    //movie.id
   }));
 }
